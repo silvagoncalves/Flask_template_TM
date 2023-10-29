@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Se connecter {% endblock %}</h1>
+  <h1>{% block title %}Connexion{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <label for="username">Username</label>
-    <input name="username" id="username" required>
+    <input name="username" id="username" required><br>
+    
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
+    <input type="password" name="password" id="password" required><br>
+    
+    <p>Vous n'avez pas encore de compte ?<a href="/inscription"> Créez-en un !</a></p><br>
+    
+    <p><a href="/reset_password">Mot de passe oublié ?</a></p><br>
+
+    <input type="submit" value="Log in">
   </form>
 {% endblock %}

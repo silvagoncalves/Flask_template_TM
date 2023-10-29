@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Inscription{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>{% block title %}Etes-vous:{% endblock %}</h2>
+
+  <form method="post" action="/selection_role"></form>
+    <buttom type = "submit" name="role" value="enseignant">Enseignant</buttom>
+    <buttom type = "submit" name="role" value="eleve">Elève</buttom>
+  </form>
+
+{% endblock %}  

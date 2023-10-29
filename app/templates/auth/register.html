@@ -1,15 +1,96 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}S'enregistrer{% endblock %}</h1>
+  <h1>{% block title %}Inscription{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <label for="username">Username</label>
-    <input name="username" id="username" required>
+    <input name="username" id="username" required><br>
+    
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
+    <input type="password" name="password" id="password" required><br>
+    
+    <label for="email">Adresse e-mail</label>
+    <input type="email" name="email" id="email" required><br>
+    
+    <label for="phone">Numéro de téléphone</label>
+    <input type="tel" name="phone" id="phone" required><br>
+    
+    <label for="tarif">Tarif</label>
+    <input type="number" name="tarif" id="tarif" required><br>
+
+    <label for="matiere">Quelles matières enseignez-vous?</label>
+    <div>
+      <input type="checkbox" name="matier[]" id="francais" value="francais">
+      <label for="francais">Français</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="mathematique" value="mathematique">
+      <label for="mathematique">Mathématique</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="allemand" value="allemand">
+      <label for="allemand">Allemand</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="anglais" value="anglais">
+      <label for="anglais">Anglais</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="geographie" value="geographie">
+      <label for="geographie">Géographie</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="histoire" value="histoire">
+      <label for="histoire">Histoire</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="biologie" value="biologie">
+      <label for="biologie">Biologie</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="economie" value="economie">
+      <label for="economie">Economie</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="chimie" value="chimie">
+      <label for="chimie">Chimie</label>
+    </div>
+    <div>
+      <input type="checkbox" name="matier[]" id="physique" value="physique">
+      <label for="physique">Physique</label>
+    </div>
+
+    <label for="niveaux">Quels niveaux enseignez-vous?</label>
+    <div>
+      <input type="checkbox" name="niveau[]" id="primaire" value="primaire">
+      <label for="primaire">Primaire</label>
+    </div>
+    <div>
+      <input type="checkbox" name="niveau[]" id="secondaire1" value="secondaire1">
+      <label for="secondaire1">Secondaire 1</label>
+    </div>
+    <div>
+      <input type="checkbox" name="niveau[]" id="secondaire2" value="secondaire2">
+      <label for="secondaire2">Secondaire 2</label>
+    </div>
+    <div>
+      <input type="checkbox" name="niveau[]" id="hauteecole" value="hauteecole">
+      <label for="hauteecole">Haute école</label>
+    </div>
+    
+    <label for="cours">Type de cours ?</label>
+    <select name="cours" id="cours" required>
+      <option value="enligne">En ligne</option>
+      <option value="domicile">A domicile</option>
+    </select><br>
+
+    <label for="photo">Ajouter une photo</label>
+    <input type="file" name="photo" id="photo" accept="image/*"><br>
+    <p>Vous n'avez pas encore de compte ?<a href="/inscription"> Créez-en un !</a></p>
+    <input type="submit" value="Inscription">
+  
   </form>
 {% endblock %}
