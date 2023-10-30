@@ -1,45 +1,44 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Choisis ton niveau scolaire{% endblock %}</h1>
+  <h1>{% block title %}Trouve un enseignant{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <h2>Choisis ton niveau scolaire</h2>
     
-    <p>
-      <button type="button">Primaire</button>
-    </p> 
-
-    <p>
-      <button type="button">Secondaire 1</button>
-    </p>
-
-    <p>
-        <button type="button">Secondaire 2</button>
-    </p>
-
-    <p>
-        <button type="button">Haute école</button>
-    </p>
+        <div class="options">
+            <button class="options-button" data-value="primaire">Primaire</button>
+            <button class="options-button" data-value="secondaire1">Secondaire 1</button>
+            <button class="options-button" data-value="secondaire2">Secondaire 2</button>
+            <button class="options-button" data-value="hauteecole">Haute école</button>
+        </div>
 
     <h2>Choisis le type de cours qui te convient</h2>
-    
-    <p>
-      <button type="button">En ligne</button>
-    </p> 
-
-    <p>
-      <button type="button">A domicile</button>
-    </p>
+        <div class="options">
+            <button class="options-button" data-value="enligne">En ligne</button>
+            <button class="options-button" data-value="cheztoi">Autour de chez toi</button>
+        </div>
 
     <h2>Choisis une matière</h2>
-    
-    <p>
-      <button type="button">En ligne</button>
-    </p> 
+         
+        <div class="options">
+            <button class="options-button" data-value="francais">Français</button>
+            <button class="options-button" data-value="mathematique">Mathématique</button>
+            <button class="options-button" data-value="allemand">Allemand</button>
+            <button class="options-button" data-value="anglais">Anglais</button>
+            <button class="options-button" data-value="geographie">Géographie</button>
+            <button class="options-button" data-value="physique">Physique</button>
+            <button class="options-button" data-value="chimie">Chimie</button>
+            <button class="options-button" data-value="biologie">Biologie</button>
+            <button class="options-button" data-value="histoire">Histoire</button>
+            <button class="options-button" data-value="economie">Economie</button>
+        </div>
 
-    <p>
-      <button type="button">A domicile</button>
-    </p>
+        <div class="search-button-container">
+            <a class="search-button" href="/list_teachers">Rechercher</a>
+        </div>
+
+{% endblock %}
+    

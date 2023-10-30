@@ -46,6 +46,21 @@ def register():
         return render_template('auth/register.html')
 
 # Route /auth/login
+@auth_bp.route('/select_role', methods=('GET', 'POST'))
+def select_role():
+
+    if request.method == 'POST':
+
+        role = request.form.get('role')
+
+        if role == 'enseignant':
+            return redirect(url_for('auth.register_teacher'))
+
+        elif role =='eleve':
+            return redirect(url_for('auth.register_student'))
+        
+        else: 
+            error = "Veuillez sélectionner un rôle valide "
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # Si des données de formulaire sont envoyées vers la route /login (ce qui est le cas lorsque le formulaire de login est envoyé)
