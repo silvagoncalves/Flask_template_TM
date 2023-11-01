@@ -45,22 +45,51 @@ def register():
         # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
         return render_template('auth/register.html')
 
-# Route /auth/login
-@auth_bp.route('/select_role', methods=('GET', 'POST'))
-def select_role():
 
+@auth_bp.route('/register_student', methods=('GET', 'POST'))
+def register_student():
+    # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
 
-        role = request.form.get('role')
+        # On récupère les champs 'username' et 'password' de la requête HTTP
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        telephone = request.form['phone']
 
-        if role == 'enseignant':
-            return redirect(url_for('auth.register_teacher'))
+        # On récupère la base de donnée
+        db = get_db()
 
-        elif role =='eleve':
-            return redirect(url_for('auth.register_student'))
-        
-        else: 
-            error = "Veuillez sélectionner un rôle valide "
+        # Si le nom d'utilisateur et le mot de passe ont bien une valeur
+        # on essaie d'insérer l'utilisateur dans la base de données
+        if username and password:
+            try:
+                db.execute("INSERT INTO users (username, password, mail,telephone, role_id) VALUES (?, ?, ?, ?, ?)",
+                           (username, generate_password_hash(password), email, telephone, '2'))
+                # db.commit() permet de valider une modification de la base de données
+                db.commit()
+            except db.IntegrityError as e:
+                print(e)
+
+                # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
+                # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
+                error = f"User {username} is already registered."
+                flash(error)
+                return redirect(url_for("auth.register_student"))
+
+            return redirect(url_for("auth.login"))
+
+        else:
+            error = "Username or password invalid"
+            flash(error)
+            return redirect(url_for("auth.login"))
+    else:
+        # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
+        return render_template('auth/register_student.html')
+
+
+# Route /auth/login
+
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # Si des données de formulaire sont envoyées vers la route /login (ce qui est le cas lorsque le formulaire de login est envoyé)
@@ -130,5 +159,8 @@ def load_logged_in_user():
         db = get_db()
         g.user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
 
-
+@auth_bp.route('/select_role', methods=('GET', 'POST'))
+def select_role():
+    # Affichage de la page principale de l'application
+    return render_template('auth/select_role.html')
 

@@ -11,6 +11,11 @@ def landing_page():
     # Affichage de la page principale de l'application
     return render_template('home/index.html')
 
+@home_bp.route('/research_teacher', methods=('GET', 'POST'))
+def research_teacher():
+    # Affichage de la page principale de l'application
+    return render_template('home/research.html')
+
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):

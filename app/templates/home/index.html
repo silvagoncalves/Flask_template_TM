@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Trouve l'enseignant idéal pour toi{% endblock %}</h1>
+  <h1>{% block title %}Trouve l'enseignant idéal pour toi !{% endblock %}</h1>
 {% endblock %}
 
 {% block content%}
     
     <p>
-      <button type="button">Rechercher un enseignant</button>
+      <button type="button"><a href="{{ url_for('home.research_teacher') }}">Rechercher un enseignant</a></button>
     </p> 
 
     <p>
-      <button type="button">Donner des cours</button>
+        <button type="button"><a href="{{ url_for('auth.register') }}">Donner des cours</a></button>
     </p>
   <div>
     <p>Comment trouver le meilleur enseignant selon tes besoins</p>

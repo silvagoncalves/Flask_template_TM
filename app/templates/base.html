@@ -6,15 +6,13 @@
 
 <body>
     <nav>
-        <h1>Template de base Flask</h1>
+        <h1>Nom de du site</h1>
         <ul>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
         {% if g.user %}
             <li><span>{{ g.user['username'] }}</span>
             <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
             <li><a href="{{url_for('user.show_profile')}}">Show profile</a></li>
         {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a>
             <li><a href="{{ url_for('auth.login') }}">Log In</a>
         {% endif %}
         </ul>

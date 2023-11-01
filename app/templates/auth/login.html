@@ -12,7 +12,7 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required><br>
     
-    <p>Vous n'avez pas encore de compte ?<a href="/inscription"> Créez-en un !</a></p><br>
+    <p>Vous n'avez pas encore de compte ?<a href="{{ url_for('auth.select_role') }}"> Créez-en un !</a></p><br>
     
     <p><a href="/reset_password">Mot de passe oublié ?</a></p><br>
 
