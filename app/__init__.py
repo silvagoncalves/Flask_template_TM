@@ -14,7 +14,7 @@ def create_app():
 
     # Crée l'application Flask
     app = Flask(__name__)
-    app.secret_key = "Testaleatoire"
+    app.secret_key = "Test"
     # Chargement des variables de configuration stockées dans le fichier config.py
     app.config.from_pyfile(os.path.join(os.path.dirname(__file__), "config.py"))
 

@@ -1,4 +1,4 @@
-# Basic Flask Application for 3rd Year Gymnasium Students as part of their Maturity Project
+git# Basic Flask Application for 3rd Year Gymnasium Students as part of their Maturity Project
 
 ## Author
 Johan Jobin, Collège du Sud.
