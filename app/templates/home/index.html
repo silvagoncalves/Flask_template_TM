@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Trouve l'enseignant idéal pour toi !{% endblock %}</h1>
+        <h1>{% block title %}Trouve l'enseignant idéal pour toi !{% endblock %}</h1>
 {% endblock %}
 
 {% block content%}
@@ -13,13 +13,13 @@
     <p>
         <button type="button"><a href="{{ url_for('auth.register') }}">Donner des cours</a></button>
     </p>
-  <div>
-    <p>Comment trouver le meilleur enseignant selon tes besoins</p>
+  <div class="middle-section">
+    <p>Comment trouver le meilleur enseignant selon tes besoins ?</p>
   </div>
 
   <div class="etape">
-    <h2>1. Selectionne tes besoins</h2>
-    <p>Selectionne tout d'abord ton niveau scolaire, puis les branches dans lesquelles tu as besoin de cours de soutien, et finalement, si tu as des préférences pour des cours en ligne ou à domicile.</p>
+      <h2>1. Selectionne tes besoins</h2>
+      <p>Selectionne tout d'abord ton niveau scolaire, puis les branches dans lesquelles tu as besoin de cours de soutien, et finalement, si tu as des préférences pour des cours en ligne ou à domicile.</p>
   </div>
 
   <div class="etape">
