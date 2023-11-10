@@ -1,19 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
     <title>{% block title %}{% endblock %} - Template de base Flask</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
-    <nav>
+    <nav class="top-nav">
         <ul>
-        {% if g.user %}
-            <li><span>{{ g.user['username'] }}</span>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-            <li><a href="{{url_for('user.show_profile')}}">Show profile</a></li>
-        {% else %}
-            <li><a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}
+            <li><a href="#">Nom</a></li>
+            <li><a href="{{ url_for('home.landing_page') }}">Home</a></li>
+            <li><a href="{{ url_for('home.research_teacher') }}">Rechercher un enseignant</a></li>
+            <li><a href="{{ url_for('auth.register') }}">Donner un cours</a></li>
+            {% if g.user %}
+                <li><span>{{ g.user['username'] }}</span></li>
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                <li><a href="{{ url_for('user.show_profile') }}">Show Profile</a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -21,7 +25,7 @@
         <header>
             {% block header %}{% endblock %}
         </header>
-        
+
         {% for message in get_flashed_messages() %}
             <div class="flash">{{ message }}</div>
         {% endfor %}
@@ -31,3 +35,4 @@
 
     <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
+</html>

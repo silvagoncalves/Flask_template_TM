@@ -196,3 +196,4 @@ def password_change():
     # Affichage de la page principale de l'application
     return render_template('auth/password_change.html')
 
+
