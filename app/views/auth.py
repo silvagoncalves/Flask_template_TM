@@ -193,7 +193,17 @@ def select_role():
 
 @auth_bp.route('/password_change', methods=('GET', 'POST'))
 def password_change():
-    # Affichage de la page principale de l'application
+
+    if request.method == 'POST':
+        email = request.form['email']
+        new_password = request.form['nouveau_mot_de_passe']
+        confirm_password = request.form['confirmer_nouveau_mot_de_passe']
+        token = request.form['jeton']
+
+        if new_password == confirm_password:
+            flash('Mot de passe mis à jour avec succès.', 'success')
+            return redirect(url_for('login'))  # Rediriger vers la page de connexion
+        else:
+            flash('Les mots de passe ne correspondent pas.', 'error')
+
     return render_template('auth/password_change.html')
-
-
