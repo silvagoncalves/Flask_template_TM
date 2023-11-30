@@ -5,9 +5,38 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
-        <li>Username: {{g.user.username}}</li>
-        <li>Password: {{g.user.password}}</li>
-    </ul>
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <div class="profile">
+        <div class="profile-info">
+            <h2>{{ g.user['username'] }}</h2>
+            {% if g.user['photo'] %}
+                <div class="profile-photo">
+                    <img src="{{ url_for('static', filename=g.user['photo']) }}" alt="{{ g.user['username'] }}'s Photo">
+                </div>
+            {% else %}
+                <div class="profile-initial">{{ g.user['username'][0] }}</div>
+            {% endif %}
+
+            {% if g.user['is_teacher'] %}
+                <h3>Enseignants</h3>
+                <ul class="teacher-list">
+                    {% for teacher in g.user['teachers'] %}
+                        <li class="teacher-item">{{ teacher }}</li>
+                    {% endfor %}
+                </ul>
+            {% elif g.user['is_student'] %}
+                <h3>Élèves</h3>
+                <ul>
+                    {% for student in g.user['students'] %}
+                        <li>{{ student }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
+
+
+
+

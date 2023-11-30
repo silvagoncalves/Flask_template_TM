@@ -190,7 +190,6 @@ def load_logged_in_user():
 def select_role():
     # Affichage de la page principale de l'application
     return render_template('auth/select_role.html')
-
 @auth_bp.route('/password_change', methods=('GET', 'POST'))
 def password_change():
 

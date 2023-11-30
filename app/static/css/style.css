@@ -103,3 +103,68 @@ button:nth-of-type(2){
     color: white;
     font-size: 30px;
 }
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info {
+    margin-right: 20px; /* Ajustez la marge selon vos besoins */
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-initial {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.teacher-list {
+    list-style: none;
+    padding: 0;
+}
+
+.teacher-item {
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.student-list {
+    list-style: none;
+    padding: 0;
+}
+
+.student-item {
+    border: 1px solid #27ae60; /* Couleur de bordure pour les élèves */
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+
+
