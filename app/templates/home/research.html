@@ -1,3 +1,4 @@
+User
 {% extends 'base.html' %}
 
 {% block header %}
@@ -5,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+    <form method="post" action="{{ url_for('home.list_teacher') }}">
     <h2>Choisis ton niveau scolaire</h2>
-    
+
         <div class="options">
             <button class="options-button" data-value="primaire">Primaire</button>
             <button class="options-button" data-value="secondaire1">Secondaire 1</button>
@@ -22,7 +23,7 @@
         </div>
 
     <h2>Choisis une matière</h2>
-         
+
         <div class="options">
             <button class="options-button" data-value="francais">Français</button>
             <button class="options-button" data-value="mathematique">Mathématique</button>
@@ -36,9 +37,11 @@
             <button class="options-button" data-value="economie">Economie</button>
         </div>
 
-        <div class="search-button-container">
-            <a class="search-button" href="/list_teachers">Rechercher</a>
+    <div class="search-button-container">
+      <button type="submit" class="search-button">Rechercher</button>
+    </div>
+  </form>
         </div>
 
+
 {% endblock %}
-    

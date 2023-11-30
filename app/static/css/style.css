@@ -80,7 +80,7 @@ button:nth-of-type(2){
   margin: 10px 0;
 }
 
-/* Ajoutez ce CSS pour positionner la barre en haut de la page */
+
 .top-nav {
     background-color: black;
     color: white;
@@ -109,7 +109,7 @@ button:nth-of-type(2){
 }
 
 .profile-info {
-    margin-right: 20px; /* Ajustez la marge selon vos besoins */
+    margin-right: 20px;
 }
 
 .profile-photo {
@@ -117,7 +117,7 @@ button:nth-of-type(2){
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: #3498db;
+    background-color: blue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,12 +134,12 @@ button:nth-of-type(2){
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: #3498db;
+    background-color: blue;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #ffffff;
+    color: white;
 }
 
 .teacher-list {
@@ -148,7 +148,7 @@ button:nth-of-type(2){
 }
 
 .teacher-item {
-    border: 1px solid #3498db;
+    border: 1px solid blue;
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 5px;
@@ -160,11 +160,101 @@ button:nth-of-type(2){
 }
 
 .student-item {
-    border: 1px solid #27ae60; /* Couleur de bordure pour les élèves */
+    border: 1px solid green; /* Couleur de bordure pour les élèves */
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 5px;
 }
+
+form {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+  vertical-align: bottom;
+}
+
+.checkbox-container {
+  margin-bottom: 16px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: yellow;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: yellow;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 2px solid red;
+}
+
+div {
+  margin-bottom: 8px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  margin-right: 8px;
+}
+
+.options-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.options-button:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+
+
 
 
 

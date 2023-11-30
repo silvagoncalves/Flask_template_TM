@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Liste des enseigants correspondant à votre recherche{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+   <div class="teacher">
+        <img src="teacher1.jpg" alt="Enseignant 1">
+        <div class="teacher-info">
+            <h2>Nom de l'Enseignant 1</h2>
+            <p class="teacher-description">Description brève de l'enseignant.</p>
+            <p class="teacher-rating">Note : 4.5/5</p>
+            <p>Tarif : 20CHF/h</p>
+        </div>
+    </div>
+
+  </form>
+{% endblock %}

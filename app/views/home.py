@@ -16,6 +16,10 @@ def research_teacher():
     # Affichage de la page principale de l'application
     return render_template('home/research.html')
 
+@home_bp.route('/list_teacher', methods=('GET', 'POST'))
+def list_teacher():
+    return render_template('home/list_teacher.html')
+
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):
