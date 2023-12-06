@@ -1,22 +1,33 @@
 
-{% extends 'base.html' %}
+  {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Liste des enseigants correspondant à votre recherche{% endblock %}</h1>
-{% endblock %}
-
-{% block content %}
-  <form method="post">
-
-   <div class="teacher">
-        <img src="teacher1.jpg" alt="Enseignant 1">
-        <div class="teacher-info">
-            <h2>Nom de l'Enseignant 1</h2>
-            <p class="teacher-description">Description brève de l'enseignant.</p>
-            <p class="teacher-rating">Note : 4.5/5</p>
-            <p>Tarif : 20CHF/h</p>
-        </div>
-    </div>
-
-  </form>
-{% endblock %}
+  {% block header %}
+      <h1>Résultats de la recherche d'enseignants</h1>
+  {% endblock %}
+  
+  {% block content %}
+      {% if teachers %}
+          <ul>
+              {% for teacher in teachers %}
+                  <li>{{ teacher.username }} - {{ teacher.email }} - {{ teacher.telephone }}</li>
+              {% endfor %}
+          </ul>
+      {% else %}
+          <p>Aucun enseignant trouvé.</p>
+      {% endif %}
+  
+      <form method="post">
+          {% if selected_teacher %}
+              <div class="teacher">
+                  <img src="{{ selected_teacher.image }}" alt="{{ selected_teacher.username }}">
+                  <div class="teacher-info">
+                      <h2>{{ selected_teacher.username }}</h2>
+                      <p class="teacher-description">{{ selected_teacher.description }}</p>
+                      <p class="teacher-rating">Note : {{ selected_teacher.rating }}/5</p>
+                      <p>Tarif : {{ selected_teacher.rate }} CHF/h</p>
+                  </div>
+              </div>
+          {% endif %}
+      </form>
+  {% endblock %}
+  

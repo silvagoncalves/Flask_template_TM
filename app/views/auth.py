@@ -8,7 +8,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 # Route /auth/register
-@auth_bp.route('/register', methods=('GET', 'POST'))
+@auth_bp.route('/register_student', methods=('GET', 'POST'))
 def register():
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
@@ -94,6 +94,7 @@ def register_student():
                            (username, generate_password_hash(password), email, telephone, '2'))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
+            
             except db.IntegrityError as e:
                 print(e)
 
@@ -190,8 +191,11 @@ def load_logged_in_user():
 def select_role():
     # Affichage de la page principale de l'application
     return render_template('auth/select_role.html')
+
 @auth_bp.route('/password_change', methods=('GET', 'POST'))
 def password_change():
+
+    db = get_db()
 
     if request.method == 'POST':
         email = request.form['email']
@@ -200,8 +204,10 @@ def password_change():
         token = request.form['jeton']
 
         if new_password == confirm_password:
+            db.execute("UPDATE users SET password = ? WHERE email = ?", (generate_password_hash(new_password), email))
+            db.commit() 
             flash('Mot de passe mis à jour avec succès.', 'success')
-            return redirect(url_for('login'))  # Rediriger vers la page de connexion
+            return redirect(url_for('login'))  
         else:
             flash('Les mots de passe ne correspondent pas.', 'error')
 

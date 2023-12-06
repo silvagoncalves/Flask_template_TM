@@ -18,9 +18,23 @@ def research_teacher():
 
 @home_bp.route('/list_teacher', methods=('GET', 'POST'))
 def list_teacher():
-    return render_template('home/list_teacher.html')
 
-# Gestionnaire d'erreur 404 pour toutes les routes inconnues
+
+    if request.method == 'POST':
+        level = request.form['level']
+        course = request.form['course_type']
+        subject = request.form.getlist('subjects[]')
+
+        query = "SELECT * FROM teachers WHERE level = ? AND course_type = ? AND subject IN ({})".format(','.join(['?'] * len(subject)))
+
+        db = get_db()
+        teacher = get_db().execute(query, (level, course) + tuple(subject)).fetchall()
+
+        return render_template('home/list_teacher.html', teacher=teacher)
+
+    return render_template('home/list_teacher.html', teachers=None)
+ 
+
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):
     return render_template('home/404.html'), 404

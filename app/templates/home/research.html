@@ -1,4 +1,3 @@
-User
 {% extends 'base.html' %}
 
 {% block header %}
@@ -6,42 +5,43 @@ User
 {% endblock %}
 
 {% block content %}
-    <form method="post" action="{{ url_for('home.list_teacher') }}">
+  <form method="post" action="{{ url_for('home.list_teacher') }}">
     <h2>Choisis ton niveau scolaire</h2>
-
-        <div class="options">
-            <button class="options-button" data-value="primaire">Primaire</button>
-            <button class="options-button" data-value="secondaire1">Secondaire 1</button>
-            <button class="options-button" data-value="secondaire2">Secondaire 2</button>
-            <button class="options-button" data-value="hauteecole">Haute école</button>
-        </div>
+    <div class="options">
+      <select name="level" required>
+        <option value="" disabled selected>Choisissez un niveau</option>
+        <option value="primaire">Primaire</option>
+        <option value="secondaire1">Secondaire 1</option>
+        <option value="secondaire2">Secondaire 2</option>
+        <option value="hauteecole">Haute école</option>
+      </select>
+    </div>
 
     <h2>Choisis le type de cours qui te convient</h2>
-        <div class="options">
-            <button class="options-button" data-value="enligne">En ligne</button>
-            <button class="options-button" data-value="cheztoi">Autour de chez toi</button>
-        </div>
+    <div class="options">
+      <select name="course_type" required>
+        <option value="" disabled selected>Choisissez un type de cours</option>
+        <option value="enligne">En ligne</option>
+        <option value="cheztoi">Autour de chez toi</option>
+      </select>
+    </div>
 
-    <h2>Choisis une matière</h2>
-
-        <div class="options">
-            <button class="options-button" data-value="francais">Français</button>
-            <button class="options-button" data-value="mathematique">Mathématique</button>
-            <button class="options-button" data-value="allemand">Allemand</button>
-            <button class="options-button" data-value="anglais">Anglais</button>
-            <button class="options-button" data-value="geographie">Géographie</button>
-            <button class="options-button" data-value="physique">Physique</button>
-            <button class="options-button" data-value="chimie">Chimie</button>
-            <button class="options-button" data-value="biologie">Biologie</button>
-            <button class="options-button" data-value="histoire">Histoire</button>
-            <button class="options-button" data-value="economie">Economie</button>
-        </div>
+    <h2>Choisis les matières</h2>
+    <div class="options">
+        <label><input type="checkbox" name="subjects[]" value="francais"> Français</label>
+        <label><input type="checkbox" name="subjects[]" value="mathematique"> Mathématique</label>
+        <label><input type="checkbox" name="subjects[]" value="allemand"> Allemand</label>
+        <label><input type="checkbox" name="subjects[]" value="anglais"> Anglais</label>
+        <label><input type="checkbox" name="subjects[]" value="geographie"> Géographie</label>
+        <label><input type="checkbox" name="subjects[]" value="physique"> Physique</label>
+        <label><input type="checkbox" name="subjects[]" value="chimie"> Chimie</label>
+        <label><input type="checkbox" name="subjects[]" value="biologie"> Biologie</label>
+        <label><input type="checkbox" name="subjects[]" value="histoire"> Histoire</label>
+        <label><input type="checkbox" name="subjects[]" value="economie"> Economie</label>
+    </div>
 
     <div class="search-button-container">
       <button type="submit" class="search-button">Rechercher</button>
     </div>
   </form>
-        </div>
-
-
 {% endblock %}
