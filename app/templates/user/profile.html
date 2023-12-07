@@ -18,21 +18,6 @@
                 <div class="profile-initial">{{ g.user['username'][0] }}</div>
             {% endif %}
 
-            {% if g.user['is_teacher'] %}
-                <h3>Enseignants</h3>
-                <ul class="teacher-list">
-                    {% for teacher in g.user['teachers'] %}
-                        <li class="teacher-item">{{ teacher }}</li>
-                    {% endfor %}
-                </ul>
-            {% elif g.user['is_student'] %}
-                <h3>Élèves</h3>
-                <ul>
-                    {% for student in g.user['students'] %}
-                        <li>{{ student }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
         </div>
     </div>
 {% endblock %}

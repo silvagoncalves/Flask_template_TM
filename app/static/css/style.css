@@ -7,7 +7,7 @@ h1 {
   margin-left: 70px;
   display: inline-block;
   padding: 10px;
-  border: 7px solid yellow;
+  border: 7px solid black;
   border-radius: 10px;
 }
 
@@ -42,12 +42,12 @@ button:nth-of-type(1){
 
 
 button:nth-of-type(2){
-  border-color:black;
+  border-color:black ;
 }
 
 .middle-section {
-  color:black;
-  background-color: yellow;
+  color:white;
+  background-color: black;
   text-align: center;
   padding: 0.3px;
   border-radius: 30px;
@@ -160,7 +160,7 @@ button:nth-of-type(2){
 }
 
 .student-item {
-    border: 1px solid green; /* Couleur de bordure pour les élèves */
+    border: 1px solid green; 
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 5px;
@@ -171,9 +171,9 @@ form {
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px black;
 }
 
 
@@ -206,8 +206,8 @@ textarea {
 }
 
 input[type="submit"] {
-  background-color: yellow;
-  color: black;
+  background-color: black;
+  color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -215,7 +215,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: yellow;
+  background-color: black;
 }
 
 input:invalid,

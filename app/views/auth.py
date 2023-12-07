@@ -8,7 +8,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 # Route /auth/register
-@auth_bp.route('/register_student', methods=('GET', 'POST'))
+@auth_bp.route('/register', methods=('GET', 'POST'))
 def register():
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
@@ -191,6 +191,7 @@ def load_logged_in_user():
 def select_role():
     # Affichage de la page principale de l'application
     return render_template('auth/select_role.html')
+
 
 @auth_bp.route('/password_change', methods=('GET', 'POST'))
 def password_change():
