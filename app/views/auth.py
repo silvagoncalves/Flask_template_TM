@@ -195,21 +195,35 @@ def select_role():
 
 @auth_bp.route('/password_change', methods=('GET', 'POST'))
 def password_change():
-
-    db = get_db()
-
+    
     if request.method == 'POST':
-        email = request.form['email']
-        new_password = request.form['nouveau_mot_de_passe']
-        confirm_password = request.form['confirmer_nouveau_mot_de_passe']
-        token = request.form['jeton']
 
-        if new_password == confirm_password:
-            db.execute("UPDATE users SET password = ? WHERE email = ?", (generate_password_hash(new_password), email))
-            db.commit() 
-            flash('Mot de passe mis à jour avec succès.', 'success')
-            return redirect(url_for('login'))  
+        username = request.form['username']
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+        token = request.form['token']
+
+        # On récupère la base de données
+        db = get_db()
+
+        # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
+        # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
+        user = db.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        
+        if user:
+            if new_password == confirm_password:
+                # Vérification du jeton
+
+                # Mise à jour du mot de passe
+                hashed_password = generate_password_hash(new_password)
+                db.execute('UPDATE users SET password = ? WHERE username = ?', (hashed_password, username))
+                db.commit()
+                flash('Mot de passe mis à jour avec succès.', 'success')
+                return redirect(url_for('auth.login'))
+            else:
+                flash('Les nouveaux mots de passe ne correspondent pas.', 'error')
         else:
-            flash('Les mots de passe ne correspondent pas.', 'error')
+            flash('L\'utilisateur avec ce nom d\'utilisateur n\'existe pas.', 'error')
 
     return render_template('auth/password_change.html')
+    

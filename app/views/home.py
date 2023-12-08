@@ -13,7 +13,10 @@ def landing_page():
 
 @home_bp.route('/research_teacher', methods=('GET', 'POST'))
 def research_teacher():
-    # Affichage de la page principale de l'application
+    
+    if 'user_id' not in session : 
+        return redirect(url_for('auth.login'))
+    
     return render_template('home/research.html')
 
 @home_bp.route('/list_teacher', methods=('GET', 'POST'))
@@ -25,14 +28,11 @@ def list_teacher():
         course = request.form['course_type']
         subject = request.form.getlist('subjects[]')
 
-        query = "SELECT * FROM teachers WHERE level = ? AND course_type = ? AND subject IN ({})".format(','.join(['?'] * len(subject)))
+        print(level)
+        print(subject)
+        print(course)
 
-        db = get_db()
-        teacher = get_db().execute(query, (level, course) + tuple(subject)).fetchall()
-
-        return render_template('home/list_teacher.html', teacher=teacher)
-
-    return render_template('home/list_teacher.html', teachers=None)
+    return render_template('home/list_teacher.html')
  
 
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
