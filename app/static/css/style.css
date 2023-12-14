@@ -1,90 +1,95 @@
 body {
-  background-color: white;
+  background: white
 }
 
-h1 {
-  font-size: 28px;
-  margin-left: 70px;
-  display: inline-block;
-  padding: 10px;
-  border: 7px solid black;
-  border-radius: 10px;
+
+h1{
+  background: rgb(229, 229, 231);
+  text-align: center;
+  color: #fff;
+  -webkit-text-stroke: 0.025em rgb(1, 1, 46);
+  -webkit-text-fill-color: transparent;
+  font-size: 10em;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button a {
-  color: black;
+  color: rgb(1, 1, 46);
   texte-decoration: none;
+  
 }
 
+
 button {
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid rgb(1, 1, 46);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px auto; 
+  text-align: center;
+  display: block;
+  width: 60%; 
+  font-size: 1.5em; 
+}
+
+.middle-section {
+  color: rgb(255, 203, 112);
+  background-color: rgb(1, 1, 46);
+  min-height: 300px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px; 
+}
+
+.middle-section p {
+  font-size: 55px;
+  font-weight: bold;
+  margin: 0;
+  animation: jump 3s infinite; 
+}
+
+@keyframes jump {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+
+.etape h2,
+.etape p {
+  margin: 20px 0;
+}
+
+.etape {
+  color: rgb(255,203,112); ;
+  background-color: rgb(1, 1, 46);
+  text-align: center ;
+  font-size: 1.5em; 
+  padding: 20px;
+  border-radius: 25px; 
   padding: 10px;
   margin: 10px 0;
   margin-left: 70px;
   text-align: left;
   display: block;
-  width: 200px;
+  width: 500px;
+  
 }
-
-.etape {
-  margin: 20px auto;
-  width: 30%;
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  text-align: center;
-}
-
-button:nth-of-type(1){
-  border-color: black;
-}
-
-
-button:nth-of-type(2){
-  border-color:black ;
-}
-
-.middle-section {
-  color:white;
-  background-color: black;
-  text-align: center;
-  padding: 0.3px;
-  border-radius: 30px;
-  max-width: 60%;
-  margin: 0 auto;
-}
-
-.middle-section p {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.etape h2,
-.etape p {
-  margin: 10px 0;
-}
-
-.etape {
-  position: relative;
-  width: 30%;
-  margin: 20px auto;
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.etape h2,
-.etape p {
-  margin: 10px 0;
-}
-
-
 .top-nav {
-    background-color: black;
-    color: white;
-    padding: 10px 0;
+    background-color: rgb(1, 1, 46);
+    color: rgb(255,203,112) ;
+    padding: 30px 0;
     text-align: center;
 }
 
@@ -100,8 +105,8 @@ button:nth-of-type(2){
 
 .top-nav ul li a {
     text-decoration: none;
-    color: white;
-    font-size: 30px;
+    color: rgb(255,203,112) ;
+    font-size: 40px;
 }
 .profile {
     display: flex;
@@ -139,7 +144,7 @@ button:nth-of-type(2){
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: white;
+    color: rgb(255,203,112) ;
 }
 
 .teacher-list {
@@ -171,9 +176,9 @@ form {
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  background-color: white;
+  background-color: rgb(205, 199, 199);
   border-radius: 8px;
-  box-shadow: 0 0 10px black;
+  box-shadow: 0 0 10px rgb(1, 1, 46);
 }
 
 
@@ -201,13 +206,13 @@ textarea {
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
-  border: 1px solid white;
+  border: 1px solid rgb(255,203,112) ;
   border-radius: 4px;
 }
 
 input[type="submit"] {
-  background-color: black;
-  color: white;
+  background-color: rgb(1, 1, 46);
+  color: rgb(255,203,112) ;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -215,7 +220,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: black;
+  background-color: rgb(1, 1, 46);
 }
 
 input:invalid,
@@ -248,8 +253,8 @@ div {
 }
 
 .options-button:hover {
-  background-color: #f5f5f5;
-}
+  background-color: rgb(255,203,112) ;
+
 
 
 
