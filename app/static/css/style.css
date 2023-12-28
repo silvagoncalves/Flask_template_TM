@@ -7,32 +7,35 @@ h1{
   padding: 100px;
   border-radius: 30px;
   margin : 10px auto; 
-  font-size: 5em; 
+  font-size: 7em; 
   margin-bottom: 200px; 
   max-width: 1100px;
 }
+h3{
+  color: black; 
+  font-size: 100px;
+  text-align: center;
 
+}
 button a {
-  color: rgb(255, 207, 207);
+  color: white ;
   texte-decoration: none;
   
 }
 
 button {
-  border: 2px solid rgb(1, 1, 46);
+  position: absolute; 
+  top: 500px; 
+  left: 1200px; 
+  border: 2px solid rgba(8, 97, 60, 1);
   border-radius: 50px;
   padding: 20px;
-  margin: 10px auto; 
+  background: rgba(8, 97, 60, 1);
   text-align: center;
   display: block;
-  width: 60%; 
-  font-size: 1.5em; 
+  font-size: 1.5em;
 }
 
-h2{
-  font-size: 55px;
-  background: white;
-}
 .middle-section {
   color: white;
   background-color: black;
@@ -55,21 +58,55 @@ h2{
   margin: 20px 0;
 }
 
-.etape {
-  color: rgb(255,203,112); ;
-  background-color: rgb(1, 1, 46);
+.etape1 {
+  position: relative;
+  top: 100px; 
+  color: black;
+  background-color: rgb(254, 196, 196);
   text-align: center ;
   font-size: 1.5em; 
   padding: 20px;
   border-radius: 25px; 
   padding: 10px;
   margin: 10px 0;
-  margin-left: 70px;
+  margin-left: 80px;
   text-align: left;
   display: block;
-  width: 500px;
-  
+  width: 400px;
 }
+
+.etape2 {
+  position: relative;
+  top: -315px;
+  color: white;
+  background-color: rgba(8, 97, 60, 1);
+  text-align: center
+  font-size: 1.5em;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 10px 0;
+  right: -700px; 
+  text-align: left;
+  display: block;
+  width: 400px;
+}
+
+.etape3 {
+  position: relative;
+  top: -315px;
+  color: black;
+  background-color: rgb(254, 196, 196);
+  text-align: center;
+  font-size: 1.5em;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 10px 0;
+  right: -950px; 
+  text-align: left;
+  display: block;
+  width: 400px;
+}
+
 .top-nav {
     background-color: white;
     color: black ;
@@ -157,7 +194,7 @@ form {
   padding: 20px;
   background-color: rgb(205, 199, 199);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgb(1, 1, 46);
+  box-shadow: 0 0 10px rgb(254, 196, 196);
 }
 
 
@@ -190,8 +227,8 @@ textarea {
 }
 
 input[type="submit"] {
-  background-color: rgb(1, 1, 46);
-  color: rgb(255,203,112) ;
+  background-color: black;
+  color: white ;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -199,7 +236,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: rgb(1, 1, 46);
+  background-color: black;
 }
 
 input:invalid,
@@ -232,7 +269,7 @@ div {
 }
 
 .options-button:hover {
-  background-color: rgb(255,203,112) ;
+  background-color: white ;
 
 
 
