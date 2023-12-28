@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Inscription{% endblock %}</h1>
+  <h2>{% block title %}Inscription{% endblock %}</h2>
 {% endblock %}
 
 {% block content %}
-
-
-
     <button name="role" value="enseignant"><a href="{{ url_for('auth.register') }}">Enseignant </a></button>
     <button name="role" value="eleve"><a href="{{ url_for('auth.register_student') }}">Elève</a></button>
-
-
 {% endblock %}  
