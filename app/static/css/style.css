@@ -11,9 +11,17 @@ h1{
   margin-bottom: 200px; 
   max-width: 1100px;
 }
+
 h3{
   color: black; 
-  font-size: 100px;
+  font-size: 80px;
+  text-align: center;
+
+}
+
+h4{
+  color: black; 
+  font-size: 50px;
   text-align: center;
 
 }
@@ -34,6 +42,15 @@ button {
   text-align: center;
   display: block;
   font-size: 1.5em;
+  width: 180px;
+}
+
+#enseignantButton {
+  left: 500px;
+}
+
+#eleveButton {
+  left: 850px; /* Adjust the left position as needed */
 }
 
 .middle-section {
@@ -52,12 +69,15 @@ button {
 .middle-section p {
   font-size: 55px;
 }
-
-.etape h2,
-.etape p {
+.etape1 h2,
+.etape1 p,
+.etape2 h2,
+.etape2 p,
+.etape3 h2,
+.etape3 p {
   margin: 20px 0;
+  font-size: 35px;
 }
-
 .etape1 {
   position: relative;
   top: 100px; 
@@ -72,12 +92,12 @@ button {
   margin-left: 80px;
   text-align: left;
   display: block;
-  width: 400px;
+  width: 350px;
 }
 
 .etape2 {
   position: relative;
-  top: -315px;
+  top: -425px;
   color: white;
   background-color: rgba(8, 97, 60, 1);
   text-align: center
@@ -85,15 +105,15 @@ button {
   padding: 20px;
   border-radius: 25px;
   margin: 10px 0;
-  right: -700px; 
+  right: -505px; 
   text-align: left;
   display: block;
-  width: 400px;
+  width: 350px;
 }
 
 .etape3 {
   position: relative;
-  top: -315px;
+  top: -815px;
   color: black;
   background-color: rgb(254, 196, 196);
   text-align: center;
@@ -124,68 +144,12 @@ button {
     color: black ;
     font-size: 40px;
 }
-.profile {
-    display: flex;
-    align-items: center;
-}
-
-.profile-info {
-    margin-right: 20px;
-}
-
-.profile-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: blue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-initial {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: blue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: rgb(255,203,112) ;
-}
 
 .teacher-list {
     list-style: none;
     padding: 0;
 }
 
-.teacher-item {
-    border: 1px solid blue;
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 5px;
-}
-
-.student-list {
-    list-style: none;
-    padding: 0;
-}
-
-.student-item {
-    border: 1px solid green; 
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 5px;
-}
 
 form {
   width: 100%;
@@ -194,10 +158,7 @@ form {
   padding: 20px;
   background-color: rgb(205, 199, 199);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgb(254, 196, 196);
 }
-
-
 
 label {
   display: block;
@@ -208,7 +169,8 @@ label {
 
 input[type="checkbox"] {
   margin-right: 8px;
-  vertical-align: bottom;
+  vertical-align: 8px; /* Adjust the vertical-align property */
+  margin-top: -8px;
 }
 
 .checkbox-container {
@@ -222,7 +184,7 @@ textarea {
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
-  border: 1px solid rgb(255,203,112) ;
+  border: 1px solid rgb(0, 0, 0) ;
   border-radius: 4px;
 }
 

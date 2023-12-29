@@ -7,16 +7,16 @@
 
 {% block content %}
   <form method="post">
-    <label for="username">Username</label>
+    <label for="username">Nom d'utilisateur</label>
     <input name="username" id="username" required><br>
 
-    <label for="password">Password</label>
+    <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" required><br>
 
     <p>Vous n'avez pas encore de compte ?<a href="{{ url_for('auth.select_role') }}"> Créez-en un !</a></p><br>
 
     <p><a href="{{ url_for('auth.password_change') }}">Mot de passe oublié ?</a></p><br>
 
-    <input type="submit" value="Log in">
+    <input type="submit" value="Connexion">
   </form>
 {% endblock %}
