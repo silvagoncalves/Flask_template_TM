@@ -1,5 +1,5 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
-
+from app.db.db import get_db
 # Routes /...
 home_bp = Blueprint('home', __name__)
 
@@ -17,7 +17,10 @@ def research_teacher():
     if 'user_id' not in session : 
         return redirect(url_for('auth.login'))
     
-    return render_template('home/research.html')
+    db = get_db()
+    levels = db.execute("SELECT * FROM level").fetchall()
+    
+    return render_template('home/research.html', levels=levels)
 
 @home_bp.route('/list_teacher', methods=('GET', 'POST'))
 def list_teacher():
@@ -28,11 +31,14 @@ def list_teacher():
         course = request.form['course_type']
         subject = request.form.getlist('subjects[]')
 
+        db = get_db()
+        teachers = db.execute("SELECT users.* FROM users, teacher_level WHERE role_id = 1 and teacher_level.teacher_id = users.id and teacher_level.level_id = ?", (level,)).fetchall()
+
         print(level)
         print(subject)
         print(course)
 
-    return render_template('home/list_teacher.html')
+    return render_template('home/list_teacher.html', teachers=teachers)
  
 
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])

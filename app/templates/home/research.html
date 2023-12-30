@@ -10,10 +10,9 @@
     <div class="options">
       <select name="level" required>
         <option value="" disabled selected>Choisissez un niveau</option>
-        <option value="primaire">Primaire</option>
-        <option value="secondaire1">Secondaire 1</option>
-        <option value="secondaire2">Secondaire 2</option>
-        <option value="hauteecole">Haute école</option>
+        {% for level in levels %}
+                <option value="{{ level.level_id }}">{{ level.level_name  }}</option>
+           {% endfor %}
       </select>
     </div>
 
