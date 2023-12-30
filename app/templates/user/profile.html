@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h4>{% block title %}Profil de l'utilisateur connecté {% endblock %}</h4>
+  <h3>{% block title %}Profil de {{ g.user['username'] }} {% endblock %}</h3>
 {% endblock %}
 
 {% block content %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <div class="profile">
-        <div class="profile-info">
-            <h2>{{ g.user['username'] }}</h2>
-            {% if g.user['photo'] %}
-                <div class="profile-photo">
-                    <img src="{{ url_for('static', filename=g.user['photo']) }}" alt="{{ g.user['username'] }}'s Photo">
-                </div>
-            {% else %}
-                <div class="profile-initial">{{ g.user['username'][0] }}</div>
-            {% endif %}
+    <div class="profile-container">
+        <div class="profile-header">
+        
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-info">
+                {% if g.user['photo'] %}
+                    <div class="profile-photo">
+                        <img src="{{ url_for('static', filename=g.user['photo']) }}" alt="{{ g.user['username'] }}'s Photo">
+                    </div>
+                {% else %}
+                    <div class="profile-initial">{{ g.user['username'][0] }}</div>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
-
 
 
 
