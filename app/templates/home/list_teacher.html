@@ -5,17 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    {% if teachers %}
-        <ul>
-            {% for user in teachers %}
-                <li>
-                    {% if 'photo' in user %}
-                        <img src="{{ url_for('static', filename=user['photo']) }}" alt="{{ user['username'] }}'s Photo" class="teacher-photo">
-                    {% else %}
-                        <div class="profile-initial">{{ user['username'][0] }}</div>
-                    {% endif %}
-                    {{ user['username'] }} - Matières: {{ user['subject'] }} - Niveau: {{ user['level'] }}
-                </li>
+    <form method="post" action="{{ url_for('home.teacher_account') }}">
+            <li>
+                <strong>{{ user['username'] }}</strong>
+                <ul>
+                    {% for level in levels_teacher %}
+                        <li>Niveaux enseignés: {{ level.level_name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
             {% endfor %}
         </ul>
     {% else %}

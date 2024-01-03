@@ -12,32 +12,29 @@
         <option value="" disabled selected>Choisissez un niveau</option>
         {% for level in levels %}
                 <option value="{{ level.level_id }}">{{ level.level_name  }}</option>
-           {% endfor %}
+            {% endfor %}
       </select>
     </div>
 
     <h2>Choisis le type de cours qui te convient</h2>
     <div class="options">
       <select name="course_type" required>
-        <option value="" disabled selected>Choisissez un type de cours</option>
-        <option value="enligne">En ligne</option>
-        <option value="cheztoi">Autour de chez toi</option>
-      </select>
-    </div>
+        <option value="" disabled selected>Choisissez le type de cours</option>
+        {% for course_type in course_types %}
+                <option value="{{ course_type.course_type_id }}">{{ course_type.course_type_name  }}</option>
+            {% endfor %}
+  </select>
+</div>
 
-    <h2>Choisis les matières</h2>
+    <h2>Choisis une matières</h2>
     <div class="options">
-        <label><input type="checkbox" name="subjects[]" value="francais"> Français</label>
-        <label><input type="checkbox" name="subjects[]" value="mathematique"> Mathématique</label>
-        <label><input type="checkbox" name="subjects[]" value="allemand"> Allemand</label>
-        <label><input type="checkbox" name="subjects[]" value="anglais"> Anglais</label>
-        <label><input type="checkbox" name="subjects[]" value="geographie"> Géographie</label>
-        <label><input type="checkbox" name="subjects[]" value="physique"> Physique</label>
-        <label><input type="checkbox" name="subjects[]" value="chimie"> Chimie</label>
-        <label><input type="checkbox" name="subjects[]" value="biologie"> Biologie</label>
-        <label><input type="checkbox" name="subjects[]" value="histoire"> Histoire</label>
-        <label><input type="checkbox" name="subjects[]" value="economie"> Economie</label>
-    </div>
+      <select name="subject" required>
+        <option value="" disabled selected>Choisissez une matière</option>
+        {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+           {% endfor %}
+    </select>
+  </div>
 
     <input type="submit" value="Inscription">
   </form>
