@@ -11,6 +11,11 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 @auth_bp.route('/register', methods=('GET', 'POST'))
 def register():
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
+    db = get_db()
+    subjects = db.execute("SELECT * FROM subject").fetchall()
+    levels = db.execute("SELECT * FROM level").fetchall()
+    course_types = db.execute("SELECT * FROM course_type").fetchall()
+    
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
@@ -18,6 +23,8 @@ def register():
         password = request.form['password']
         email = request.form['email']
         telephone = request.form['phone']
+        tarif = request.form['tarif']
+        photo = request.form['photo']
 
         # On récupère la base de donnée
         db = get_db()
@@ -37,9 +44,19 @@ def register():
                     flash("Ce numéro de téléphone existe déjà.")
                     return redirect(url_for("auth.register"))
 
-                db.execute("INSERT INTO users (username, password, mail,telephone, role_id) VALUES (?, ?, ?, ?, ?)",
-                           (username, generate_password_hash(password), email, telephone, '1'))
+                db.execute("INSERT INTO users (username, password, mail,telephone,  tarif, photo, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                           (username, generate_password_hash(password), email, telephone, tarif, photo, '1'))
                 # db.commit() permet de valider une modification de la base de données
+
+                for subject_id in request.form.getlist('matieres[]'):
+                    db.execute("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)", (user_id, subject_id))
+
+                for level_id in request.form.getlist('niveau[]'):
+                    db.execute("INSERT INTO teacher_level (teacher_id, level_id) VALUES (?, ?)", (user_id, level_id))
+
+                for course_type_id in request.form.getlist('course_type[]'):
+                    db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
+                    
                 db.commit()
             except db.IntegrityError as e:
                 print(e)
@@ -58,7 +75,7 @@ def register():
             return redirect(url_for("auth.login"))
     else:
         # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
-        return render_template('auth/register.html')
+        return render_template('auth/register.html', levels=levels, subjects=subjects, course_types=course_types)
 
 
 @auth_bp.route('/register_student', methods=('GET', 'POST'))

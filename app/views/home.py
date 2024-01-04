@@ -36,21 +36,38 @@ def list_teacher():
         #teachers = db.execute("SELECT users.* FROM users, teacher_level WHERE role_id = 1 and teacher_level.teacher_id = users.id and teacher_level.level_id = ?", (level)).fetchall()
         #teachers = db.execute("SELECT users. *FROM users, teacher_subject WHERE role_id = 1 and teacher_subject.teacher_id = users.id and teacher_subject.id = ?", (subject)).fetchall() 
         teachers = db.execute("""
-            SELECT DISTINCT users.* FROM users, teacher_level, teacher_subject, teacher_course_type WHERE role_id = 1 and teacher_level.teacher_id = users.id and teacher_level.level_id = ? and teacher_subject.teacher_id = users.id and teacher_subject.subject_id = ?
-        """, (level, subject)).fetchall()
+            SELECT DISTINCT users.* FROM users, teacher_level, teacher_subject, teacher_course_type
+            WHERE role_id = 1 
+            AND teacher_level.teacher_id = users.id AND teacher_level.level_id = ? 
+            AND teacher_subject.teacher_id = users.id AND teacher_subject.subject_id = ?
+            AND teacher_course_type.teacher_id = users.id AND teacher_course_type.course_type_id = ?
+            COLLATE NOCASE
+        """, (level, subject, course_type)).fetchall()
         print(level)
         print(subject)
         print(course_type)
 
+        #levels_teacher = db.execute("SELECT level. * FROM level, teacher_level WHERE teacher_level.teacher_id = teacher_level.level_id and teacher_level.teacher_id = ?").fetchall()
+        levels_teacher = db.execute("""
+            SELECT level.* FROM level
+            JOIN teacher_level ON level.level_id = teacher_level.level_id
+            WHERE teacher_level.teacher_id = ?
+        """, (level,)).fetchall()
+        
+        subjects_teacher = db.execute("""
+            SELECT subject.* FROM subject
+            JOIN teacher_subject ON subject.id = teacher_subject.subject_id
+            WHERE teacher_subject.teacher_id = ?
+        """, (level,)).fetchall()
 
-    return render_template('home/list_teacher.html', teachers=teachers)
+        #course_types = db.execute("""
+            #SELECT course_type.* FROM course_type
+            #JOIN teacher_course_type ON course_type.course_type_id = teacher_course_type.course_type_id
+            #WHERE teacher_course_type.teacher_id = ?
+        #""", (course_type,)).fetchall()
 
-@home_bp.route('/teacher_account', methods=('GET', 'POST'))
-def teacher_account():
-    
-    levels_teacher = db.execute("SELECT * FROM level").fetchall()
-    
-    return render_template('home/list_teacher.html', levels_teacher=levels_teacher)
+
+    return render_template('home/list_teacher.html', teachers=teachers, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher)
 
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):

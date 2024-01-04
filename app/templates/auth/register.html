@@ -21,71 +21,28 @@
     <label for="tarif">Tarif</label>
     <input type="number" name="tarif" id="tarif" min="0" required><br>
 
-    <label for="matiere">Quelles matières enseignez-vous?</label>
-    <div>
-      <input type="checkbox" name="matier[]" id="francais" value="francais">
-      <label for="francais">Français</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="mathematique" value="mathematique">
-      <label for="mathematique">Mathématique</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="allemand" value="allemand">
-      <label for="allemand">Allemand</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="anglais" value="anglais">
-      <label for="anglais">Anglais</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="geographie" value="geographie">
-      <label for="geographie">Géographie</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="histoire" value="histoire">
-      <label for="histoire">Histoire</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="biologie" value="biologie">
-      <label for="biologie">Biologie</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="economie" value="economie">
-      <label for="economie">Economie</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="chimie" value="chimie">
-      <label for="chimie">Chimie</label>
-    </div>
-    <div>
-      <input type="checkbox" name="matier[]" id="physique" value="physique">
-      <label for="physique">Physique</label>
-    </div>
-
+    <label for="matieres">Quelles matières enseignez-vous?</label>
+    {% for subject in subjects %}
+        <div>
+            <input type="checkbox" name="matieres[]" id="{{ subject.id }}" value="{{ subject.id }}">
+            <label for="{{ subject.id }}">{{ subject.subject_name }}</label>
+        </div>
+    {% endfor %}
     <label for="niveaux">Quels niveaux enseignez-vous?</label>
-    <div>
-      <input type="checkbox" name="niveau[]" id="primaire" value="primaire">
-      <label for="primaire">Primaire</label>
-    </div>
-    <div>
-      <input type="checkbox" name="niveau[]" id="secondaire1" value="secondaire1">
-      <label for="secondaire1">Secondaire 1</label>
-    </div>
-    <div>
-      <input type="checkbox" name="niveau[]" id="secondaire2" value="secondaire2">
-      <label for="secondaire2">Secondaire 2</label>
-    </div>
-    <div>
-      <input type="checkbox" name="niveau[]" id="hauteecole" value="hauteecole">
-      <label for="hauteecole">Haute école</label>
-    </div>
+    {% for level in levels %}
+        <div>
+            <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
+            <label for="{{ level.level_id }}">{{ level.level_name }}</label>
+        </div>
+    {% endfor %}
 
-    <label for="cours">Type de cours ?</label>
-    <select name="cours" id="cours" required>
-      <option value="enligne">En ligne</option>
-      <option value="domicile">A domicile</option>
-    </select><br>
+    <label for="niveaux">Quels type de cours vous convient ?</label>
+    {% for course_type in course_types %}
+        <div>
+            <input type="checkbox" name="course_type[]" id="{{ course_type.course_type_id }}" value="{{ course_type.course_type_id }}">
+            <label for="{{ course_type.course_type_id }}">{{ course_type.course_type_name }}</label>
+        </div>
+    {% endfor %}
 
     <label for="photo">Ajouter une photo</label>
     <input type="file" name="photo" id="photo" accept="image/*"><br>
