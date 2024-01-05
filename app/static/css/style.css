@@ -146,11 +146,6 @@ button {
     font-size: 40px;
 }
 
-.teacher-list {
-    list-style: none;
-    padding: 0;
-}
-
 
 form {
   width: 100%;
@@ -276,6 +271,7 @@ div {
   margin-left: -300px; 
   margin-top: -200px;
 }
+
 
 
 

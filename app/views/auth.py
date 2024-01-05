@@ -47,15 +47,16 @@ def register():
                 db.execute("INSERT INTO users (username, password, mail,telephone,  tarif, photo, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
                            (username, generate_password_hash(password), email, telephone, tarif, photo, '1'))
                 # db.commit() permet de valider une modification de la base de données
+                user_id = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()['id']
 
                 for subject_id in request.form.getlist('matieres[]'):
                     db.execute("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)", (user_id, subject_id))
-
+                
                 for level_id in request.form.getlist('niveau[]'):
                     db.execute("INSERT INTO teacher_level (teacher_id, level_id) VALUES (?, ?)", (user_id, level_id))
 
-                for course_type_id in request.form.getlist('course_type[]'):
-                    db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
+                #for course_type_id in request.form.getlist('course_type[]'):
+                    #db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
                     
                 db.commit()
             except db.IntegrityError as e:
