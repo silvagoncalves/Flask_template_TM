@@ -52,10 +52,30 @@ def count_teacher():
 
     
     db = get_db()
-    
+
     teacher = db.execute("SELECT * FROM users WHERE id = ?", (teacher_id,)).fetchone()
-    print(teacher)
     
+    levels = db.execute("SELECT * FROM level").fetchall() 
+    subjects = db.execute("SELECT * FROM subject").fetchall()
+    course_types = db.execute("SELECT * FROM course_type").fetchall()
+    
+    levels_teacher = db.execute("""
+            SELECT level.* FROM level
+            JOIN teacher_level ON level.level_id = teacher_level.level_id
+            WHERE teacher_level.teacher_id = ?
+        """, (teacher_id,)).fetchall()
+    
+    subjects_teacher = db.execute("""
+            SELECT subject.* FROM subject
+            JOIN teacher_subject ON subject.id = teacher_subject.subject_id
+            WHERE teacher_subject.teacher_id = ?
+        """, (teacher_id,)).fetchall()
+
+    course_types = db.execute("""
+            SELECT course_type.* FROM course_type
+            JOIN teacher_course_type ON course_type.course_type_id = teacher_course_type.course_type_id
+            WHERE teacher_course_type.teacher_id = ?
+        """, (teacher_id,)).fetchall()
     
 
-    return render_template('user/count_teacher.html', teacher=teacher)
+    return render_template('user/count_teacher.html', teacher=teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher,course_types=course_types)

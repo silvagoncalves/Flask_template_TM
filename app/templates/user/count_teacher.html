@@ -3,3 +3,31 @@
 {% block header %}
   <h3>{% block title %}Compte de {{ teacher['username'] }} {% endblock %}</h3>
 {% endblock %}
+
+{% block content %}
+    {% if teacher %}
+        <h5>A propos : </h5>
+        <div class="teacher-info-box">
+        <ul>
+                <h6>Niveaux enseignés: </h6>
+                    <ul class="info-list">
+                        {% for level in levels_teacher %}
+                            <li>{{ level.level_name }}</li>
+                        {% endfor %}
+                    </ul>
+                <h6>Matières enseignées:</h6>
+                    <ul class="info-list">
+                        {% for subject in subjects_teacher %}
+                            <li>{{ subject.subject_name }}</li>
+                        {% endfor %}
+                    </ul>
+                <h6>Types de cours:</h6>
+                    <ul class="info-list">
+                        {% for course_type in course_types %}
+                            <li>{{ course_type.course_type_name }}</li>
+                        {% endfor %}
+                    </ul>
+        </ul>
+        </div>
+    {% endif %}
+{% endblock %}

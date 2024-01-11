@@ -5,26 +5,32 @@
 {% endblock %}
 
 {% block content %}
-    <form method="post" action="{{ url_for('home.list_teacher') }}">
         {% if teachers %}
             <ul>
                 {% for user in teachers %}
-                <form method="post" action="{{ url_for('home.list_teacher') }}"></form>
-                    <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user['id']) }}">{{ user['username'] }}</a>
-                    <ul>
-                        <li>Niveaux enseignés: </li>
-                        {% for level in levels_teacher %}
-                            <li>{{ level.level_name }}</li>
-                        {% endfor %}
-                        <li>Matières enseignées: </li>
-                        {% for subject in subjects_teacher %}
-                            <li>{{ subject.subject_name }}</li>
-                        {% endfor %}
-                        <li>Types de cours:</li>
-                        {% for course_type in course_types %}
-                            <li>{{course_type.course_type_name}}</li>
-                        {% endfor %}
-                    </ul>
+                    <form class="custom-form" method="post" action="{{ url_for('home.list_teacher') }}">
+                    <div class="teacher-info-box2">
+                        <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user['id']) }}">{{ user['username'] }}</a>
+                        <h6>Niveaux enseignés: </h6>
+                            <ul>
+                                {% for level in levels_teacher %}
+                                    <li>{{ level.level_name }}</li>
+                                    {% endfor %}
+                            </ul>
+                        <h6>Matières enseignées:</h6>
+                            <ul>
+                                {% for subject in subjects_teacher %}
+                                    <li>{{ subject.subject_name }}</li>
+                                    {% endfor %}
+                            </ul>
+                        <h6>Types de cours:</h6>
+                            <ul>
+                                {% for course_type in course_types %}
+                                    <li>{{ course_type.course_type_name }}</li>
+                                    {% endfor %}
+                            </ul>
+                    </div>
+                    </form>
                 {% endfor %}
             </ul>
         {% else %}

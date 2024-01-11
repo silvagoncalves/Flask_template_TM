@@ -26,6 +26,17 @@ h4{
   text-align: center;
 
 }
+
+h5{
+  color: black; 
+  font-size: 30px;
+}
+
+h6{
+  color: black; 
+  font-size: 20px;
+}
+
 button a {
   color: white ;
   texte-decoration: none;
@@ -44,6 +55,46 @@ button {
   display: block;
   font-size: 1.5em;
   width: 180px;
+}
+
+.teacher-info-box {
+  border: 2px solid black; 
+  padding: 15px;
+  margin-left: 320px; 
+  margin-right: 320px;
+  
+}
+
+.teacher-info-box2 {
+  border: 2px solid black; 
+  padding: 15px;
+  margin-left: 50px; 
+  margin-right: 50px;
+  
+}
+
+
+.info-list {
+  margin-left: 20px; 
+  font-size: 1em;
+
+}
+
+.link-style{
+  display: inline-block;
+  font-size: 30px;
+  color: rgb(27, 59, 201); 
+}
+
+.changement-link {
+  display: inline-block;
+  color: rgb(27, 59, 201); 
+  margin-left: 500px
+}
+
+.custom-form {
+  background-color: white; 
+ 
 }
 
 #enseignantButton {
@@ -241,7 +292,7 @@ div {
   background-color: rgb(255, 255, 255) ;
 }
 
-  .profile-container {
+.profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;

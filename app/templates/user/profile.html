@@ -5,41 +5,42 @@
 {% endblock %}
 
 {% block content %}
-
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-            <!--{% if photo_profil %}
-                    <img src="{{ users.photo }}" alt="Photo de l'enseignant">
-                {% else %}
-                <div class="profile-initial">{{ g.user['username'][0] }}</div>
-                {% endif %} -->
-            
-            {% if teachers %}
-            <ul>
-                {% for user in teachers %}
-                    <h4><strong>Vous êtes un enseignant</h4> </strong>
-                    <li><strong>Niveaux que vous enseignez : </strong></li>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% if teachers %}
+        <ul>
+            {% for user in teachers %}
+                <h4><strong>Vous êtes un enseignant</strong></h4>
+                <div class="teacher-info-box">
+                    <h5><strong>Niveaux que vous enseignez :</strong></h5>
+                    <ul class="info-list">
                         {% for level in levels_teacher %}
                             <li>{{ level.level_name }}</li>
                         {% endfor %}
-                    <li><strong>Matières que vous enseignez: </strong></li>
+                    </ul>
+
+                    <h5><strong>Matières que vous enseignez :</strong></h5>
+                    <ul class="info-list">
                         {% for subject in subjects_teacher %}
                             <li>{{ subject.subject_name }}</li>
                         {% endfor %}
-                    <li><strong>Types de cours que vous enseignez:</strong></li>
+                    </ul>
+
+                    <h5><strong>Types de cours que vous enseignez :</strong></h5>
+                    <ul class="info-list">
                         {% for course_type in course_types %}
-                            <li>{{course_type.course_type_name}}</li>
+                            <li>{{ course_type.course_type_name }}</li>
                         {% endfor %}
-                    <button id="changement"><a href="{{ url_for('auth.count_modification') }}">Voulez-vous modifer vos compétences ?</a></button>
-                    <h4>Vos élèves :</h4>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <h4>Vous êtes un élève</h4>
-                <h4>Vos enseignants :</h4>
-            {% endif %}
-        </div>
-    </div>
+                    </ul>
+                    <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier vos compétences ?</a>
+                </div>
+                <h4>Vos élèves :</h4>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h4>Vous êtes un élève</h4>
+        <h4>Vos enseignants :</h4>
+    {% endif %}
 {% endblock %}
 
 
