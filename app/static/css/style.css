@@ -94,11 +94,12 @@ button {
   text-align: left;
   display: block;
   width: 350px;
+  height: 500px;
 }
 
 .etape2 {
   position: relative;
-  top: -425px;
+  top: -430px;
   color: white;
   background-color: rgba(8, 97, 60, 1);
   text-align: center
@@ -110,11 +111,12 @@ button {
   text-align: left;
   display: block;
   width: 350px;
+  height: 490px;
 }
 
 .etape3 {
   position: relative;
-  top: -815px;
+  top: -970px;
   color: black;
   background-color: rgb(254, 196, 196);
   text-align: center;
@@ -126,6 +128,15 @@ button {
   text-align: left;
   display: block;
   width: 400px;
+  height: 500px;
+}
+
+.black-band {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
 }
 
 .top-nav {

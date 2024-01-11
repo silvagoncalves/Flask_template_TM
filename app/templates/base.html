@@ -12,11 +12,11 @@
             <li><strong><a href="#">SchoolHelp</a></strong></li>
             <li><a href="{{ url_for('home.landing_page') }}">Home</a></li>
             <li><a href="{{ url_for('home.research_teacher') }}">Rechercher un enseignant</a></li>
-            <li><a href="{{ url_for('auth.register') }}">Donner un cours</a></li>
             {% if g.user %}
                 <li><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                 <li><a href="{{ url_for('user.show_profile') }}">{{ g.user['username'] }}</a></li>
             {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Donner un cours</a></li>
                 <li><a href="{{ url_for('auth.login') }}">Connexion</a></li>
             {% endif %}
         </ul>

@@ -11,6 +11,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 @auth_bp.route('/register', methods=('GET', 'POST'))
 def register():
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
+  
     db = get_db()
     subjects = db.execute("SELECT * FROM subject").fetchall()
     levels = db.execute("SELECT * FROM level").fetchall()
@@ -55,8 +56,8 @@ def register():
                 for level_id in request.form.getlist('niveau[]'):
                     db.execute("INSERT INTO teacher_level (teacher_id, level_id) VALUES (?, ?)", (user_id, level_id))
 
-                #for course_type_id in request.form.getlist('course_type[]'):
-                    #db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
+                for course_type_id in request.form.getlist('course_type[]'):
+                    db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
                     
                 db.commit()
             except db.IntegrityError as e:
@@ -244,4 +245,30 @@ def password_change():
             flash('L\'utilisateur avec ce nom d\'utilisateur n\'existe pas.', 'error')
 
     return render_template('auth/password_change.html')
+
+@auth_bp.route('/count_modification', methods=('GET', 'POST'))
+def count_modification():
+    db = get_db()
+    subjects = db.execute("SELECT * FROM subject").fetchall()
+    levels = db.execute("SELECT * FROM level").fetchall()
+    course_types = db.execute("SELECT * FROM course_type").fetchall()
+
+    user_id = g.user['id']
+    tarif = None
+
+    for subject_id in request.form.getlist('matieres[]'):
+        db.execute("UPDATE teacher_subject SET subject_id = ? WHERE teacher_id = ?", (subject_id, user_id))
+
+    for level_id in request.form.getlist('niveau[]'):
+        db.execute("UPDATE teacher_level SET level_id = ? WHERE teacher_id = ?", (level_id, user_id))
+
+    for course_type_id in request.form.getlist('course_type[]'):
+        db.execute("UPDATE teacher_course_type SET course_type_id = ? WHERE teacher_id = ?", (course_type_id, user_id))
+
+    if request.method == 'POST':
+        tarif = request.form['tarif']
+        db.execute('UPDATE users SET tarif = ? WHERE user_id = ?', (tarif, user_id))
+
+    return render_template('auth/count_modification.html', tarif=tarif, levels=levels, subjects=subjects, course_types=course_types)
+
     

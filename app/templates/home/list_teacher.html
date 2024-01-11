@@ -9,7 +9,8 @@
         {% if teachers %}
             <ul>
                 {% for user in teachers %}
-                    <li><strong>{{ user['username'] }}</strong></li>
+                <form method="post" action="{{ url_for('home.list_teacher') }}"></form>
+                    <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user['id']) }}">{{ user['username'] }}</a>
                     <ul>
                         <li>Niveaux enseignés: </li>
                         {% for level in levels_teacher %}
@@ -21,7 +22,7 @@
                         {% endfor %}
                         <li>Types de cours:</li>
                         {% for course_type in course_types %}
-                            <li>{{ course_types.course_types }}</li>
+                            <li>{{course_type.course_type_name}}</li>
                         {% endfor %}
                     </ul>
                 {% endfor %}
