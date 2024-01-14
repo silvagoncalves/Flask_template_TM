@@ -226,14 +226,12 @@ label {
 }
 
 input[type="checkbox"] {
-  margin-right: 8px;
-  vertical-align: 8px; 
-  margin-top: -8px;
+  margin-right: 8px; 
+  margin-bottom: 0px; 
 }
 
-.checkbox-container {
-  margin-bottom: 16px;
-}
+
+
 
 input,
 select,
@@ -269,14 +267,6 @@ div {
   margin-bottom: 8px;
 }
 
-.checkbox-container {
-  display: flex;
-  align-items: center;
-}
-
-.checkbox-container input {
-  margin-right: 8px;
-}
 
 .options-button {
   display: inline-block;

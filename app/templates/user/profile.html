@@ -32,6 +32,10 @@
                             <li>{{ course_type.course_type_name }}</li>
                         {% endfor %}
                     </ul>
+                    <h5><strong>Votre tarif :</strong></h5>
+                        <ul class="info-list">
+                            <li>{{ g.user['tarif'] }}CHF</li>
+                        </ul>
                     <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier vos compétences ?</a>
                 </div>
                 <h4>Vos élèves :</h4>

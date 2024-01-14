@@ -21,14 +21,14 @@
     <label for="tarif">Tarif</label>
     <input type="number" name="tarif" id="tarif" min="0" required><br>
 
-    <label for="matieres">Quelles matières enseignez-vous?</label>
+    <label for="matieres"><h5>Quelles matières enseignez-vous?</h5></label>
     {% for subject in subjects %}
         <div>
             <input type="checkbox" name="matieres[]" id="{{ subject.id }}" value="{{ subject.id }}">
             <label for="{{ subject.id }}">{{ subject.subject_name }}</label>
         </div>
     {% endfor %}
-    <label for="niveaux">Quels niveaux enseignez-vous?</label>
+    <label for="niveaux"><h5>Quels niveaux enseignez-vous?</h5></label>
     {% for level in levels %}
         <div>
             <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
@@ -36,7 +36,7 @@
         </div>
     {% endfor %}
 
-    <label for="niveaux">Quels type de cours vous convient ?</label>
+    <label for="niveaux"><h5>Quels type de cours vous convient ?</h5></label>
     {% for course_type in course_types %}
         <div>
             <input type="checkbox" name="course_type[]" id="{{ course_type.course_type_id }}" value="{{ course_type.course_type_id }}">
@@ -44,7 +44,7 @@
         </div>
     {% endfor %}
 
-    <label for="photo">Ajouter une photo</label>
+    <label for="photo"><h5>Ajouter une photo</h5></label>
     <input type="file" name="photo" id="photo" accept="image/*"><br>
 
     <input type="submit" value="Inscription">

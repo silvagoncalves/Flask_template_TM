@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post" action="{{ url_for('home.list_teacher') }}">
+  <form method="post" action="{{ url_for('search.list_teacher') }}">
     <h2>Choisis ton niveau scolaire</h2>
     <div class="options">
       <select name="level" required>
