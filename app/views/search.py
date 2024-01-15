@@ -60,16 +60,7 @@ def list_teacher():
             WHERE teacher_course_type.teacher_id = ?
         """, (course_type,)).fetchall()
 
-        tarif = db.execute("""
-            SELECT DISTINCT users.tarif FROM users, teacher_level, teacher_subject, teacher_course_type
-            WHERE role_id = 1 
-            AND teacher_level.teacher_id = users.id AND teacher_level.level_id = ? 
-            AND teacher_subject.teacher_id = users.id AND teacher_subject.subject_id = ?
-            AND teacher_course_type.teacher_id = users.id AND teacher_course_type.course_type_id = ?
-            COLLATE NOCASE
-        """, (level, subject, course_type)).fetchone()
-
-        print(tarif)
+    
 
 
-    return render_template('search/list_teacher.html', teachers=teachers, tarif=tarif,  levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
+    return render_template('search/list_teacher.html', teachers=teachers,  levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
