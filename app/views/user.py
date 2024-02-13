@@ -79,3 +79,7 @@ def count_teacher():
     
 
     return render_template('user/count_teacher.html', teacher=teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher,course_types=course_types)
+
+@user_bp.route('/count_teacher', methods=['GET', 'POST'])
+def follow():   
+    return render_template('user/count_teacher')

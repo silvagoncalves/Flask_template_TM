@@ -12,6 +12,22 @@
             {% for user in teachers %}
                 <h4><strong>Vous êtes un enseignant</strong></h4>
                 <div class="teacher-info-box">
+
+                    <h5><strong>Votre nom d'utilisateur :</strong></h5>
+                    <ul class="info-list">
+                        <li>{{ g.user['username'] }}</li>
+                    </ul>
+
+                    <h5><strong>Votre adresse email :</strong></h5>
+                    <ul class="info-list">
+                        <li>{{ g.user['mail'] }}</li>
+                    </ul>
+
+                    <h5><strong>Votre numéro de téléphone :</strong></h5>
+                    <ul class="info-list">
+                        <li>{{g.user['telephone'] }}</li>
+                    </ul>
+
                     <h5><strong>Niveaux que vous enseignez :</strong></h5>
                     <ul class="info-list">
                         {% for level in levels_teacher %}
@@ -32,18 +48,40 @@
                             <li>{{ course_type.course_type_name }}</li>
                         {% endfor %}
                     </ul>
+
                     <h5><strong>Votre tarif :</strong></h5>
                         <ul class="info-list">
                             <li>{{ g.user['tarif'] }}CHF</li>
                         </ul>
-                    <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier vos compétences ?</a>
+
+                    <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier votre profil ?</a>
                 </div>
                 <h4>Vos élèves :</h4>
             {% endfor %}
         </ul>
     {% else %}
         <h4>Vous êtes un élève</h4>
+        <div class="teacher-info-box">
+       
+        <h5><strong>Votre nom d'utilisateur :</strong></h5>
+        <ul class="info-list">
+            <li>{{ g.user['username'] }}</li>
+        </ul>
+
+        <h5><strong>Votre adresse email :</strong></h5>
+        <ul class="info-list">
+            <li>{{ g.user['mail'] }}</li>
+        </ul>
+
+        <h5><strong>Votre numéro de téléphone :</strong></h5>
+        <ul class="info-list">
+            <li>{{ g.user['telephone'] }}</li>
+        </ul>
+        <a class="changement-link" href="{{ url_for('auth.count_modification_student') }}">Voulez-vous modifier votre profil ?</a>
+        </div>
+        
         <h4>Vos enseignants :</h4>
+    
     {% endif %}
 {% endblock %}
 

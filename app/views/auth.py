@@ -255,20 +255,88 @@ def count_modification():
 
     user_id = g.user['id']
     tarif = None
-
-    for subject_id in request.form.getlist('matieres[]'):
-        db.execute("UPDATE teacher_subject SET subject_id = ? WHERE teacher_id = ?", (subject_id, user_id))
-
-    for level_id in request.form.getlist('niveau[]'):
-        db.execute("UPDATE teacher_level SET level_id = ? WHERE teacher_id = ?", (level_id, user_id))
-
-    for course_type_id in request.form.getlist('course_type[]'):
-        db.execute("UPDATE teacher_course_type SET course_type_id = ? WHERE teacher_id = ?", (course_type_id, user_id))
+    username = None
+    mail = None
+    telephone = None
 
     if request.method == 'POST':
-        tarif = request.form['tarif']
-        db.execute('UPDATE users SET tarif = ? WHERE user_id = ?', (tarif, user_id))
+        # Récupération des nouvelles données du formulaire
+        new_tarif = request.form['tarif']
+        new_username = request.form['username']
+        new_mail = request.form['mail']
+        new_telephone = request.form['telephone']
 
-    return render_template('auth/count_modification.html', tarif=tarif, levels=levels, subjects=subjects, course_types=course_types)
+        # Vérification si les champs du formulaire sont vides
+        if not new_tarif:
+            new_tarif = g.user['tarif']
+        if not new_username:
+            new_username = g.user['username']
+        if not new_mail:
+            new_mail = g.user['mail']
+        if not new_telephone:
+            new_telephone = g.user['telephone']
+
+        # Vérification si le nom d'utilisateur est déjà employé par un autre utilisateur
+        if new_username != g.user['username'] and db.execute('SELECT id FROM users WHERE username = ?', (new_username,)).fetchone():
+            flash("Ce nom d'utilisateur est déjà utilisé. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification'))
+
+        if new_telephone != g.user['telephone'] and db.execute('SELECT id FROM users WHERE telephone = ?', (new_telephone,)).fetchone():
+            flash("Ce numéro de téléphone est déjà utilisé. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification'))
+
+        if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
+            flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification'))
+        else:
+            # Mise à jour des données dans la base de données seulement si des données ont été modifiées
+            if new_tarif != g.user['tarif'] or new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone']:
+                for subject_id in request.form.getlist('matieres[]'):
+                    db.execute("UPDATE teacher_subject SET subject_id = ? WHERE teacher_id = ?", (subject_id, user_id))
+
+                for level_id in request.form.getlist('niveau[]'):
+                    db.execute("UPDATE teacher_level SET level_id = ? WHERE teacher_id = ?", (level_id, user_id))
+
+                for course_type_id in request.form.getlist('course_type[]'):
+                    db.execute("UPDATE teacher_course_type SET course_type_id = ? WHERE teacher_id = ?", (course_type_id, user_id))
+
+                db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, user_id))
+                db.commit()
+
+                # Redirection vers la page de profil
+        return redirect(url_for('user.show_profile'))
+
+    # Afficher les anciennes informations si la méthode est GET ou si des erreurs sont survenues
+    return render_template('auth/count_modification.html', telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
+
+
+
+
+
 
     
+@auth_bp.route('/count_modification_student', methods=('GET', 'POST'))
+def count_modification_student():
+    db = get_db()
+
+    user_id = g.user['id']
+    username = None
+    mail = None
+    telephone = None
+
+    if request.method == 'POST':
+
+        username = request.form['username']
+        db.execute('UPDATE users SET username = ? WHERE id = ?', (username, user_id))
+
+        mail= request.form['mail']
+        db.execute('UPDATE users SET mail = ? WHERE id = ?', (mail, user_id))
+
+        telephone= request.form['telephone']
+        db.execute('UPDATE users SET telephone = ? WHERE id = ?', (telephone, user_id))
+
+        db.commit()
+
+        return redirect(url_for('user.show_profile'))
+
+    return render_template('auth/count_modification_student.html', telephone=telephone, mail=mail, username=username)

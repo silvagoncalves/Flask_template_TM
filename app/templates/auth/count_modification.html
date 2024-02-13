@@ -2,14 +2,23 @@
 {% extends 'base.html' %}
 
 {% block header %}
-      <h3>{% block title %}Modifications de vos compétences{% endblock %}</h3>
+      <h3>{% block title %}Modifier le profil{% endblock %}</h3>
 {% endblock %}
     
 {% block content %}
   <form action="{{ url_for('auth.count_modification') }}" method="POST">
 
+    <label for="username">Nom d'utilisateur</label>
+    <input name="username" id="username"><br>
+
+    <label for="mail">Adresse email</label>
+    <input name="mail" id="mail"><br>
+
+    <label for="telephone">Numéro de téléphone</label>
+    <input name="telephone" id="telephone"><br>
+
     <label for="tarif">Tarif</label>
-    <input type="number" name="tarif" id="tarif" min="0" required><br>
+    <input type="number" name="tarif" id="tarif" min="0"><br>
     
     <label for="niveaux">Quels matières enseignez-vous?</label>
     {% for subject in subjects %}
