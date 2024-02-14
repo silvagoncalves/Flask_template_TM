@@ -310,32 +310,47 @@ def count_modification():
     return render_template('auth/count_modification.html', telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
 
 
-
-
-
-
     
 @auth_bp.route('/count_modification_student', methods=('GET', 'POST'))
 def count_modification_student():
     db = get_db()
+  
 
     user_id = g.user['id']
+
     username = None
     mail = None
     telephone = None
 
     if request.method == 'POST':
 
-        username = request.form['username']
-        db.execute('UPDATE users SET username = ? WHERE id = ?', (username, user_id))
+        new_username = request.form['username']
+        new_mail = request.form['mail']
+        new_telephone = request.form['telephone']
 
-        mail= request.form['mail']
-        db.execute('UPDATE users SET mail = ? WHERE id = ?', (mail, user_id))
+        if not new_username:
+            new_username = g.user['username']
+        if not new_mail:
+            new_mail = g.user['mail']
+        if not new_telephone:
+            new_telephone = g.user['telephone']
 
-        telephone= request.form['telephone']
-        db.execute('UPDATE users SET telephone = ? WHERE id = ?', (telephone, user_id))
+        if new_username != g.user['username'] and db.execute('SELECT id FROM users WHERE username = ?', (new_username,)).fetchone():
+            flash("Ce nom d'utilisateur est déjà utilisé. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification_student'))
 
-        db.commit()
+        if new_telephone != g.user['telephone'] and db.execute('SELECT id FROM users WHERE telephone = ?', (new_telephone,)).fetchone():
+            flash("Ce numéro de téléphone est déjà utilisé. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification_student'))
+
+        if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
+            flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
+            return redirect(url_for('auth.count_modification_student'))
+        else:
+            if new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone']:
+        
+                db.execute('UPDATE users SET  username = ?, mail = ?, telephone = ? WHERE id = ?', ( new_username, new_mail, new_telephone, user_id))
+                db.commit()
 
         return redirect(url_for('user.show_profile'))
 

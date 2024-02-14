@@ -2,6 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from app.utils import *
 from app.db.db import get_db
 
+
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 
@@ -83,3 +84,31 @@ def count_teacher():
 @user_bp.route('/count_teacher', methods=['GET', 'POST'])
 def follow():   
     return render_template('user/count_teacher')
+
+@user_bp.route('/count_teacher', methods=['GET', 'POST'])
+def average_grade():
+    db = get_db()
+
+    teacher_id = request.args.get('teacher_id')
+    
+    print(teacher_id)
+    if request.method == 'POST':
+        grade = request.form['grade']
+        db.execute("INSERT INTO evalue (grade, teacher_id) VALUES (?, ?)", (grade, teacher_id))
+        db.commit()
+    
+    # Sélectionnez toutes les notes pour cet enseignant
+    all_grades = db.execute("SELECT grade FROM evalue WHERE teacher_id = ?", (teacher_id,)).fetchall()
+    
+    print(all_grades)
+    total = 0
+    if all_grades:
+        # Convertir les données en une liste de notes
+        grades = [grade[0] for grade in all_grades]
+        # Calculer la somme des notes
+        total = sum(grades)
+        # Calculer la moyenne des notes
+        total /= len(grades)
+        print(total)
+    
+    return render_template('user/count_teacher.html', total=total)

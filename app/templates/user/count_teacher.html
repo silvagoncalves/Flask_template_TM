@@ -2,6 +2,7 @@
 
 {% block header %}
   <h3>{% block title %}Compte de {{ teacher['username'] }}{% endblock %}</h3>
+  <p>Note attribué : {{ total }}</p>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +30,16 @@
                 </ul>
             </ul>
         </div>
+
+
+        <form action="{{ url_for('user.average_grade', teacher_id=teacher['id']) }}" method="POST">
+            <label for="grade">Entrez votre note:</label>
+            <input type="num" id="grade" name="grade" min="1">
+            <input type="submit" value="Soumettre">
+        </form>
+
+ 
+
         <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Suivre {{ teacher['username'] }}</a></button>
         <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Ne plus suivre {{ teacher['username'] }}</a></button>
         <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Discuter avec {{ teacher['username'] }}</a></button>
