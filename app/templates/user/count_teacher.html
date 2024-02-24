@@ -2,7 +2,11 @@
 
 {% block header %}
   <h3>{% block title %}Compte de {{ teacher['username'] }}{% endblock %}</h3>
-  <p>Note attribué : {{ total }}</p>
+  {% if total > 0 %}
+    <p>Note attribuée : {{ total }}</p>
+  {% else %}
+    <p>Aucune note n'a été enregistrée pour l'instant.</p>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -27,21 +31,22 @@
                     {% for course_type in course_types %}
                         <li>{{ course_type.course_type_name }}</li>
                     {% endfor %}
+                <h6><strong>Votre tarif :</strong></h6>
+                <ul class="info-list">
+                    <li>{{users.tarif }}CHF</li>
+                </ul>
+                      
                 </ul>
             </ul>
         </div>
 
 
-        <form action="{{ url_for('user.average_grade', teacher_id=teacher['id']) }}" method="POST">
+        <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST">
             <label for="grade">Entrez votre note:</label>
-            <input type="num" id="grade" name="grade" min="1">
+            <input type="number" id="grade" name="grade" min="1" max="5">
             <input type="submit" value="Soumettre">
         </form>
 
  
-
-        <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Suivre {{ teacher['username'] }}</a></button>
-        <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Ne plus suivre {{ teacher['username'] }}</a></button>
-        <button id="followButton"><a href="{{ url_for('user.follow', teacher_id=teacher['id']) }}">Discuter avec {{ teacher['username'] }}</a></button>
     {% endif %}
 {% endblock %}

@@ -10,7 +10,6 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 # Route /auth/register
 @auth_bp.route('/register', methods=('GET', 'POST'))
 def register():
-    # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
   
     db = get_db()
     subjects = db.execute("SELECT * FROM subject").fetchall()
@@ -19,7 +18,6 @@ def register():
     
     if request.method == 'POST':
 
-        # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
@@ -27,11 +25,9 @@ def register():
         tarif = request.form['tarif']
         photo = request.form['photo']
 
-        # On récupère la base de donnée
+
         db = get_db()
 
-        # Si le nom d'utilisateur et le mot de passe ont bien une valeur
-        # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
                 user_with_email = db.execute("SELECT * FROM users WHERE mail = ?", (email,)).fetchone()
@@ -63,8 +59,7 @@ def register():
             except db.IntegrityError as e:
                 print(e)
 
-                # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
-                # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
+
                 error = f"User {username} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register"))
@@ -76,7 +71,6 @@ def register():
             flash(error)
             return redirect(url_for("auth.login"))
     else:
-        # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
         return render_template('auth/register.html', levels=levels, subjects=subjects, course_types=course_types)
 
 

@@ -27,8 +27,7 @@ def list_teacher():
         subject = request.form['subject']
 
         db = get_db()
-        #teachers = db.execute("SELECT users.* FROM users, teacher_level WHERE role_id = 1 and teacher_level.teacher_id = users.id and teacher_level.level_id = ?", (level)).fetchall()
-        #teachers = db.execute("SELECT users. *FROM users, teacher_subject WHERE role_id = 1 and teacher_subject.teacher_id = users.id and teacher_subject.id = ?", (subject)).fetchall() 
+
         teachers = db.execute("""
             SELECT DISTINCT users.id, users.username FROM users
             JOIN teacher_level ON  teacher_level.teacher_id = users.id
