@@ -57,6 +57,10 @@ def list_teacher():
                 JOIN teacher_course_type ON course_type.course_type_id = teacher_course_type.course_type_id
                 WHERE teacher_course_type.teacher_id = ?
             """, (teacher[0],)).fetchall()
-            list_teachers.append([teacher]+[levels_teacher]+[subjects_teacher]+[course_types])
+
+            tarif_teacher_row = db.execute("SELECT tarif FROM users WHERE id = ?", (teacher[0],)).fetchone()
+            tarif_teacher = tarif_teacher_row[0] if tarif_teacher_row is not None else None
+
+            list_teachers.append([teacher]+[levels_teacher]+[subjects_teacher]+[course_types]+[tarif_teacher])
         print(list_teachers)
     return render_template('search/list_teacher.html', list_teachers=list_teachers)

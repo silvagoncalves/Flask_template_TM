@@ -74,7 +74,8 @@ def count_teacher():
             WHERE teacher_course_type.teacher_id = ?
         """, (teacher_id,)).fetchall()
     
-    tarif_teacher = db.execute("SELECT tarif FROM users WHERE id = ?", (teacher_id,)).fetchall()
+    tarif_teacher_row = db.execute("SELECT tarif FROM users WHERE id = ?", (teacher_id,)).fetchone()
+    tarif_teacher = tarif_teacher_row[0] if tarif_teacher_row is not None else None
 
     if request.method == 'POST':
         try:

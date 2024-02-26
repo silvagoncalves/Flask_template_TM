@@ -31,15 +31,13 @@
                     {% for course_type in course_types %}
                         <li>{{ course_type.course_type_name }}</li>
                     {% endfor %}
-                <h6><strong>Votre tarif :</strong></h6>
-                <ul class="info-list">
-                    <li>{{users.tarif }}CHF</li>
                 </ul>
-                      
+                <h6>Tarif :</h6>
+                <ul class="info-list">
+                    <li>{{ tarif_teacher }}CHF</li>
                 </ul>
             </ul>
         </div>
-
 
         <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST">
             <label for="grade">Entrez votre note:</label>
