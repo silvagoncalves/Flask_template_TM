@@ -128,8 +128,6 @@ def register_student():
         return render_template('auth/register_student.html')
 
 
-# Route /auth/login
-
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # Si des données de formulaire sont envoyées vers la route /login (ce qui est le cas lorsque le formulaire de login est envoyé)
@@ -340,9 +338,9 @@ def count_modification_student():
         if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
             flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
             return redirect(url_for('auth.count_modification_student'))
+        
         else:
             if new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone']:
-        
                 db.execute('UPDATE users SET  username = ?, mail = ?, telephone = ? WHERE id = ?', ( new_username, new_mail, new_telephone, user_id))
                 db.commit()
 

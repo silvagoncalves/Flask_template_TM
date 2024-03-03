@@ -2,7 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from app.utils import *
 from app.db.db import get_db
 
-# Routes /user/...
+
 search_bp = Blueprint('search', __name__, url_prefix='/search')
 
 @search_bp.route('/research_teacher', methods=('GET', 'POST'))
@@ -12,6 +12,7 @@ def research_teacher():
         return redirect(url_for('auth.login'))
     
     db = get_db()
+    
     levels = db.execute("SELECT * FROM level").fetchall()
     subjects = db.execute("SELECT * FROM subject").fetchall()
     course_types = db.execute("SELECT * FROM course_type").fetchall()
@@ -37,9 +38,9 @@ def list_teacher():
         """, (level, subject, course_type)).fetchall()
 
         list_teachers=[]
+
         for teacher in teachers:
-            print(teacher)
-            print(teacher[0]) 
+
             levels_teacher = db.execute("""
                 SELECT level.* FROM level
                 JOIN teacher_level ON level.level_id = teacher_level.level_id
@@ -59,8 +60,9 @@ def list_teacher():
             """, (teacher[0],)).fetchall()
 
             tarif_teacher_row = db.execute("SELECT tarif FROM users WHERE id = ?", (teacher[0],)).fetchone()
+
             tarif_teacher = tarif_teacher_row[0] if tarif_teacher_row is not None else None
 
             list_teachers.append([teacher]+[levels_teacher]+[subjects_teacher]+[course_types]+[tarif_teacher])
-        print(list_teachers)
+
     return render_template('search/list_teacher.html', list_teachers=list_teachers)

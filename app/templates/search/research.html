@@ -1,41 +1,41 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h3>{% block title %}Trouve un enseignant{% endblock %}</h3>
+    <h3>{% block title %}Trouve un enseignant{% endblock %}</h3>
 {% endblock %}
 
 {% block content %}
-  <form method="post" action="{{ url_for('search.list_teacher') }}">
-    <h2>Choisis ton niveau scolaire</h2>
-    <div class="options">
-      <select name="level" required>
-        <option value="" disabled selected>Choisissez un niveau</option>
-        {% for level in levels %}
-                <option value="{{ level.level_id }}">{{ level.level_name  }}</option>
-            {% endfor %}
-      </select>
-    </div>
+    <form method="post" action="{{ url_for('search.list_teacher') }}">
+        <h2>Choisis ton niveau scolaire</h2>
+        <div class="options">
+            <select name="level" required>
+                <option value="" disabled selected>Choisis ton niveau scolaire</option>
+                {% for level in levels %}
+                    <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-    <h2>Choisis le type de cours qui te convient</h2>
-    <div class="options">
-      <select name="course_type" required>
-        <option value="" disabled selected>Choisissez le type de cours</option>
-        {% for course_type in course_types %}
-                <option value="{{ course_type.course_type_id }}">{{ course_type.course_type_name  }}</option>
-            {% endfor %}
-  </select>
-</div>
+        <h2>Choisis le type de cours qui te convient</h2>
+        <div class="options">
+            <select name="course_type" required>
+                <option value="" disabled selected>Choisis le type de cours qui te convient</option>
+                {% for course_type in course_types %}
+                    <option value="{{ course_type.course_type_id }}">{{ course_type.course_type_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-    <h2>Choisis une matière</h2>
-    <div class="options">
-      <select name="subject" required>
-        <option value="" disabled selected>Choisissez une matière</option>
-        {% for subject in subjects %}
-                <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
-           {% endfor %}
-    </select>
-  </div>
+        <h2>Choisis une matière</h2>
+        <div class="options">
+            <select name="subject" required>
+                <option value="" disabled selected>Choisis une matière</option>
+                {% for subject in subjects %}
+                    <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-    <input type="submit" value="Rechercher un enseignant">
-  </form>
+        <input type="submit" value="Rechercher un enseignant">
+    </form>
 {% endblock %}

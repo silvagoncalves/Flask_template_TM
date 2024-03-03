@@ -5,24 +5,23 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Nom d'utilisateur</label>
-    <input name="username" id="username" required><br>
-    
-    <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="password" required><br>
-    
-    <label for="email">Adresse e-mail</label>
-    <input type="email" name="email" id="email" required><br>
-    
-    <label for="phone">Numéro de téléphone</label>
-    <input type="tel" name="phone" id="phone" required><br>
+    <form method="post">
+        <label for="username">Nom d'utilisateur</label>
+        <input name="username" id="username" required><br>
+        
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" required><br>
+        
+        <label for="email">Adresse e-mail</label>
+        <input type="email" name="email" id="email" required><br>
+        
+        <label for="phone">Numéro de téléphone</label>
+        <input type="tel" name="phone" id="phone" required><br>
 
-    <label for="photo">Ajouter une photo</label>
-    <input type="file" name="photo" id="photo" accept="image/*"><br>
+        <label for="photo">Ajouter une photo</label>
+        <input type="file" name="photo" id="photo" accept="image/*"><br>
 
-    <input type="submit" value="Inscription">
-  
-  </form>
+        <input type="submit" value="Inscription">
+    </form>
 {% endblock %}
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h4>{% block title %}Enseignants correspondant à votre recherche :{% endblock %}</h4>
+    <h4>{% block title %}Enseignant(s) correspondant à votre recherche :{% endblock %}</h4>
 {% endblock %}
 
 {% block content %}
@@ -12,24 +12,24 @@
                     <div class="teacher-info-box2">
                         <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user[0].id) }}">{{ user[0].username }}</a>
                         <h6>Niveaux enseignés: </h6>
-                            <ul>
-                                {% for level in user[1] %}
-                                    <li>{{level.level_name }}</li>
-                                    {% endfor %}
-                            </ul>
+                        <ul>
+                            {% for level in user[1] %}
+                                <li>{{ level.level_name }}</li>
+                            {% endfor %}
+                        </ul>
                         <h6>Matières enseignées:</h6>
-                            <ul>
-                                {% for subject in user[2] %}
-                                    <li>{{ subject.subject_name }}</li>
-                                    {% endfor %}
-                            </ul>
+                        <ul>
+                            {% for subject in user[2] %}
+                                <li>{{ subject.subject_name }}</li>
+                            {% endfor %}
+                        </ul>
                         <h6>Types de cours:</h6>
-                            <ul>
-                                {% for course_type in user[3] %}
-                                    <li>{{course_type.course_type_name }}</li>
-                                    {% endfor %}
-                            </ul>
-                         <h6>Tarif:</h6>
+                        <ul>
+                            {% for course_type in user[3] %}
+                                <li>{{ course_type.course_type_name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h6>Tarif:</h6>
                         <ul>
                             <li>{{ user[4] }}</li>
                         </ul>

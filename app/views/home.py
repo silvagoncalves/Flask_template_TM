@@ -5,13 +5,9 @@ home_bp = Blueprint('home', __name__)
 
 
 
-# Route /
 @home_bp.route('/', methods=('GET', 'POST'))
 def landing_page():
-    # Affichage de la page principale de l'application
     return render_template('home/index.html')
-
-
 
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):
