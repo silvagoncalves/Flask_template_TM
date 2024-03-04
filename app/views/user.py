@@ -35,7 +35,7 @@ def show_profile():
         """, (user_id,)).fetchall()
     
     followed = db.execute("""SELECT users.* FROM users
-            JOIN follow ON users.id = follow.teacher_id
+            JOIN follow ON users.id = follow.student_id
             WHERE teacher_id = ?
         """, (user_id,)).fetchall()
     
@@ -55,6 +55,8 @@ def count_teacher():
     teacher_id = request.args.get('teacher_id')
 
     teacher = db.execute("SELECT * FROM users WHERE id = ?", (teacher_id,)).fetchone()
+
+    teachers = db.execute("SELECT DISTINCT users.* FROM users WHERE role_id = 1 AND id = ?", (g.user['id'] ,)).fetchall()
 
     levels_teacher = db.execute("""
             SELECT level.* FROM level
@@ -100,9 +102,8 @@ def count_teacher():
     if all_grades:
         grades = [grade[0] for grade in all_grades]
         total = sum(grades) // len(grades)
-    
-    
+
     follow = db.execute("SELECT * FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
 
     db.close()
-    return render_template('user/count_teacher.html', follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types, total=total)
+    return render_template('user/count_teacher.html', teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types, total=total)

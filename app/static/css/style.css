@@ -2,6 +2,41 @@ body {
   background: white;
 }
 
+
+.message-bubble.sent {
+  background-color: rgb(254, 196, 196);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  max-width: 50%;
+  position: relative;
+  left: 50%;
+}
+.message-content.received {
+  color: white;
+}
+.message-bubble.received {
+  background-color:rgba(8, 97, 60, 1);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  max-width: 50%;
+  position: relative;
+}
+
+.message-date {
+  font-size: smaller;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.message-content {
+  font-size: 20px; 
+  color:rgb(0, 0, 0)
+}
+
 h1{
   background: rgb(254, 196, 196); 
   padding: 100px;
@@ -229,7 +264,6 @@ input[type="checkbox"] {
   margin-right: 8px; 
   margin-bottom: 0px; 
 }
-
 
 
 

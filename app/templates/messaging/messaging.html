@@ -1,32 +1,22 @@
 {% extends 'base.html' %}
 
+{% block header %}
+    <h3>{{ to_user_name }}</h3>
+{% endblock %}
+
 {% block content %}
-<form class="custom-form" method="post" action="{{ url_for('messaging.messaging') }}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Content</th>
-                        <th>From User</th>
-                        <th>To User</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for message in messages %}
-                    <tr>
-                        <td>{{ message.content }}</td>
-                        <td>{{ message.from_user }}</td>
-                        <td>{{ message.to_user }}</td>
-                        <td>{{ message.date_message }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-</form>
+    <form class="custom-form" method="post" action="{{ url_for('messaging.messaging') }}">
+        {% for message in messages %}
+            <div class="message-bubble {% if message.from_user == g.user['username'] %}sent{% else %}received{% endif %}">
+                <p class="message-content {% if message.from_user == g.user['username'] %}sent{% else %}received{% endif %}">{{ message.content }}</p>
+                <p class="message-date">{{ message.date_message }}</p>
+            </div> 
+        {% endfor %}
+    </form>
     <form action="{{ url_for('messaging.messaging') }}" method="post">
         <label for="content">Message:</label><br>
         <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
-        <input type="hidden" id="to_user" name="to_user" value="{{to_user}}">
+        <input type="hidden" id="to_user" name="to_user" value="{{ to_user }}">
         <input type="submit" value="Envoyer">
     </form>
 {% endblock %}
