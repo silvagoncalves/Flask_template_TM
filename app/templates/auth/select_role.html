@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block content %}
-  <button id="enseignantButton"><a href="{{ url_for('auth.register') }}">Enseignant</a></button>
-  <button id="eleveButton"><a href="{{ url_for('auth.register_student') }}">Elève</a></button>
+  <div class="button-container">
+    <div class="button-wrapper">
+      <a class="register-link" href="{{ url_for('auth.register') }}">Enseignant</a>
+    </div>
+    <div class="button-wrapper">
+      <a class="register-link" href="{{ url_for('auth.register_student') }}">Elève</a>
+    </div>
+  </div>
 {% endblock %}
