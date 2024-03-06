@@ -245,6 +245,7 @@ def count_modification():
     levels = db.execute("SELECT * FROM level").fetchall()
     course_types = db.execute("SELECT * FROM course_type").fetchall()
 
+    
     user_id = g.user['id']
     tarif = None
     username = None
@@ -280,20 +281,24 @@ def count_modification():
         if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
             flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
             return redirect(url_for('auth.count_modification'))
-        else:
-            # Mise à jour des données dans la base de données seulement si des données ont été modifiées
-            if new_tarif != g.user['tarif'] or new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone']:
-                for subject_id in request.form.getlist('matieres[]'):
-                    db.execute("UPDATE teacher_subject SET subject_id = ? WHERE teacher_id = ?", (subject_id, user_id))
+        
+        if 'matieres[]' in request.form:
+            db.execute("DELETE FROM teacher_subject WHERE teacher_id = ?", (user_id,))
+            for subject_id in request.form.getlist('matieres[]'):
+                db.execute("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)", (user_id, subject_id))
 
-                for level_id in request.form.getlist('niveau[]'):
-                    db.execute("UPDATE teacher_level SET level_id = ? WHERE teacher_id = ?", (level_id, user_id))
+        if 'niveau[]' in request.form:
+            db.execute("DELETE FROM teacher_level WHERE teacher_id = ?", (user_id,))
+            for level_id in request.form.getlist('niveau[]'):
+                db.execute("INSERT INTO teacher_level (teacher_id, level_id) VALUES (?, ?)", (user_id, level_id))
 
-                for course_type_id in request.form.getlist('course_type[]'):
-                    db.execute("UPDATE teacher_course_type SET course_type_id = ? WHERE teacher_id = ?", (course_type_id, user_id))
+        if 'course_type[]' in request.form:
+            db.execute("DELETE FROM teacher_course_type WHERE teacher_id = ?", (user_id,))
+            for course_type_id in request.form.getlist('course_type[]'):
+                db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
 
-                db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, user_id))
-                db.commit()
+        db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, user_id))
+        db.commit()
 
                 # Redirection vers la page de profil
         return redirect(url_for('user.show_profile'))

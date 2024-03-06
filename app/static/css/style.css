@@ -2,6 +2,13 @@ body {
   background: white;
 }
 
+.profile-picture {
+  border-radius: 50%;
+  width: 150px; /* Ajustez la taille en fonction de vos besoins */
+  height: 150px; /* Ajustez la taille en fonction de vos besoins */
+  object-fit: cover;
+}
+
 .message-bubble.sent {
   background-color: rgba(8, 97, 60, 1);
   padding: 5px;
