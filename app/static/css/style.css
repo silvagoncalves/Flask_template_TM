@@ -2,7 +2,6 @@ body {
   background: white;
 }
 
-
 .message-bubble.sent {
   background-color: rgb(254, 196, 196);
   padding: 10px;
@@ -79,7 +78,46 @@ h6{
 .button-wrapper {
   margin: 20px; 
 }
+.button a {
+  color: white; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement du lien */
+}
 
+.buttonprincipale a {
+  color: white; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement du lien */
+}
+
+.follow-button {
+  color: white;
+  margin-left: 75%;
+  margin-bottom:20px;
+}
+.messagerie-button{ 
+  color: white;
+  margin-left: 55%;
+}
+
+.buttonprincipale {
+  background-color: rgba(8, 97, 60, 1); 
+  width: 20%;
+  height: 60px;
+  border-radius: 60px; 
+  border: 2px solid rgba(8, 97, 60, 1);
+  font-size: 0.25em;
+}
+
+.button {
+  background-color: rgba(8, 97, 60, 1); 
+  width: 20%;
+  height: 60px;
+  border-radius: 60px; 
+  border: 2px solid rgba(8, 97, 60, 1);
+  font-size: 1em;
+}
+.white-background {
+  background-color: white;
+}
 .register-link {
   display: inline-block; 
   width: 50%; 
@@ -125,8 +163,17 @@ h6{
   margin-right: 50px;
   
 }
+.propos {
+  display: flex;
+  margin-left: 20%; /* Décalage de 25% à droite */
+}
 
 
+.stars { 
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
 .info-list {
   list-style: none; /* Supprimer les puces de la liste */
   padding: 0; /* Réinitialiser la marge intérieure de la liste */
@@ -139,9 +186,29 @@ h6{
 .link-style{
   display: inline-block;
   font-size: 30px;
-  color: rgb(27, 59, 201); 
+  color: rgb(0, 0, 0); 
+  margin-bottom : 20px; 
+}
+.info-container2 {
+  margin-bottom: 15px;
 }
 
+.info-content1 {
+  margin-bottom: 15px;
+}
+
+.info-title2 {
+  display: inline;
+}
+
+.info-content2 {
+  display: inline-block;
+}
+
+.info-price {
+  display: inline-block;
+  float: right;
+}
 .changement-link {
   display: inline-block;
   color: rgb(27, 59, 201); 
@@ -371,7 +438,6 @@ div {
   margin-left: -300px; 
   margin-top: -200px;
 }
-
 
 
 

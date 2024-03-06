@@ -101,9 +101,9 @@ def count_teacher():
     total = 0
     if all_grades:
         grades = [grade[0] for grade in all_grades]
-        total = sum(grades) // len(grades)
+        total_nb = sum(grades) // len(grades)
 
     follow = db.execute("SELECT * FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
 
     db.close()
-    return render_template('user/count_teacher.html', teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types, total=total)
+    return render_template('user/count_teacher.html', total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)

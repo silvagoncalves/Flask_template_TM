@@ -11,28 +11,37 @@
                 {% for user in list_teachers %}
                     <div class="teacher-info-box2">
                         <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user[0].id) }}">{{ user[0].username }}</a>
-                        <h6>Niveaux enseignés: </h6>
-                        <ul>
-                            {% for level in user[1] %}
-                                <li>{{ level.level_name }}</li>
-                            {% endfor %}
-                        </ul>
-                        <h6>Matières enseignées:</h6>
-                        <ul>
+                        <div class="info-container2">
+                            <h6 class="info-title2">Niveaux enseignés: </h6>
+                            <span class="info-content2">
+                                {% set levels = [] %}
+                                {% for level in user[1] %}
+                                    {% set _ = levels.append(level.level_name) %}
+                                {% endfor %}
+                                {{ levels|join(', ') }}
+                            </span>
+                        </div>
+                        <div class="info-container2">
+                            <h6 class="info-title2">Matières enseignées:</h6>
+                            <span class="info-content2">
+                            {% set subjects = [] %}
                             {% for subject in user[2] %}
-                                <li>{{ subject.subject_name }}</li>
+                                {% set _ = subjects.append(subject.subject_name) %}
                             {% endfor %}
-                        </ul>
-                        <h6>Types de cours:</h6>
-                        <ul>
-                            {% for course_type in user[3] %}
-                                <li>{{ course_type.course_type_name }}</li>
-                            {% endfor %}
-                        </ul>
-                        <h6>Tarif:</h6>
-                        <ul>
-                            <li>{{ user[4] }}</li>
-                        </ul>
+                            {{ subjects|join(', ') }}
+                            </span>
+                        </div>
+                        <div class="info-container2">
+                            <h6 class="info-title2">Types de cours:</h6>
+                            <span class="info-content2">
+                                {% set course_types = [] %}
+                                {% for course_type in user[3] %}
+                                    {% set _ = course_types.append(course_type.course_type_name) %}
+                                {% endfor %}
+                                {{ course_types|join(', ') }}
+                            </span>
+                            <p class="info-price">{{ user[4] }}CHF</p>
+                        </div>
                     </div>
                 {% endfor %}
             </ul>
@@ -41,7 +50,4 @@
         {% endif %}
     </form>
 {% endblock %}
-
-
-
 
