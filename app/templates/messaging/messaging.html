@@ -13,9 +13,8 @@
             </div> 
         {% endfor %}
     </form>
-    <form action="{{ url_for('messaging.messaging') }}" method="post">
-        <label for="content">Message:</label><br>
-        <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
+    <form action="{{ url_for('messaging.messaging') }}" method="post" class="white-background">
+        <textarea id="content" name="content" rows="4" cols="50" placeholder="Envoyer un message"></textarea><br>
         <input type="hidden" id="to_user" name="to_user" value="{{ to_user }}">
         <input type="submit" value="Envoyer">
     </form>

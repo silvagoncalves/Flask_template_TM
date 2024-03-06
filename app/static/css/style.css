@@ -3,25 +3,31 @@ body {
 }
 
 .message-bubble.sent {
-  background-color: rgb(254, 196, 196);
-  padding: 10px;
+  background-color: rgba(8, 97, 60, 1);
+  padding: 5px;
   border-radius: 10px;
   margin-bottom: 10px; 
   max-width: 50%;
   position: relative;
-  left: 50%;
+  right: -60%;
+
 }
+.message-content.sent {
+  color:white;
+}
+
 .message-content.received {
-  color: white;
+  color:white;
 }
 .message-bubble.received {
-  background-color:rgba(8, 97, 60, 1);
+  background-color:rgb(6, 6, 6);
   color: white;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   margin-bottom: 10px; 
   max-width: 50%;
   position: relative;
+  right:20%;
 }
 
 .message-date {
