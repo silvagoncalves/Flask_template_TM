@@ -80,14 +80,31 @@ h6{
 }
 .button a {
   color: white; /* Couleur du texte */
+  text-align: center;
   text-decoration: none; /* Supprime le soulignement du lien */
 }
 
+.followed-button a {
+  color: rgb(6, 0, 0); /* Couleur du texte */
+  text-align: center; /* Supprime le soulignement du lien */
+}
 .buttonprincipale a {
   color: white; /* Couleur du texte */
   text-decoration: none; /* Supprime le soulignement du lien */
+  text-align: center;
 }
-
+.followed-button {
+  background-color:  rgb(254, 196, 196); 
+  width: 15%;
+  height: 60px;
+  border-radius: 60px; 
+  border: 2px solid rgba(254, 196, 196);
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center; /* Centre le contenu horizontalement */
+  align-items: center;
+  width: 25%;
+}
 .follow-button {
   color: white;
   margin-left: 75%;
@@ -193,10 +210,6 @@ h6{
   margin-bottom: 15px;
 }
 
-.info-content1 {
-  margin-bottom: 15px;
-}
-
 .info-title2 {
   display: inline;
 }
@@ -209,18 +222,22 @@ h6{
   display: inline-block;
   float: right;
 }
+
 .changement-link {
   display: inline-block;
   color: rgb(27, 59, 201); 
-  margin-left: 500px
+  margin-left: 70%; 
 }
 
 .custom-form {
   background-color: white; 
- 
 }
 
-
+.teacher-names {
+  display: flex;
+  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
+  gap: 10px; /* Espacement entre les boutons */
+}
 .middle-section {
   color: rgb(249, 238, 238);
   background-color: black;

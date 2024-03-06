@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
     {% if teachers %}
-    <span class="propos"><h5>Vos élèves :</h5>
-        {% for user in followed %}
-           <button class= "button follow-button" ><a href="{{ url_for('messaging.messaging',  user_id=user.id) }}">{{ user.username }}</a></button> 
+    <h5 class="propos">Vos élèves :</h5>
+    <form class="white-background">
+        <div class="teacher-names">
+            {% for user in followed %}
+            <button class="followed-button"><a href="{{ url_for('messaging.messaging',  user_id=user.id) }}">{{ user.username }}</a></button> 
+            {% endfor %}
         </div>
-        {% endfor %}
-    </span>
+    </form>
         {% for user in teachers %}
         <span class="propos"><h5>Votre compte :</h5></span>
             <div class="teacher-info-box">
@@ -70,18 +72,34 @@
                 </div>   
         {% endfor %}
     {% else %}
-    <h5>Vos enseignants :</h5>
-    <div class="button-container2">
+    <h5 class="propos">Vos enseignants :</h5>
+    <form class="white-background">
+    <div class="teacher-names">
         {% for user in following %}
-            <div class="button-wrapper2">
-                <a class="register-link2" href="{{ url_for('messaging.messaging', user_id=user.id) }}">{{ user.username }}</a>
+        <button class="followed-button"><a href="{{ url_for('messaging.messaging',  user_id=user.id) }}">{{ user.username }}</a></button> 
+        {% endfor %}
+    </div>
+</form>
+        <span class="propos"><h5>Votre compte :</h5></span>
+        <div class="teacher-info-box">
+            <div class="info-container2">
+                <h6 class="info-title2">Votre nom d'utilisateur:</h6>
+                <span class="info-content1">
+                        {{ g.user['username'] }}
+                </span>
             </div>
-       {% endfor %}
-    <div class="teacher-info-box">
-        <div>
-            <h5>Nom d'utilisateur : {{ g.user['username'] }}</h5>
-            <h5>Adresse email : {{ g.user['mail'] }}</h5>
-            <h5>Numéro de téléphone : {{ g.user['telephone'] }}</h5>
+            <div class="info-container2">
+                <h6 class="info-title2">Votre adresse électronique:</h6>
+                <span class="info-content2">
+                    {{ g.user['mail'] }}
+                </span>
+            </div>
+            <div class="info-container2">
+                <h6 class="info-title2"><strong>Votre numéro de téléphone:</strong></h6>
+                <span class="info-content2">
+                    {{ g.user['telephone'] }}
+                </span>
+                </div>
             <a class="changement-link" href="{{ url_for('auth.count_modification_student') }}">Voulez-vous modifier votre profil ?</a>
         </div>
     </div>
