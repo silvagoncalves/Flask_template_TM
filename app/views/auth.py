@@ -209,7 +209,7 @@ def password_change():
     
     if request.method == 'POST':
 
-        username = request.form['username']
+        mail = request.form['mail']
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
         token = request.form['token']
@@ -219,7 +219,7 @@ def password_change():
 
         # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
         # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
-        user = db.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        user = db.execute('SELECT * FROM users WHERE mail = ?', (mail,)).fetchone()
         
         if user:
             if new_password == confirm_password:
@@ -227,14 +227,14 @@ def password_change():
 
                 # Mise à jour du mot de passe
                 hashed_password = generate_password_hash(new_password)
-                db.execute('UPDATE users SET password = ? WHERE username = ?', (hashed_password, username))
+                db.execute('UPDATE users SET password = ? WHERE mail = ?', (hashed_password, mail))
                 db.commit()
                 flash('Mot de passe mis à jour avec succès.', 'success')
                 return redirect(url_for('auth.login'))
             else:
                 flash('Les nouveaux mots de passe ne correspondent pas.', 'error')
         else:
-            flash('L\'utilisateur avec ce nom d\'utilisateur n\'existe pas.', 'error')
+            flash('L\'utilisateur avec cet adresse électronique n\'existe pas.', 'error')
 
     return render_template('auth/password_change.html')
 

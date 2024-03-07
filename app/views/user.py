@@ -91,14 +91,14 @@ def count_teacher():
                 if 1 <= grade <= 5:
                     db.execute("INSERT INTO evalue (grade, teacher_id) VALUES (?, ?)", (grade, teacher_id))
                 else:
-                    return "La note doit être entre 1 et 5."
+                    flash ("La note doit être entre 1 et 5.")
         except ValueError:
-            return "La note doit être un nombre entier."
+            flash ("La note doit être un nombre entier.")
         finally:
             db.commit()
 
     all_grades = db.execute("SELECT grade FROM evalue WHERE teacher_id = ?", (teacher_id,)).fetchall()
-    total = 0
+    total_nb = 0
     if all_grades:
         grades = [grade[0] for grade in all_grades]
         total_nb = sum(grades) // len(grades)
