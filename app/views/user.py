@@ -80,6 +80,8 @@ def count_teacher():
 
     tarif_teacher = tarif_teacher_row[0] if tarif_teacher_row is not None else None
     
+    existing_grade = db.execute("SELECT grade FROM evalue WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
+
     if request.method == 'POST':
         try:
             if 'follow' in request.form:
@@ -87,11 +89,11 @@ def count_teacher():
             elif 'unfollow' in request.form:
                 db.execute("DELETE FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id))
             elif 'grade' in request.form:
-                grade = int(request.form['grade'])
-                if 1 <= grade <= 5:
-                    db.execute("INSERT INTO evalue (grade, teacher_id) VALUES (?, ?)", (grade, teacher_id))
-                else:
-                    flash ("La note doit être entre 1 et 5.")
+                    grade = int(request.form['grade'])
+                    if 1 <= grade <= 5:
+                        db.execute("INSERT INTO evalue (grade, teacher_id, student_id) VALUES (?, ?, ?)", (grade, teacher_id, g.user['id']))
+                    else:
+                        flash ("La note doit être entre 1 et 5.")
         except ValueError:
             flash ("La note doit être un nombre entier.")
         finally:
@@ -106,4 +108,4 @@ def count_teacher():
     follow = db.execute("SELECT * FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
 
     db.close()
-    return render_template('user/count_teacher.html', total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
+    return render_template('user/count_teacher.html', existing_grade=existing_grade, total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)

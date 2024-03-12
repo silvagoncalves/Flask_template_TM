@@ -23,7 +23,6 @@ def register():
         email = request.form['email']
         telephone = request.form['phone']
         tarif = request.form['tarif']
-        photo = request.form['photo']
 
 
         db = get_db()
@@ -41,8 +40,8 @@ def register():
                     flash("Ce numéro de téléphone existe déjà.")
                     return redirect(url_for("auth.register"))
 
-                db.execute("INSERT INTO users (username, password, mail,telephone,  tarif, photo, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                           (username, generate_password_hash(password), email, telephone, tarif, photo, '1'))
+                db.execute("INSERT INTO users (username, password, mail,telephone,  tarif, role_id) VALUES ( ?, ?, ?, ?, ?, ?)",
+                           (username, generate_password_hash(password), email, telephone, tarif, '1'))
                 # db.commit() permet de valider une modification de la base de données
                 user_id = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()['id']
 

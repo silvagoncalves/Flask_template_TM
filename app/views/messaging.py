@@ -20,12 +20,14 @@ def messaging():
         )
         db.commit()
 
+        if not content.strip():
+            flash("Vous ne pouvez pas envoyer un message vide.", "error")
+   
+    db = get_db()
     to_user = request.args.get('user_id')
     if to_user is None:
         to_user = request.form['to_user']
     from_user = g.user['id']
-
-    db = get_db()
 
     messages = db.execute("""
         SELECT m.content, f.username as from_user, t.username as to_user, m.date_message FROM message m, users f, users t
@@ -37,7 +39,6 @@ def messaging():
 
     to_user_name = db.execute("SELECT username FROM users WHERE id = ?", (to_user,)).fetchone()[0]
 
-    print(from_user == g.user['id'])
 
     return render_template('messaging/messaging.html', messages=messages, to_user=to_user, to_user_name=to_user_name)
 
