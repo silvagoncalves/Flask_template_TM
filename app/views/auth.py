@@ -10,27 +10,23 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 # Route /auth/register
 @auth_bp.route('/register', methods=('GET', 'POST'))
 def register():
-  
     db = get_db()
     subjects = db.execute("SELECT * FROM subject").fetchall()
     levels = db.execute("SELECT * FROM level").fetchall()
     course_types = db.execute("SELECT * FROM course_type").fetchall()
     
     if request.method == 'POST':
-
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
         telephone = request.form['phone']
         tarif = request.form['tarif']
 
-
-        db = get_db()
-
         if username and password:
             try:
                 user_with_email = db.execute("SELECT * FROM users WHERE mail = ?", (email,)).fetchone()
                 user_with_telephone = db.execute("SELECT * FROM users WHERE telephone = ?", (telephone,)).fetchone()
+                user_with_username = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
                 if user_with_email:
                     flash("Cet e-mail existe déjà.")
@@ -40,11 +36,19 @@ def register():
                     flash("Ce numéro de téléphone existe déjà.")
                     return redirect(url_for("auth.register"))
 
-                db.execute("INSERT INTO users (username, password, mail,telephone,  tarif, role_id) VALUES ( ?, ?, ?, ?, ?, ?)",
+                if user_with_username:
+                    flash("Ce nom d'utilisateur est déjà utilisé.")
+                    return redirect(url_for("auth.register"))
+                
+                if not request.form.getlist('matieres[]') or not request.form.getlist('niveau[]') or not request.form.getlist('course_type[]'):
+                    flash("Au moins une matière, un niveau et un type de cours doivent être sélectionnés.")
+                    return redirect(url_for("auth.register"))  
+                
+                db.execute("INSERT INTO users (username, password, mail, telephone, tarif, role_id) VALUES (?, ?, ?, ?, ?, ?)",
                            (username, generate_password_hash(password), email, telephone, tarif, '1'))
-                # db.commit() permet de valider une modification de la base de données
+             
                 user_id = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()['id']
-
+                
                 for subject_id in request.form.getlist('matieres[]'):
                     db.execute("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)", (user_id, subject_id))
                 
@@ -53,12 +57,11 @@ def register():
 
                 for course_type_id in request.form.getlist('course_type[]'):
                     db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
-                    
+               
                 db.commit()
+            
             except db.IntegrityError as e:
                 print(e)
-
-
                 error = f"User {username} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register"))
@@ -75,24 +78,19 @@ def register():
 
 @auth_bp.route('/register_student', methods=('GET', 'POST'))
 def register_student():
-    # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
-
-        # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
         telephone = request.form['phone']
 
-        # On récupère la base de donnée
         db = get_db()
 
-        # Si le nom d'utilisateur et le mot de passe ont bien une valeur
-        # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
                 user_with_email = db.execute("SELECT * FROM users WHERE mail = ?", (email,)).fetchone()
                 user_with_telephone = db.execute("SELECT * FROM users WHERE telephone = ?", (telephone,)).fetchone()
+                user_with_username = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
                 if user_with_email:
                     flash("Cet e-mail existe déjà.")
@@ -102,16 +100,16 @@ def register_student():
                     flash("Ce numéro de téléphone existe déjà.")
                     return redirect(url_for("auth.register_student"))
 
-                db.execute("INSERT INTO users (username, password, mail,telephone, role_id) VALUES (?, ?, ?, ?, ?)",
+                if user_with_username:
+                    flash("Ce nom d'utilisateur est déjà utilisé.")
+                    return redirect(url_for("auth.register_student"))
+
+                db.execute("INSERT INTO users (username, password, mail, telephone, role_id) VALUES (?, ?, ?, ?, ?)",
                            (username, generate_password_hash(password), email, telephone, '2'))
-                # db.commit() permet de valider une modification de la base de données
                 db.commit()
             
             except db.IntegrityError as e:
                 print(e)
-
-                # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
-                # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
                 error = f"User {username} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register_student"))
@@ -123,9 +121,7 @@ def register_student():
             flash(error)
             return redirect(url_for("auth.login"))
     else:
-        # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
         return render_template('auth/register_student.html')
-
 
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():

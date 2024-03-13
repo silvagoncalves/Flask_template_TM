@@ -12,34 +12,40 @@
         <input type="email" name="mail" id="mail"><br>
 
         <label for="telephone">Numéro de téléphone</label>
-        <input name="telephone" id="telephone"><br>
+        <input name="telephone" id="telephone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)"><br>
 
         <label for="tarif">Tarif</label>
         <input type="number" name="tarif" id="tarif" min="0"><br>
         
-        <label for="niveaux"><h5>Quelles matières enseignez-vous ?</h5></label>
-        {% for subject in subjects %}
-            <div>
-                <input type="checkbox" name="matieres[]" id="{{ subject.id }}" value="{{ subject.id }}">
-                <label for="{{ subject.id }}">{{ subject.subject_name }}</label>
-            </div>
-        {% endfor %}
+        <label for="niveaux"><h6>Quelles matières enseignez-vous ?</h6></label>
+        <div class="button_case_emplacemet ">
+            {% for subject in subjects %}
+                <button class="button_case">
+                    <label for="{{ subject.id }}">{{ subject.subject_name }}</label>
+                    <input type="checkbox" name="matieres[]" id="{{ subject.id }}" value="{{ subject.id }}">
+                </button>
+            {% endfor %}
+        </div>
         
-        <label for="niveaux"><h5>Quels niveaux enseignez-vous ?</h5></label>
-        {% for level in levels %}
-            <div>
-                <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
-                <label for="{{ level.level_id }}">{{ level.level_name }}</label>
-            </div>
-        {% endfor %}
+        <label for="niveaux"><h6>Quels niveaux enseignez-vous ?</h6></label>
+        <div class="button_case_emplacemet ">
+            {% for level in levels %}
+                <button class="button_case">
+                    <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
+                    <label for="{{ level.level_id }}">{{ level.level_name }}</label>
+                </button>
+            {% endfor %}
+        </div>
 
-        <label for="niveaux"><h5>Quels types de cours vous convient ?</h5></label>
-        {% for course_type in course_types %}
-            <div>
-                <input type="checkbox" name="course_type[]" id="{{ course_type.course_type_id }}" value="{{ course_type.course_type_id }}">
-                <label for="{{ course_type.course_type_id }}">{{ course_type.course_type_name }}</label>
-            </div>
-        {% endfor %}
+        <label for="niveaux"><h6>Quels types de cours vous convient ?</h6></label>
+        <div class="button_case_emplacemet ">
+            {% for course_type in course_types %}
+                <button class="button_case">
+                    <input type="checkbox" name="course_type[]" id="{{ course_type.course_type_id }}" value="{{ course_type.course_type_id }}">
+                    <label for="{{ course_type.course_type_id }}">{{ course_type.course_type_name }}</label>
+                </button>
+            {% endfor %}
+        </div>
         
         <input type="submit" value="Enregistrer les modifications">
     </form>

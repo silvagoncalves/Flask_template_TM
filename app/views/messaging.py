@@ -14,16 +14,17 @@ def messaging():
         date_message = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         db = get_db()
-        db.execute(
-            'INSERT INTO message (content, from_user, to_user, date_message) VALUES (?, ?, ?, ?)',
-            (content, from_user, to_user, date_message)
-        )
-        db.commit()
-
         if not content.strip():
             flash("Vous ne pouvez pas envoyer un message vide.", "error")
+        else:
+            db.execute(
+                'INSERT INTO message (content, from_user, to_user, date_message) VALUES (?, ?, ?, ?)',
+                (content, from_user, to_user, date_message)
+            )
+            db.commit()
    
     db = get_db()
+    
     to_user = request.args.get('user_id')
     if to_user is None:
         to_user = request.form['to_user']

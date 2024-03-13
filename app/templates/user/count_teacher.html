@@ -59,19 +59,21 @@
             </from>
         {% endif %}
         {% if follow %}
-                <button class="button messagerie-button">
-                    <a href="{{ url_for('user.show_profile') }}">Voulez-vous discuter avec {{ teacher['username'] }} ?</a>
-                </button>
                 <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
-                    <button type="submit" name="unfollow" class="button follow-button">Ne plus suivre cet enseignant</button>
+                    <div class="button_count_emplacement">
+                        <button class="button_count">
+                            <a class="count" href="{{ url_for('user.show_profile') }}">Voulez-vous discuter avec {{ teacher['username'] }} ?</a>
+                        </button>
+                        <button type="submit" name="unfollow" class="button_count">Ne plus suivre cet enseignant</button>
+                    </div>
                 </form>
-            {% if existing_grade is none %}
-                <form action ="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
-                    <label for="grade"><h6>Ajoutez une note pour partager votre avis sur l'enseignant:</h6></label>
-                    <input type="number" id="grade" name="grade" min="1" max="5">
-                    <input type="submit" value="Soumettre" class="button_submit">
-                </form> 
-            {% endif %}
+                {%if not existing_grade %}
+                    <form action ="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
+                        <label for="grade"><h6>Ajoutez une note pour partager votre avis sur l'enseignant:</h6></label>
+                        <input type="number" id="grade" name="grade" min="1" max="5">
+                        <input type="submit" value="Soumettre" class="button_submit">
+                    </form> 
+                {% endif %}
         {% endif %}
     {% endif %}
 {% endblock %}

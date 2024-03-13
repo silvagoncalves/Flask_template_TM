@@ -85,7 +85,22 @@ h6{
   font-size: 20px;
 }
 
+.button_count{
+  color: white; 
+  background-color:rgba(8, 97, 60, 1) ;
+  border: 2px solid rgba(8, 97, 60, 1);
+  position: relative;
+  width: 28%;
+  height: 60px;
+  border-radius: 60px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between; /* Centre le contenu horizontalement */
+  align-items: center; /* Centre le contenu verticalement */
+  padding: 20px 20px; 
+  margin-top: 20px;
 
+}
 .button-container {
   text-align: center; 
 }
@@ -127,6 +142,38 @@ h6{
 .messagerie-button{ 
   color: white;
   margin-left: 55%;
+}
+.count{
+  color:#fff;
+}
+.button_count_emplacement{
+  display: flex;
+  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
+  gap: 43%; /* Espacement entre les boutons */
+}
+.button_case_emplacemet {
+  display: flex;
+  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
+  gap: 10px; /* Espacement entre les boutons */
+}
+
+.button_case {
+  position: relative;
+  width: 28%;
+  height: 60px;
+  border-radius: 60px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between; /* Centre le contenu horizontalement */
+  align-items: center; /* Centre le contenu verticalement */
+  padding: 20px 20px; 
+
+}
+.button_case input[type="checkbox"] {
+  position: absolute; /* Positionne la case à cocher de manière absolue */
+  left: 35%;
+  top: 50%; /* Aligne verticalement la case à cocher */
+  transform: translateY(-50%); /* Ajuste la position verticale */
 }
 
 .buttonprincipale {
@@ -363,6 +410,7 @@ form {
   padding: 20px;
   background-color: rgb(205, 199, 199);
   border-radius: 8px;
+  justify-content: center;
 }
 
 label {
