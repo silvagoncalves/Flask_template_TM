@@ -66,13 +66,4 @@ def list_teacher():
 
             list_teachers.append([teacher]+[levels_teacher]+[subjects_teacher]+[course_types]+[tarif_teacher])
 
-            while True: 
-                red = randint(0, 255)
-                green = randint(0, 255)
-                blue = randint(0, 255)
-                color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
-                if (red, green, blue) != (255, 255, 255):
-                    break 
-                color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
-
-    return render_template('search/list_teacher.html',  color_hex=color_hex, list_teachers=list_teachers)
+    return render_template('search/list_teacher.html',  list_teachers=list_teachers)

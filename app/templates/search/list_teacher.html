@@ -14,7 +14,7 @@
                             {% if g.user['photo'] %}
                                 <img src="{{ user[0]['photo'] }}" alt="Photo de profil de {{ user[0]['username'] }}" class="avatar2">
                             {% else %}
-                                <div class="avatar2" style="background-color: {{ color_hex}};">
+                                <div class="avatar" style="background-color: blue ;">
                                     {{ user[0]['username'][0].upper() }}
                                 </div>
                             {% endif %}

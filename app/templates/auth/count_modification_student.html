@@ -4,10 +4,10 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="{{ g.user['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+            <img src="{{ user_id['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
         {% else %}
-            <div class="avatar" style="background-color: {{ color_hex}};">
-                {{ g.user['username'][0].upper() }}
+            <div class="avatar" style="background-color: blue ;">
+                {{ ['username'][0].upper() }}
             </div>
         {% endif %}
         <h3>Modifier votre profil</h3>

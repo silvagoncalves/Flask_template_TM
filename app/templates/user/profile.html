@@ -3,9 +3,9 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="{{ g.user['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+            <img src="{{photo}}">
         {% else %}
-            <div class="avatar" style="background-color: {{ color_hex}};">
+            <div class="avatar" style="background-color: blue;">
                 {{ g.user['username'][0].upper() }}
             </div>
         {% endif %}

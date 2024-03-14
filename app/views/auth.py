@@ -6,7 +6,10 @@ from random import randint
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Route /auth/register
 @auth_bp.route('/register', methods=('GET', 'POST'))
@@ -22,7 +25,12 @@ def register():
         email = request.form['email']
         telephone = request.form['phone']
         tarif = request.form['tarif']
+        photo = request.files['photo']
+        photo_data = None
 
+        if photo and allowed_file(photo.filename):
+            photo_data = base64.b64encode(photo.read())
+                
         if username and password:
             try:
                 user_with_email = db.execute("SELECT * FROM users WHERE mail = ?", (email,)).fetchone()
@@ -45,11 +53,11 @@ def register():
                     flash("Au moins une matière, un niveau et un type de cours doivent être sélectionnés.")
                     return redirect(url_for("auth.register"))  
                 
-                db.execute("INSERT INTO users (username, password, mail, telephone, tarif, role_id) VALUES (?, ?, ?, ?, ?, ?)",
-                           (username, generate_password_hash(password), email, telephone, tarif, '1'))
-             
+                db.execute("INSERT INTO users (username, password, mail, telephone, tarif, role_id, photo) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                           (username, generate_password_hash(password), email, telephone, tarif,'1', photo_data))
+
                 user_id = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()['id']
-                
+
                 for subject_id in request.form.getlist('matieres[]'):
                     db.execute("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)", (user_id, subject_id))
                 
@@ -297,20 +305,11 @@ def count_modification():
         db.commit()
 
     
-
                 # Redirection vers la page de profil
         return redirect(url_for('user.show_profile'))
-    while True: 
-        red = randint(0, 255)
-        green = randint(0, 255)
-        blue = randint(0, 255)
-        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
-        if (red, green, blue) != (255, 255, 255):
-            break 
-        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
 
     # Afficher les anciennes informations si la méthode est GET ou si des erreurs sont survenues
-    return render_template('auth/count_modification.html', color_hex=color_hex,  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
+    return render_template('auth/count_modification.html',  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
 
 
     
@@ -357,15 +356,5 @@ def count_modification_student():
 
     
         return redirect(url_for('user.show_profile'))
-    
-    while True: 
-            red = randint(0, 255)
-            green = randint(0, 255)
-            blue = randint(0, 255)
-            color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
-            if (red, green, blue) != (255, 255, 255):
-                break 
-            color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
 
-
-    return render_template('auth/count_modification_student.html', color_hex=color_hex, telephone=telephone, mail=mail, username=username)
+    return render_template('auth/count_modification_student.html', telephone=telephone, mail=mail, username=username)

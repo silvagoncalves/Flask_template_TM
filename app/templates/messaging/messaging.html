@@ -5,7 +5,7 @@
     {% if to_user['photo'] %}
         <img src="{{  to_user['photo'] }}" alt="Photo de profil de {{ user[0]['username'] }}" class="avatar">
     {% else %}
-        <div class="avatar" style="background-color: {{ color_hex}};">
+        <div class="avatar" style="background-color: blue ;">
             {{ to_user_name[0].upper() }}
         </div>
     {% endif %}
