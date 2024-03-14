@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h3>{% block title %}<img src="{{ g.user['photo'] }}" alt="Profile Picture" class="profile-picture">{{ g.user['username'] }}{% endblock %}</h3>
-
+    <div class="avatar-container">
+        {% if g.user['photo'] %}
+            <img src="{{ g.user['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+        {% else %}
+            <div class="avatar" style="background-color: {{ color_hex}};">
+                {{ g.user['username'][0].upper() }}
+            </div>
+        {% endif %}
+        <h3>{{ g.user['username'] }}</h3>
+    </div>
 {% endblock %}
 
 {% block content %}

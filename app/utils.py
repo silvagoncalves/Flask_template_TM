@@ -1,6 +1,7 @@
 import functools
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 
+
 # Ce décorateur est utilisé dans l'application Flask pour protéger certaines vues (routes)
 # afin de s'assurer qu'un utilisateur est connecté avant d'accéder à une route 
 

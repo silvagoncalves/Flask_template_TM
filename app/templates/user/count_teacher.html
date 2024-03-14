@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h3>{% block title %}Compte de {{ teacher['username'] }}{% endblock %}
+    <div class="avatar-container">
+        {% if g.user['photo'] %}
+            <img src="{{ teacher['photo'] }}" alt="Photo de profil de {{teacher['username'] }}" class="avatar">
+        {% else %}
+            <div class="avatar" style="background-color: {{ color_hex}};">
+                {{ teacher['username'] [0].upper() }}
+            </div>
+        {% endif %}
+        <h3>Compte de {{ teacher['username'] }}</h3>
+    </div>
 {% endblock %}
 
 {% block content %}

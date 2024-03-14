@@ -2,6 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from app.utils import *
 from datetime import datetime
 from app.db.db import get_db
+from random import randint
 
 messaging_bp = Blueprint('messaging', __name__, url_prefix='/messaging')
 
@@ -39,7 +40,16 @@ def messaging():
     """, (from_user, to_user, to_user, from_user)).fetchall()
 
     to_user_name = db.execute("SELECT username FROM users WHERE id = ?", (to_user,)).fetchone()[0]
+    while True: 
+        red = randint(0, 255)
+        green = randint(0, 255)
+        blue = randint(0, 255)
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+        if (red, green, blue) != (255, 255, 255):
+            break 
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
 
 
-    return render_template('messaging/messaging.html', messages=messages, to_user=to_user, to_user_name=to_user_name)
+
+    return render_template('messaging/messaging.html', color_hex=color_hex,  messages=messages, to_user=to_user, to_user_name=to_user_name)
 

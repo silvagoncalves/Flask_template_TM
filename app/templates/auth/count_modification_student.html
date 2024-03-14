@@ -2,7 +2,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h3>{% block title %}Modifier le profil{% endblock %}</h3>
+    <div class="avatar-container">
+        {% if g.user['photo'] %}
+            <img src="{{ g.user['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+        {% else %}
+            <div class="avatar" style="background-color: {{ color_hex}};">
+                {{ g.user['username'][0].upper() }}
+            </div>
+        {% endif %}
+        <h3>Modifier votre profil</h3>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -15,6 +24,9 @@
 
         <label for="telephone">Numéro de téléphone</label>
         <input name="telephone" id="telephone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)"><br>
+
+        <label for="photo">Changer de photo</label>
+        <input type="file" name="photo" id="photo" accept="image/*"><br>
 
         <input type="submit" value="Enregistrer les modifications">
     </form>

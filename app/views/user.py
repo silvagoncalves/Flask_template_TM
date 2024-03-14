@@ -1,7 +1,7 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from app.utils import *
 from app.db.db import get_db
-
+from random import randint
 
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
@@ -43,8 +43,18 @@ def show_profile():
             JOIN follow ON users.id = follow.teacher_id
             WHERE student_id = ?
         """, (user_id,)).fetchall()
+    
+    while True: 
+        red = randint(0, 255)
+        green = randint(0, 255)
+        blue = randint(0, 255)
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+        if (red, green, blue) != (255, 255, 255):
+            break 
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+    
 
-    return render_template('user/profile.html', following=following, teachers=teachers, followed=followed, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher,course_types=course_types )
+    return render_template('user/profile.html', color_hex=color_hex, following=following, teachers=teachers, followed=followed, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher,course_types=course_types )
 
 
 @user_bp.route('/count_teacher', methods=['GET', 'POST'])
@@ -106,6 +116,17 @@ def count_teacher():
     if all_grades:
         grades = [grade[0] for grade in all_grades]
         total_nb = sum(grades) // len(grades)
+    
+    while True: 
+        red = randint(0, 255)
+        green = randint(0, 255)
+        blue = randint(0, 255)
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+        if (red, green, blue) != (255, 255, 255):
+            break 
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+
 
     follow = db.execute("SELECT * FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
-    return render_template('user/count_teacher.html', existing_grade=existing_grade, total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
+    return render_template('user/count_teacher.html', color_hex =color_hex, existing_grade=existing_grade, total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
+

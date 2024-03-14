@@ -2,6 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
 import os
+from random import randint 
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -295,11 +296,21 @@ def count_modification():
         db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, user_id))
         db.commit()
 
+    
+
                 # Redirection vers la page de profil
         return redirect(url_for('user.show_profile'))
+    while True: 
+        red = randint(0, 255)
+        green = randint(0, 255)
+        blue = randint(0, 255)
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+        if (red, green, blue) != (255, 255, 255):
+            break 
+        color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
 
     # Afficher les anciennes informations si la méthode est GET ou si des erreurs sont survenues
-    return render_template('auth/count_modification.html', telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
+    return render_template('auth/count_modification.html', color_hex=color_hex,  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
 
 
     
@@ -344,6 +355,17 @@ def count_modification_student():
                 db.execute('UPDATE users SET  username = ?, mail = ?, telephone = ? WHERE id = ?', ( new_username, new_mail, new_telephone, user_id))
                 db.commit()
 
+    
         return redirect(url_for('user.show_profile'))
+    
+    while True: 
+            red = randint(0, 255)
+            green = randint(0, 255)
+            blue = randint(0, 255)
+            color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
+            if (red, green, blue) != (255, 255, 255):
+                break 
+            color_hex = '#{:02x}{:02x}{:02x}'.format(red, green, blue)
 
-    return render_template('auth/count_modification_student.html', telephone=telephone, mail=mail, username=username)
+
+    return render_template('auth/count_modification_student.html', color_hex=color_hex, telephone=telephone, mail=mail, username=username)

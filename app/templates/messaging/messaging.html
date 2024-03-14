@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
+<div class="avatar-container">
+    {% if to_user['photo'] %}
+        <img src="{{  to_user['photo'] }}" alt="Photo de profil de {{ user[0]['username'] }}" class="avatar">
+    {% else %}
+        <div class="avatar" style="background-color: {{ color_hex}};">
+            {{ to_user_name[0].upper() }}
+        </div>
+    {% endif %}
     <h3>{{ to_user_name }}</h3>
+</div>
 {% endblock %}
 
 {% block content %}

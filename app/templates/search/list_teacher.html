@@ -10,7 +10,16 @@
             <ul>
                 {% for user in list_teachers %}
                     <div class="teacher-info-box2">
-                        <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user[0].id) }}">{{ user[0].username }}</a>
+                        <div class="avatar-container2">
+                            {% if g.user['photo'] %}
+                                <img src="{{ user[0]['photo'] }}" alt="Photo de profil de {{ user[0]['username'] }}" class="avatar2">
+                            {% else %}
+                                <div class="avatar2" style="background-color: {{ color_hex}};">
+                                    {{ user[0]['username'][0].upper() }}
+                                </div>
+                            {% endif %}
+                            <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user[0].id) }}">{{ user[0].username }}</a>
+                        </div>
                         <div class="info-container2">
                             <h6 class="info-title2">Niveaux enseignés: </h6>
                             <span class="info-content2">
