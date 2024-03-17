@@ -3,9 +3,9 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="{{ g.user['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+            <img src="data:image/jpeg;base64, {{g.user['photo']}}" class="image">
         {% else %}
-            <div class="avatar" style="background-color: blue ;">
+            <div class="avatar" >
                 {{ g.user['username'][0].upper() }}
             </div>
         {% endif %}
@@ -13,7 +13,7 @@
     </div>
 {% endblock %}
 {% block content %}
-    <form action="{{ url_for('auth.count_modification') }}" method="POST">
+    <form action="{{ url_for('auth.count_modification') }}" method="POST" enctype="multipart/form-data">
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username"><br>
 
@@ -29,30 +29,30 @@
         <label for="niveaux"><h6>Quelles matières enseignez-vous ?</h6></label>
         <div class="button_case_emplacemet ">
             {% for subject in subjects %}
-                <button class="button_case">
+                <div class="button_case">
                     <label for="{{ subject.id }}">{{ subject.subject_name }}</label>
                     <input type="checkbox" name="matieres[]" id="{{ subject.id }}" value="{{ subject.id }}">
-                </button>
+                </div>
             {% endfor %}
         </div>
         
         <label for="niveaux"><h6>Quels niveaux enseignez-vous ?</h6></label>
         <div class="button_case_emplacemet ">
             {% for level in levels %}
-                <button class="button_case">
+                <div class="button_case">
                     <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
                     <label for="{{ level.level_id }}">{{ level.level_name }}</label>
-                </button>
+                </div>
             {% endfor %}
         </div>
 
         <label for="niveaux"><h6>Quels types de cours vous convient ?</h6></label>
         <div class="button_case_emplacemet ">
             {% for course_type in course_types %}
-                <button class="button_case">
+                <div class="button_case">
                     <input type="checkbox" name="course_type[]" id="{{ course_type.course_type_id }}" value="{{ course_type.course_type_id }}">
                     <label for="{{ course_type.course_type_id }}">{{ course_type.course_type_name }}</label>
-                </button>
+                </div>
             {% endfor %}
         </div>
         

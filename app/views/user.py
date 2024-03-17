@@ -16,6 +16,7 @@ def show_profile():
     
     user_id = g.user['id']
 
+
     teachers = db.execute("SELECT DISTINCT users.* FROM users WHERE role_id = 1 AND id = ?", (user_id ,)).fetchall()
     
     levels_teacher = db.execute("""

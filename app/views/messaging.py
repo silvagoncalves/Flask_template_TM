@@ -41,6 +41,8 @@ def messaging():
 
     to_user_name = db.execute("SELECT username FROM users WHERE id = ?", (to_user,)).fetchone()[0]
 
+    to_user_photo = db.execute("SELECT photo FROM users WHERE id = ?", (to_user,)).fetchone()[0]
 
-    return render_template('messaging/messaging.html', messages=messages, to_user=to_user, to_user_name=to_user_name)
+
+    return render_template('messaging/messaging.html', to_user_photo=to_user_photo,  messages=messages, to_user=to_user, to_user_name=to_user_name)
 

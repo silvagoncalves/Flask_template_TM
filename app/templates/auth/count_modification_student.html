@@ -4,10 +4,10 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="{{ user_id['photo'] }}" alt="Photo de profil de {{ g.user['username'] }}" class="avatar">
+            <img src="data:image/jpeg;base64, {{g.user['photo']}}" class="image">
         {% else %}
-            <div class="avatar" style="background-color: blue ;">
-                {{ ['username'][0].upper() }}
+            <div class="avatar">
+                {{ g.user['username'][0].upper() }}
             </div>
         {% endif %}
         <h3>Modifier votre profil</h3>
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ url_for('auth.count_modification_student') }}" method="POST">
+    <form action="{{ url_for('auth.count_modification_student') }}" method="POST" enctype="multipart/form-data">
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username"><br>
 

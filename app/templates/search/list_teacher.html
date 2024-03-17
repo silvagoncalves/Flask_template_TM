@@ -11,10 +11,10 @@
                 {% for user in list_teachers %}
                     <div class="teacher-info-box2">
                         <div class="avatar-container2">
-                            {% if g.user['photo'] %}
-                                <img src="{{ user[0]['photo'] }}" alt="Photo de profil de {{ user[0]['username'] }}" class="avatar2">
+                            {% if user[5] %}
+                                <img src="data:image/jpeg;base64, {{user[5]}}" class="image2">
                             {% else %}
-                                <div class="avatar" style="background-color: blue ;">
+                                <div class="avatar2">
                                     {{ user[0]['username'][0].upper() }}
                                 </div>
                             {% endif %}

@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
 import os
 from random import randint 
+import base64
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -29,7 +30,7 @@ def register():
         photo_data = None
 
         if photo and allowed_file(photo.filename):
-            photo_data = base64.b64encode(photo.read())
+            photo_data = base64.b64encode(photo.read()).decode('utf-8')
                 
         if username and password:
             try:
@@ -87,13 +88,19 @@ def register():
 
 @auth_bp.route('/register_student', methods=('GET', 'POST'))
 def register_student():
+    db = get_db()
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
         telephone = request.form['phone']
+        photo = request.files['photo']
+        photo_data = None
 
-        db = get_db()
+        if photo and allowed_file(photo.filename):
+            photo_data = base64.b64encode(photo.read()).decode('utf-8')
+    
 
         if username and password:
             try:
@@ -113,8 +120,8 @@ def register_student():
                     flash("Ce nom d'utilisateur est déjà utilisé.")
                     return redirect(url_for("auth.register_student"))
 
-                db.execute("INSERT INTO users (username, password, mail, telephone, role_id) VALUES (?, ?, ?, ?, ?)",
-                           (username, generate_password_hash(password), email, telephone, '2'))
+                db.execute("INSERT INTO users (username, password, mail, telephone, role_id, photo) VALUES (?, ?, ?, ?, ?, ?)",
+                           (username, generate_password_hash(password), email, telephone, '2', photo_data))
                 db.commit()
             
             except db.IntegrityError as e:
@@ -262,7 +269,11 @@ def count_modification():
         new_username = request.form['username']
         new_mail = request.form['mail']
         new_telephone = request.form['telephone']
+        new_photo = request.files['photo']
+        photo_data = None
 
+        if new_photo and allowed_file(new_photo.filename):
+            photo_data = base64.b64encode(new_photo.read()).decode('utf-8')
         # Vérification si les champs du formulaire sont vides
         if not new_tarif:
             new_tarif = g.user['tarif']
@@ -272,6 +283,8 @@ def count_modification():
             new_mail = g.user['mail']
         if not new_telephone:
             new_telephone = g.user['telephone']
+        if not new_photo: 
+            new_photo = g.user['photo']
 
         # Vérification si le nom d'utilisateur est déjà employé par un autre utilisateur
         if new_username != g.user['username'] and db.execute('SELECT id FROM users WHERE username = ?', (new_username,)).fetchone():
@@ -301,15 +314,14 @@ def count_modification():
             for course_type_id in request.form.getlist('course_type[]'):
                 db.execute("INSERT INTO teacher_course_type (teacher_id, course_type_id) VALUES (?, ?)", (user_id, course_type_id))
 
-        db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, user_id))
+        db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ?, photo = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, photo_data, user_id))
         db.commit()
 
-    
                 # Redirection vers la page de profil
         return redirect(url_for('user.show_profile'))
 
     # Afficher les anciennes informations si la méthode est GET ou si des erreurs sont survenues
-    return render_template('auth/count_modification.html',  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], levels=levels, subjects=subjects, course_types=course_types)
+    return render_template('auth/count_modification.html',  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], photo=g.user['photo'], levels=levels, subjects=subjects, course_types=course_types)
 
 
     
@@ -323,19 +335,26 @@ def count_modification_student():
     username = None
     mail = None
     telephone = None
+    photo_data = None
 
     if request.method == 'POST':
 
         new_username = request.form['username']
         new_mail = request.form['mail']
         new_telephone = request.form['telephone']
+        new_photo = request.files['photo']
 
+        if new_photo and allowed_file(new_photo.filename):
+            photo_data = base64.b64encode(new_photo.read()).decode('utf-8')
+    
         if not new_username:
             new_username = g.user['username']
         if not new_mail:
             new_mail = g.user['mail']
         if not new_telephone:
             new_telephone = g.user['telephone']
+        if not new_photo: 
+            new_photo = g.user['photo']
 
         if new_username != g.user['username'] and db.execute('SELECT id FROM users WHERE username = ?', (new_username,)).fetchone():
             flash("Ce nom d'utilisateur est déjà utilisé. Veuillez en choisir un autre.", "error")
@@ -350,11 +369,11 @@ def count_modification_student():
             return redirect(url_for('auth.count_modification_student'))
         
         else:
-            if new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone']:
-                db.execute('UPDATE users SET  username = ?, mail = ?, telephone = ? WHERE id = ?', ( new_username, new_mail, new_telephone, user_id))
+            if new_username != g.user['username'] or new_mail != g.user['mail'] or new_telephone != g.user['telephone'] or new_photo != g.user['photo']:
+                db.execute('UPDATE users SET  username = ?, mail = ?, telephone = ? , photo = ? WHERE id = ?', ( new_username, new_mail, new_telephone, photo_data, user_id))
                 db.commit()
 
     
         return redirect(url_for('user.show_profile'))
 
-    return render_template('auth/count_modification_student.html', telephone=telephone, mail=mail, username=username)
+    return render_template('auth/count_modification_student.html', photo_data=photo_data, telephone=telephone, mail=mail, username=username)

@@ -1,6 +1,31 @@
 body {
   background: white;
 }
+
+.button_case {
+  display: inline-block;
+  margin-right: 10px; /* Espace entre les boutons */
+  padding: 5px 5px; /* Remplissage interne */
+  background-color: #f0f0f0; /* Couleur de fond */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur au survol */
+  max-width: 170px;
+  max-height: 5px;
+}
+
+.button_case:hover {
+  background-color: #e0e0e0; /* Changement de couleur au survol */
+}
+
+.button_case input[type="checkbox"] {
+  display: right; /* Masquer l'élément input */
+}
+
+.button_case input[type="checkbox"] + label {
+  cursor: pointer; /* Curseur au survol */
+}
+
 .avatar-container2 {
   display: flex;
   align-items: left;
@@ -22,6 +47,26 @@ body {
   color: white; /* Adjust text color */
   font-size: 30px; /* Adjust font size */
   margin-right: 3%; /* Adjust margin as needed */
+  background-color: blue;
+}
+.image{
+  width: 70px; /* Adjust the width and height as needed */
+  height: 70px;
+  border-radius: 50%; /* Makes it round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.image2{
+  width: 50px; /* Adjust the width and height as needed */
+  height: 50px;
+  border-radius: 50%; /* Makes it round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
 }
 
 .avatar {
@@ -34,6 +79,7 @@ body {
   color: white; /* Adjust text color */
   font-size: 50px; /* Adjust font size */
   margin-right: 2%; /* Adjust margin as needed */
+  background-color: blue;
 }
 .profile-picture {
   border-radius: 50%;
@@ -97,7 +143,6 @@ h3{
   color: black; 
   font-size: 80px;
   text-align: center;
-
 }
 
 
@@ -132,7 +177,6 @@ h6{
   align-items: center; /* Centre le contenu verticalement */
   padding: 20px 20px; 
   margin-top: 20px;
-
 }
 .button-container {
   text-align: center; 

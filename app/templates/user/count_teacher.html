@@ -2,10 +2,10 @@
 
 {% block header %}
     <div class="avatar-container">
-        {% if g.user['photo'] %}
-            <img src="{{ teacher['photo'] }}" alt="Photo de profil de {{teacher['username'] }}" class="avatar">
+        {% if teacher['photo'] %}
+            <img src="data:image/jpeg;base64, {{ teacher['photo'] }}" class="image">
         {% else %}
-            <div class="avatar" style="background-color: blue ;">
+            <div class="avatar">
                 {{ teacher['username'] [0].upper() }}
             </div>
         {% endif %}
