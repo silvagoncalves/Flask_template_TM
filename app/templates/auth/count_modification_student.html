@@ -1,10 +1,9 @@
-    
 {% extends 'base.html' %}
 
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="data:image/jpeg;base64, {{g.user['photo']}}" class="image">
+            <img src="data:image/jpeg;base64, {{ g.user['photo'] }}" class="image">
         {% else %}
             <div class="avatar">
                 {{ g.user['username'][0].upper() }}
@@ -19,13 +18,13 @@
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username"><br>
 
-        <label for="mail">Adresse e-mail</label>
+        <label for="mail">Adresse électronique</label>
         <input type="email" name="mail" id="mail"><br>
 
         <label for="telephone">Numéro de téléphone</label>
         <input name="telephone" id="telephone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)"><br>
 
-        <label for="photo">Changer de photo</label>
+        <label for="photo">Changer de photo de profil</label>
         <input type="file" name="photo" id="photo" accept="image/*"><br>
 
         <input type="submit" value="Enregistrer les modifications">

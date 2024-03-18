@@ -6,7 +6,7 @@
             <img src="data:image/jpeg;base64, {{ teacher['photo'] }}" class="image">
         {% else %}
             <div class="avatar">
-                {{ teacher['username'] [0].upper() }}
+                {{ teacher['username'][0].upper() }}
             </div>
         {% endif %}
         <h3>Compte de {{ teacher['username'] }}</h3>
@@ -16,31 +16,31 @@
 {% block content %}
     {% if not total_nb > 0 %}
         <p>Aucune note n'a été enregistrée pour l'instant.</p>
-    {%endif%}
+    {% endif %}
     {% if teacher %}
         <span class="propos"><h5>A propos :</h5></span>
         <div class="teacher-info-box">
             <div class="info-container2">
                 {% if total_nb > 0 %}
-                <span class="stars" >
-                    {% for _ in range(total_nb) %}
-                        ⭐
-                    {% endfor %}
-                </span>
+                    <span class="stars">
+                        {% for _ in range(total_nb) %}
+                            ⭐
+                        {% endfor %}
+                    </span>
                 {% endif %}
-                <h6 class="info-title2">Niveaux enseignés: </h6>
+                <h6 class="info-title2">Niveaux enseignés :</h6>
                 <span class="info-content2">
-                {% set levels = [] %}
-                {% for level in levels_teacher %}
-                    {% set _ = levels.append(level.level_name) %}
-                {% endfor %}
-                {{ levels|join(', ') }}
+                    {% set levels = [] %}
+                    {% for level in levels_teacher %}
+                        {% set _ = levels.append(level.level_name) %}
+                    {% endfor %}
+                    {{ levels|join(', ') }}
                 </span>
             </div>
             <div class="info-container2">
-                <h6 class="info-title2">Matières enseignées:</h6>
+                <h6 class="info-title2">Matières enseignées :</h6>
                 <span class="info-content2">
-                {% set subjects = [] %}
+                    {% set subjects = [] %}
                     {% for subject in subjects_teacher %}
                         {% set _ = subjects.append(subject.subject_name) %}
                     {% endfor %}
@@ -48,41 +48,40 @@
                 </span>
             </div>
             <div class="info-container2">
-                <h6 class="info-title2">Types de cours:</h6>
+                <h6 class="info-title2">Types de cours enseignés :</h6>
                 <span class="info-content2">
-                {% set courses_type = [] %}
-                {% for course_type in course_types %}
-                    {% set _ = courses_type.append(course_type.course_type_name) %}
-                {% endfor %}
-                {{ courses_type|join(', ') }}
+                    {% set courses_type = [] %}
+                    {% for course_type in course_types %}
+                        {% set _ = courses_type.append(course_type.course_type_name) %}
+                    {% endfor %}
+                    {{ courses_type|join(', ') }}
                 </span>
-                <p class="info-price">{{ tarif_teacher }}CHF</p>
+                <p class="info-price">{{ tarif_teacher }} CHF</p>
             </div>
-            </ul>
         </div>
     {% endif %}
     {% if not teachers %}
         {% if not follow %}
             <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST"  class="white-background">
-               <button type="submit" name="follow" class="button follow-button">Voulez-vous suivre cet enseignant ?</button>
-            </from>
+                <button type="submit" name="follow" class="button follow-button">Voulez-vous suivre cet enseignant ?</button>
+            </form>
         {% endif %}
         {% if follow %}
+            <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
+                <div class="button_count_emplacement">
+                    <button class="button_count">
+                        <a class="count" href="{{ url_for('user.show_profile') }}">Voulez-vous discuter avec {{ teacher['username'] }} ?</a>
+                    </button>
+                    <button type="submit" name="unfollow" class="button_count">Ne plus suivre cet enseignant</button>
+                </div>
+            </form>
+            {% if not existing_grade %}
                 <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
-                    <div class="button_count_emplacement">
-                        <button class="button_count">
-                            <a class="count" href="{{ url_for('user.show_profile') }}">Voulez-vous discuter avec {{ teacher['username'] }} ?</a>
-                        </button>
-                        <button type="submit" name="unfollow" class="button_count">Ne plus suivre cet enseignant</button>
-                    </div>
-                </form>
-                {%if not existing_grade %}
-                    <form action ="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
-                        <label for="grade"><h6>Ajoutez une note pour partager votre avis sur l'enseignant:</h6></label>
-                        <input type="number" id="grade" name="grade" min="1" max="5">
-                        <input type="submit" value="Soumettre" class="button_submit">
-                    </form> 
-                {% endif %}
+                    <label for="grade"><h6>Ajoutez une note pour partager votre avis sur l'enseignant :</h6></label>
+                    <input type="number" id="grade" name="grade" min="1" max="5">
+                    <input type="submit" value="Soumettre" class="button_submit">
+                </form> 
+            {% endif %}
         {% endif %}
     {% endif %}
 {% endblock %}

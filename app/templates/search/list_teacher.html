@@ -21,7 +21,7 @@
                             <a class="link-style" href="{{ url_for('user.count_teacher', teacher_id=user[0].id) }}">{{ user[0].username }}</a>
                         </div>
                         <div class="info-container2">
-                            <h6 class="info-title2">Niveaux enseignés: </h6>
+                            <h6 class="info-title2">Niveaux enseignés :</h6>
                             <span class="info-content2">
                                 {% set levels = [] %}
                                 {% for level in user[1] %}
@@ -31,17 +31,17 @@
                             </span>
                         </div>
                         <div class="info-container2">
-                            <h6 class="info-title2">Matières enseignées:</h6>
+                            <h6 class="info-title2">Matières enseignées :</h6>
                             <span class="info-content2">
-                            {% set subjects = [] %}
-                            {% for subject in user[2] %}
-                                {% set _ = subjects.append(subject.subject_name) %}
-                            {% endfor %}
-                            {{ subjects|join(', ') }}
+                                {% set subjects = [] %}
+                                {% for subject in user[2] %}
+                                    {% set _ = subjects.append(subject.subject_name) %}
+                                {% endfor %}
+                                {{ subjects|join(', ') }}
                             </span>
                         </div>
                         <div class="info-container2">
-                            <h6 class="info-title2">Types de cours:</h6>
+                            <h6 class="info-title2">Types de cours enseignés :</h6>
                             <span class="info-content2">
                                 {% set course_types = [] %}
                                 {% for course_type in user[3] %}
@@ -49,7 +49,7 @@
                                 {% endfor %}
                                 {{ course_types|join(', ') }}
                             </span>
-                            <p class="info-price">{{ user[4] }}CHF</p>
+                            <p class="info-price">{{ user[4] }} CHF</p>
                         </div>
                     </div>
                 {% endfor %}

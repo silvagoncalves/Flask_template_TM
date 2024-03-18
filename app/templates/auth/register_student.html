@@ -5,20 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <form action ="{{url_for('auth.register_student')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('auth.register_student') }}" method="post" enctype="multipart/form-data">
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username" required><br>
         
         <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password" required><br>
         
-        <label for="email">Adresse e-mail</label>
+        <label for="email">Adresse électronique</label>
         <input type="email" name="email" id="email" required><br>
         
         <label for="phone">Numéro de téléphone</label>
         <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)" required><br>
 
-        <label for="photo">Ajouter une photo</label>
+        <label for="photo">Ajouter une photo de profil</label>
         <input type="file" name="photo" id="photo" accept="image/*"><br>
 
         <input type="submit" value="Inscription">

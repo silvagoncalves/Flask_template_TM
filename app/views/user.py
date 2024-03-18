@@ -2,7 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from app.utils import *
 from app.db.db import get_db
 from random import randint
-import base64
+
 
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
@@ -98,9 +98,9 @@ def count_teacher():
                             db.execute("INSERT INTO evalue (grade, teacher_id, student_id) VALUES (?, ?, ?)", (grade, teacher_id, g.user['id']))
                             return redirect(url_for("user.count_teacher", teacher_id=teacher_id))
                         else:
-                            flash ("La note doit être entre 1 et 5.")
+                            flash ("La note doit être un chiffre entre 1 et 5.")
         except ValueError:
-            flash ("La note doit être un nombre entier.")
+            flash ("La note doit être un chiffre entier.")
         finally:
             db.commit()
 
@@ -111,5 +111,6 @@ def count_teacher():
         total_nb = sum(grades) // len(grades)
 
     follow = db.execute("SELECT * FROM follow WHERE student_id = ? AND teacher_id = ?", (g.user['id'], teacher_id)).fetchone()
+    
     return render_template('user/count_teacher.html', existing_grade=existing_grade, total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
 

@@ -3,27 +3,28 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="data:image/jpeg;base64, {{g.user['photo']}}" class="image">
+            <img src="data:image/jpeg;base64, {{ g.user['photo'] }}" class="image">
         {% else %}
-            <div class="avatar" >
+            <div class="avatar">
                 {{ g.user['username'][0].upper() }}
             </div>
         {% endif %}
         <h3>Modifier votre profil</h3>
     </div>
 {% endblock %}
+
 {% block content %}
     <form action="{{ url_for('auth.count_modification') }}" method="POST" enctype="multipart/form-data">
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username"><br>
 
-        <label for="mail">Adresse e-mail</label>
+        <label for="mail">Adresse électronique</label>
         <input type="email" name="mail" id="mail"><br>
 
         <label for="telephone">Numéro de téléphone</label>
         <input name="telephone" id="telephone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)"><br>
 
-        <label for="tarif">Tarif</label>
+        <label for="tarif">Votre tarif (CHF/h)</label>
         <input type="number" name="tarif" id="tarif" min="0"><br>
         
         <label for="niveaux"><h6>Quelles matières enseignez-vous ?</h6></label>
@@ -46,7 +47,7 @@
             {% endfor %}
         </div>
 
-        <label for="niveaux"><h6>Quels types de cours vous convient ?</h6></label>
+        <label for="niveaux"><h6>Quels types de cours vous conviennent ?</h6></label>
         <div class="button_case_emplacemet ">
             {% for course_type in course_types %}
                 <div class="button_case">
@@ -56,7 +57,8 @@
             {% endfor %}
         </div>
         
-        <label for="photo">Changer de photo</label>
+        
+        <label for="photo">Changer de photo de profil</label>
         <input type="file" name="photo" id="photo" accept="image/*"><br>
 
         <input type="submit" value="Enregistrer les modifications">

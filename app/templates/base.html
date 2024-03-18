@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}{% endblock %} - Template de base Flask</title>
+    <title>{% block title %}{% endblock %} - Modèle de base Flask</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <nav class="top-nav">
         <ul>
+            {% if 'messaging' in request.path %}
+                <li><a href="{{ url_for('user.show_profile') }}" class="exit-arrow" style="margin-right: 100%;">⇦</a></li>
+            {% endif %}
             <li><strong><a href="#">SchoolHelp</a></strong></li>
-            <li><a href="{{ url_for('home.landing_page') }}">Home</a></li>
+            <li><a href="{{ url_for('home.landing_page') }}">Accueil</a></li>
             <li><a href="{{ url_for('search.research_teacher') }}">Rechercher un enseignant</a></li>
             {% if g.user %}
                 <li><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                 <li><a href="{{ url_for('user.show_profile') }}">{{ g.user['username'] }}</a></li>
             {% else %}
-                <li><a href="{{ url_for('auth.register') }}">Donner un cours</a></li>
+                <li><a href="{{ url_for('auth.register') }}">Devenir enseignant</a></li>
                 <li><a href="{{ url_for('auth.login') }}">Connexion</a></li>
             {% endif %}
         </ul>
@@ -32,6 +35,6 @@
         {% block content %}{% endblock %}
     </section>
 
-    <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

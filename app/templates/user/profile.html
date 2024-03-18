@@ -3,7 +3,7 @@
 {% block header %}
     <div class="avatar-container">
         {% if g.user['photo'] %}
-            <img src="data:image/jpeg;base64, {{g.user['photo']}}" class="image">
+            <img src="data:image/jpeg;base64, {{ g.user['photo'] }}" class="image">
         {% else %}
             <div class="avatar">
                 {{ g.user['username'][0].upper() }}
@@ -21,101 +21,104 @@
     <form class="white-background">
         <div class="teacher-names">
             {% for user in followed %}
-            <button class="followed-button"><a href="{{ url_for('messaging.messaging',  user_id=user.id) }}">{{ user.username }}</a></button> 
+                <button class="followed-button"><a href="{{ url_for('messaging.messaging', user_id=user.id) }}">{{ user.username }}</a></button> 
             {% endfor %}
         </div>
     </form>
-        {% for user in teachers %}
-        <span class="propos"><h5>Vous :</h5></span>
-            <div class="teacher-info-box">
-                <div class="info-container2">
-                    <h6 class="info-title2">Votre nom d'utilisateur:</h6>
-                    <span class="info-content1">
-                            {{ g.user['username'] }}
-                    </span>
-                </div>
-                <div class="info-container2">
-                    <h6 class="info-title2">Votre adresse électronique:</h6>
-                    <span class="info-content2">
-                        {{ g.user['mail'] }}
-                    </span>
-                </div>
-                <div class="info-container2">
-                    <h6 class="info-title2"><strong>Votre numéro de téléphone:</strong></h6>
-                    <span class="info-content2">
-                        {{ g.user['telephone'] }}
-                    </span>
-                    </div>
-                <div class="info-container2">
-                    <h6 class="info-title2">Niveaux que vous enseignez :</h6>
-                    <span class="info-content2">
-                        {% set levels = [] %}
-                        {% for level in levels_teacher %}
-                            {% set _ = levels.append(level.level_name) %}
-                        {% endfor %}
-                    {{ levels|join(', ') }}
-                    </span>
-                    </div>
-                <div class="info-container2">
-                    <h6 class="info-title2">Matières enseignées:</h6>
-                    <span class="info-content2">
-                    {% set subjects = [] %}
-                        {% for subject in subjects_teacher %}
-                            {% set _ = subjects.append(subject.subject_name) %}
-                        {% endfor %}
-                    {{ subjects|join(', ') }}
-                    </span>
-                    </div>
-                <div class="info-container2">
-                    <h6 class="info-title2">Types de cours:</h6>
-                    <span class="info-content2">
-                    {% set courses_type = [] %}
-                        {% for course_type in course_types %}
-                            {% set _ = courses_type.append(course_type.course_type_name) %}
-                        {% endfor %}
-                    {{ courses_type|join(', ') }}
-                    </span>
-                    </div>
-
-                <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier votre profil ?</a>
-                </div>   
-        {% endfor %}
-    {% else %}
-    <h5 class="propos">Vos enseignants :</h5>
-    <form class="white-background">
-    <div class="teacher-names">
-        {% for user in following %}
-        <button class="followed-button"><a href="{{ url_for('messaging.messaging',  user_id=user.id) }}">{{ user.username }}</a></button> 
-        {% endfor %}
-    </div>
-</form>
+    {% for user in teachers %}
         <span class="propos"><h5>Vous :</h5></span>
         <div class="teacher-info-box">
             <div class="info-container2">
-                <h6 class="info-title2">Votre nom d'utilisateur:</h6>
+                <h6 class="info-title2">Votre nom d'utilisateur :</h6>
                 <span class="info-content1">
-                        {{ g.user['username'] }}
+                    {{ g.user['username'] }}
                 </span>
             </div>
             <div class="info-container2">
-                <h6 class="info-title2">Votre adresse électronique:</h6>
+                <h6 class="info-title2">Votre adresse électronique :</h6>
                 <span class="info-content2">
                     {{ g.user['mail'] }}
                 </span>
             </div>
             <div class="info-container2">
-                <h6 class="info-title2"><strong>Votre numéro de téléphone:</strong></h6>
+                <h6 class="info-title2"><strong>Votre numéro de téléphone :</strong></h6>
                 <span class="info-content2">
                     {{ g.user['telephone'] }}
                 </span>
-                </div>
-            <a class="changement-link" href="{{ url_for('auth.count_modification_student') }}">Voulez-vous modifier votre profil ?</a>
+            </div>
+            <div class="info-container2">
+                <h6 class="info-title2"><strong>Votre tarif (CHF/h) :</strong></h6>
+                <span class="info-content2">
+                    {{ g.user['tarif'] }}
+                </span>
+            </div>
+            <div class="info-container2">
+                <h6 class="info-title2">Niveaux que vous enseignez :</h6>
+                <span class="info-content2">
+                    {% set levels = [] %}
+                    {% for level in levels_teacher %}
+                        {% set _ = levels.append(level.level_name) %}
+                    {% endfor %}
+                    {{ levels|join(', ') }}
+                </span>
+            </div>
+            <div class="info-container2">
+                <h6 class="info-title2">Matières que vous enseignez:</h6>
+                <span class="info-content2">
+                    {% set subjects = [] %}
+                    {% for subject in subjects_teacher %}
+                        {% set _ = subjects.append(subject.subject_name) %}
+                    {% endfor %}
+                    {{ subjects|join(', ') }}
+                </span>
+            </div>
+            <div class="info-container2">
+                <h6 class="info-title2">Types de cours que vous enseignez :</h6>
+                <span class="info-content2">
+                    {% set courses_type = [] %}
+                    {% for course_type in course_types %}
+                        {% set _ = courses_type.append(course_type.course_type_name) %}
+                    {% endfor %}
+                    {{ courses_type|join(', ') }}
+                </span>
+            </div>
+            <a class="changement-link" href="{{ url_for('auth.count_modification') }}">Voulez-vous modifier votre profil ?</a>
+        </div>   
+    {% endfor %}
+    {% else %}
+    <h5 class="propos">Vos enseignants :</h5>
+    <form class="white-background">
+        <div class="teacher-names">
+            {% for user in following %}
+                <button class="followed-button"><a href="{{ url_for('messaging.messaging', user_id=user.id) }}">{{ user.username }}</a></button> 
+            {% endfor %}
         </div>
+    </form>
+    <span class="propos"><h5>Vous :</h5></span>
+    <div class="teacher-info-box">
+        <div class="info-container2">
+            <h6 class="info-title2">Votre nom d'utilisateur :</h6>
+            <span class="info-content1">
+                {{ g.user['username'] }}
+            </span>
+        </div>
+        <div class="info-container2">
+            <h6 class="info-title2">Votre adresse électronique :</h6>
+            <span class="info-content2">
+                {{ g.user['mail'] }}
+            </span>
+        </div>
+        <div class="info-container2">
+            <h6 class="info-title2"><strong>Votre numéro de téléphone :</strong></h6>
+            <span class="info-content2">
+                {{ g.user['telephone'] }}
+            </span>
+        </div>
+        <a class="changement-link" href="{{ url_for('auth.count_modification_student') }}">Voulez-vous modifier votre profil ?</a>
     </div>
-</ul>
-    
+    </div>
+    </ul>
     {% endif %}
 {% endblock %}
-
 
 

@@ -69,4 +69,5 @@ def list_teacher():
             teacher_photo_profile = teacher_photo[0] if teacher_photo is not None else None
 
             list_teachers.append([teacher]+[levels_teacher]+[subjects_teacher]+[course_types]+[tarif_teacher]+[teacher_photo_profile])
+    
     return render_template('search/list_teacher.html',  list_teachers=list_teachers)

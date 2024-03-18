@@ -39,7 +39,7 @@ def register():
                 user_with_username = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
                 if user_with_email:
-                    flash("Cet e-mail existe déjà.")
+                    flash("Cet adresse électronique existe déjà.")
                     return redirect(url_for("auth.register"))
 
                 if user_with_telephone:
@@ -159,9 +159,9 @@ def login():
         # on crée une variable error
         error = None
         if user is None:
-            error = 'Incorrect username.'
+            error = "Nom d'utilisateur incorrect."
         elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+            error = 'Mot de passe incorrect.'
 
         # S'il n'y pas d'erreur, on ajoute l'id de l'utilisateur dans une variable de session
         # De cette manière, à chaque requête de l'utilisateur, on pourra récupérer l'id dans le cookie session
@@ -296,7 +296,7 @@ def count_modification():
             return redirect(url_for('auth.count_modification'))
 
         if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
-            flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
+            flash("Cette adresse électronique est déjà utilisée. Veuillez en choisir un autre.", "error")
             return redirect(url_for('auth.count_modification'))
         
         if 'matieres[]' in request.form:
@@ -365,7 +365,7 @@ def count_modification_student():
             return redirect(url_for('auth.count_modification_student'))
 
         if new_mail != g.user['mail'] and db.execute('SELECT id FROM users WHERE mail = ?', (new_mail,)).fetchone():
-            flash("Cette adresse email est déjà utilisée. Veuillez en choisir un autre.", "error")
+            flash("Cette adresse électronique est déjà utilisée. Veuillez en choisir un autre.", "error")
             return redirect(url_for('auth.count_modification_student'))
         
         else:

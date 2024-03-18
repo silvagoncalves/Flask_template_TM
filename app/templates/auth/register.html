@@ -5,20 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <form action ="{{url_for('auth.register')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('auth.register') }}" method="post" enctype="multipart/form-data">
         <label for="username">Nom d'utilisateur</label>
         <input name="username" id="username" required><br>
 
         <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password" required><br>
 
-        <label for="email">Adresse e-mail</label>
+        <label for="email">Adresse électronique</label>
         <input type="email" name="email" id="email" required><br>
 
         <label for="phone">Numéro de téléphone</label>
-        <input type="tel" name="phone" id="phone"  pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)"required><br>
+        <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" title="Veuillez entrer un numéro de téléphone valide (10 chiffres)" required><br>
 
-        <label for="tarif">Tarif</label>
+        <label for="tarif">Votre tarif (CHF/h)</label>
         <input type="number" name="tarif" id="tarif" min="0" required><br>
 
         <label for="matieres"><h6>Quelles matières enseignez-vous ?</h6></label>
@@ -30,16 +30,18 @@
             </div>
         {% endfor %}
         </div>
+        
         <label for="niveaux"><h6>Quels niveaux enseignez-vous ?</h6></label>
         <div class="button_case_emplacemet ">
-        {% for level in levels %}
-            <div class="button_case">
-                <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
-                <label for="{{ level.level_id }}">{{ level.level_name }}</label>
-            </div>
-        {% endfor %}
+            {% for level in levels %}
+                <div class="button_case">
+                    <input type="checkbox" name="niveau[]" id="{{ level.level_id }}" value="{{ level.level_id }}">
+                    <label for="{{ level.level_id }}">{{ level.level_name }}</label>
+                </div>
+            {% endfor %}
         </div>
-        <label for="niveaux"><h6>Quels types de cours vous convient ?</h6></label>
+        
+        <label for="niveaux"><h6>Quels types de cours vous conviennent ?</h6></label>
         <div class="button_case_emplacemet ">
         {% for course_type in course_types %}
             <div class="button_case">
@@ -49,10 +51,9 @@
         {% endfor %}
         </div>
 
-        <label for="profile_picture"><h6>Ajouter une photo</h6></label>
+        <label for="profile_picture"><h6>Ajouter une photo de profil</h6></label>
         <input type="file" class="form-control-file" id="profile_picture" name="photo" accept="image/*">
         
         <input type="submit" value="Inscription">
     </form>
-
 {% endblock %}
