@@ -2,138 +2,7 @@ body {
   background: white;
 }
 
-.exit-arrow{
-  font-size: 50px; 
-  color:#000000;
-  margin-top: -500px;
-  text-decoration: none;
-}
-.button_case {
-  display: inline-block;
-  margin-right: 10px; /* Espace entre les boutons */
-  padding: 5px 5px; /* Remplissage interne */
-  background-color: #f0f0f0; /* Couleur de fond */
-  border: 1px solid #ccc; /* Bordure */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Curseur au survol */
-  max-width: 170px;
-  max-height: 5px;
-}
-
-.button_case:hover {
-  background-color: #e0e0e0; /* Changement de couleur au survol */
-}
-
-.button_case input[type="checkbox"] {
-  display: right; /* Masquer l'élément input */
-}
-
-.button_case input[type="checkbox"] + label {
-  cursor: pointer; /* Curseur au survol */
-}
-
-.avatar-container2 {
-  display: flex;
-  align-items: left;
-  justify-content: left; /* Horizontally center the content */
-}
-.avatar-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Horizontally center the content */
-}
-
-.avatar2 {
-  width: 50px; /* Adjust the width and height as needed */
-  height: 50px;
-  border-radius: 50%; /* Makes it round */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white; /* Adjust text color */
-  font-size: 30px; /* Adjust font size */
-  margin-right: 3%; /* Adjust margin as needed */
-  background-color: blue;
-}
-.image{
-  width: 70px; /* Adjust the width and height as needed */
-  height: 70px;
-  border-radius: 50%; /* Makes it round */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2%;
-}
-
-.image2{
-  width: 50px; /* Adjust the width and height as needed */
-  height: 50px;
-  border-radius: 50%; /* Makes it round */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2%;
-}
-
-.avatar {
-  width: 70px; /* Adjust the width and height as needed */
-  height: 70px;
-  border-radius: 50%; /* Makes it round */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white; /* Adjust text color */
-  font-size: 50px; /* Adjust font size */
-  margin-right: 2%; /* Adjust margin as needed */
-  background-color: blue;
-}
-.profile-picture {
-  border-radius: 50%;
-  width: 150px; /* Ajustez la taille en fonction de vos besoins */
-  height: 150px; /* Ajustez la taille en fonction de vos besoins */
-  object-fit: cover;
-}
-
-.message-bubble.sent {
-  background-color: rgba(8, 97, 60, 1);
-  padding: 5px;
-  border-radius: 10px;
-  margin-bottom: 10px; 
-  max-width: 50%;
-  position: relative;
-  right: -60%;
-
-}
-.message-content.sent {
-  color:white;
-}
-
-.message-content.received {
-  color:white;
-}
-.message-bubble.received {
-  background-color:rgb(6, 6, 6);
-  color: white;
-  padding: 5px;
-  border-radius: 10px;
-  margin-bottom: 10px; 
-  max-width: 50%;
-  position: relative;
-  right:20%;
-}
-
-.message-date {
-  font-size: smaller;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: white; 
-}
-
-.message-content {
-  font-size: 20px; 
-  color:rgb(0, 0, 0)
-}
+/*title*/
 
 h1{
   background: rgb(254, 196, 196); 
@@ -169,103 +38,46 @@ h6{
   font-size: 20px;
 }
 
-.button_count{
-  color: white; 
-  background-color:rgba(8, 97, 60, 1) ;
-  border: 2px solid rgba(8, 97, 60, 1);
-  position: relative;
-  width: 28%;
-  height: 60px;
-  border-radius: 60px;
-  font-size: 0.9em;
-  display: flex;
-  justify-content: space-between; /* Centre le contenu horizontalement */
-  align-items: center; /* Centre le contenu verticalement */
-  padding: 20px 20px; 
-  margin-top: 20px;
+/*input*/ 
+input[type="checkbox"] {
+  margin-right: 8px; 
+  margin-bottom: 0px; 
 }
-.button-container {
-  text-align: center; 
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid rgb(0, 0, 0) ;
+  border-radius: 4px;
 }
-.button-wrapper {
-  margin: 20px; 
+
+input[type="submit"] {
+  background-color: black;
+  color: white ;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
+
+input[type="submit"]:hover {
+  background-color: black;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 2px solid red;
+}
+
 .button a {
-  color: white; /* Couleur du texte */
+  color: white; 
   text-align: center;
-  text-decoration: none; /* Supprime le soulignement du lien */
-}
-
-.followed-button a {
-  color: rgb(6, 0, 0); /* Couleur du texte */
-  text-align: center; /* Supprime le soulignement du lien */
-}
-.buttonprincipale a {
-  color: white; /* Couleur du texte */
-  text-decoration: none; /* Supprime le soulignement du lien */
-  text-align: center;
-}
-.followed-button {
-  background-color:  rgb(254, 196, 196); 
-  width: 15%;
-  height: 60px;
-  border-radius: 60px; 
-  border: 2px solid rgba(254, 196, 196);
-  font-size: 1.5em;
-  display: flex;
-  justify-content: center; /* Centre le contenu horizontalement */
-  align-items: center;
-  width: 25%;
-}
-.follow-button {
-  color: white;
-  margin-left: 75%;
-  margin-bottom:20px;
-}
-.messagerie-button{ 
-  color: white;
-  margin-left: 55%;
-}
-.count{
-  color:#fff;
-}
-.button_count_emplacement{
-  display: flex;
-  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
-  gap: 43%; /* Espacement entre les boutons */
-}
-.button_case_emplacemet {
-  display: flex;
-  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
-  gap: 10px; /* Espacement entre les boutons */
-}
-
-.button_case {
-  position: relative;
-  width: 28%;
-  height: 60px;
-  border-radius: 60px;
-  font-size: 0.9em;
-  display: flex;
-  justify-content: space-between; /* Centre le contenu horizontalement */
-  align-items: center; /* Centre le contenu verticalement */
-  padding: 20px 20px; 
-
-}
-.button_case input[type="checkbox"] {
-  position: absolute; /* Positionne la case à cocher de manière absolue */
-  left: 35%;
-  top: 50%; /* Aligne verticalement la case à cocher */
-  transform: translateY(-50%); /* Ajuste la position verticale */
-}
-
-.buttonprincipale {
-  background-color: rgba(8, 97, 60, 1); 
-  width: 20%;
-  height: 60px;
-  border-radius: 60px; 
-  border: 2px solid rgba(8, 97, 60, 1);
-  font-size: 0.25em;
+  text-decoration: none; 
 }
 
 .button {
@@ -279,93 +91,14 @@ h6{
 .white-background {
   background-color: white;
 }
-.register-link {
-  display: inline-block; 
-  width: 50%; 
-  height: 50px; 
-  line-height: 30px; 
-  text-align: center; 
-  background-color: rgba(8, 97, 60, 1); 
-  border-radius: 60px; 
-  color: white; 
-  font-size: 2em;
-}
 
-.button-container2 {
-  text-align: center; 
-}
-.button-wrapper2 {
-  margin: 20px; 
-}
-
-.register-link2 {
-  display: inline-block; 
-  width: 50%; 
-  height: 50px; 
-  line-height: 30px; 
-  text-align: center; 
-  background-color:  rgb(254, 196, 196); 
-  border-radius: 60px; 
-  color: black; 
-  font-size: 2em;
-}
-.teacher-info-box {
-  border: 2px solid black; 
-  padding: 15px;
-  margin-left: 320px; 
-  margin-right: 320px;
-  
-}
-
-.teacher-info-box2 {
-  border: 2px solid black; 
-  padding: 15px;
-  margin-left: 50px; 
-  margin-right: 50px;
-  
-}
-.propos {
-  display: flex;
-  margin-left: 20%; /* Décalage de 25% à droite */
-}
-
-
-.stars { 
-  display: flex;
-  justify-content: right;
-  align-items: right;
-}
-.info-list {
-  list-style: none; /* Supprimer les puces de la liste */
-  padding: 0; /* Réinitialiser la marge intérieure de la liste */
-}
-
-.info-list li {
-  display: inline-block; /* Afficher les éléments de liste en ligne */
-  margin-right: 10px; /* Ajouter un espacement entre les éléments */
-}
 .link-style{
   display: inline-block;
   font-size: 30px;
   color: rgb(0, 0, 0); 
   margin-bottom : 20px; 
 }
-.info-container2 {
-  margin-bottom: 15px;
-}
 
-.info-title2 {
-  display: inline;
-}
-
-.info-content2 {
-  display: inline-block;
-}
-
-.info-price {
-  display: inline-block;
-  float: right;
-}
 
 .changement-link {
   display: inline-block;
@@ -377,10 +110,50 @@ h6{
   background-color: white; 
 }
 
-.teacher-names {
-  display: flex;
-  flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
-  gap: 10px; /* Espacement entre les boutons */
+
+form {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgb(205, 199, 199);
+  border-radius: 8px;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+div {
+  margin-bottom: 8px;
+}
+
+
+.options-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.options-button:hover {
+  background-color: rgb(255, 255, 255) ;
+}
+/*home*/
+.buttonprincipale {
+  background-color: rgba(8, 97, 60, 1); 
+  width: 20%;
+  height: 60px;
+  border-radius: 60px; 
+  border: 2px solid rgba(8, 97, 60, 1);
+  font-size: 0.25em;
 }
 .middle-section {
   color: rgb(249, 238, 238);
@@ -466,146 +239,300 @@ h6{
   text-align: center;
   width: 100%;
 }
-
-.top-nav {
-    background-color: white;
-    color: black ;
-    padding: 30px 0;
-    text-align: center;
-}
-
-.top-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.top-nav ul li a {
-    text-decoration: none;
-    color: black ;
-    font-size: 40px;
-}
-
-
-form {
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background-color: rgb(205, 199, 199);
-  border-radius: 8px;
-  justify-content: center;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-input[type="checkbox"] {
-  margin-right: 8px; 
-  margin-bottom: 0px; 
-}
-
-
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-  border: 1px solid rgb(0, 0, 0) ;
-  border-radius: 4px;
-}
-
-input[type="submit"] {
-  background-color: black;
-  color: white ;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: black;
-}
-
-input:invalid,
-select:invalid,
-textarea:invalid {
-  border: 2px solid red;
-}
-
-div {
-  margin-bottom: 8px;
-}
-
-
-.options-button {
-  display: inline-block;
-  padding: 8px 16px;
-  margin: 4px;
-  cursor: pointer;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+.buttonprincipale a {
+  color: white; 
+  text-decoration: none;
   text-align: center;
 }
 
-.options-button:hover {
-  background-color: rgb(255, 255, 255) ;
+/*barre de navigation*/
+
+.top-nav {
+  background-color: white;
+  color: black ;
+  padding: 30px 0;
+  text-align: center;
 }
 
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+.top-nav ul li {
+  display: inline;
+  margin-right: 20px;
 }
 
-.profile-header {
-    text-align: center;
+.top-nav ul li a {
+  text-decoration: none;
+  color: black ;
+  font-size: 40px;
 }
 
-.profile-content {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.exit-arrow{
+  font-size: 50px; 
+  color:#000000;
+  margin-top: -500px;
+  text-decoration: none;
 }
+/*profile picture */
 
-.profile-info {
-    text-align: center;
+.avatar-container2 {
+  display: flex;
+  align-items: left;
+  justify-content: left; 
 }
-
-.profile-photo img {
-    max-width: 200px;
-    border-radius: 50%;
-    margin-left: -300px; 
-    margin-top: -200px;
-}
-
-.profile-initial {
-  width: 100px;
-  height: 100px;
-  background-color: #3498db;
-  color: #fff;
-  font-size: 36px;
+.avatar-container {
   display: flex;
   align-items: center;
+  justify-content: center; 
+}
+
+.avatar2 {
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%; 
+  display: flex;
   justify-content: center;
-  border-radius: 50%;
-  margin-left: -300px; 
-  margin-top: -200px;
+  align-items: center;
+  color: white; 
+  font-size: 30px;
+  margin-right: 3%; 
+  background-color: blue;
+}
+.image{
+  width: 70px; 
+  height: 70px;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.image2{
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.avatar {
+  width: 70px; 
+  height: 70px;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  font-size: 50px; 
+  margin-right: 2%; 
+  background-color: blue;
+}
+
+/*teacher register or teacher count modification*/
+
+.button_case_emplacemet {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+}
+
+.button_case {
+  position: relative;
+  width: 25%;
+  height: 15px;
+  border-radius: 60px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px 20px; 
+  display: inline-block;
+  margin-right: 10px; 
+  background-color: #f0f0f0; 
+  border: 1px solid #ccc; 
+  cursor: pointer; 
+}
+.button_case input[type="checkbox"] {
+  position: absolute; 
+  left: 35%;
+  top: 50%; 
+  transform: translateY(-50%); 
+  display: right;
 }
 
 
+.button_case:hover {
+  background-color: #e0e0e0; 
+}
 
+.button_case input[type="checkbox"] + label {
+  cursor: pointer; 
+}
 
+/*select role*/
+.button-container {
+  text-align: center; 
+}
+.button-wrapper {
+  margin: 20px; 
+}
 
+.register-link {
+  display: inline-block; 
+  width: 50%; 
+  height: 50px; 
+  line-height: 30px; 
+  text-align: center; 
+  background-color: rgba(8, 97, 60, 1); 
+  border-radius: 60px; 
+  color: white; 
+  font-size: 2em;
+}
 
+/*messaging*/ 
+.message-bubble.sent {
+  background-color: rgba(8, 97, 60, 1);
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  max-width: 50%;
+  position: relative;
+  right: -60%;
 
+}
+.message-content.sent {
+  color:white;
+}
 
+.message-content.received {
+  color:white;
+}
+.message-bubble.received {
+  background-color:rgb(6, 6, 6);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  max-width: 50%;
+  position: relative;
+  right:20%;
+}
 
+.message-date {
+  font-size: smaller;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: white; 
+}
+
+.message-content {
+  font-size: 20px; 
+  color:rgb(0, 0, 0)
+}
+
+/*liste teacher*/ 
+.info-container2 {
+  margin-bottom: 15px;
+}
+
+.info-title2 {
+  display: inline;
+}
+
+.info-content2 {
+  display: inline-block;
+}
+
+.info-price {
+  display: inline-block;
+  float: right;
+}
+
+.teacher-info-box2 {
+  border: 2px solid black; 
+  padding: 15px;
+  margin-left: 50px; 
+  margin-right: 50px;
+  
+}
+
+/*count teacher*/ 
+.propos {
+  display: flex;
+  margin-left: 20%; 
+}
+
+.followed-button a {
+  color: rgb(6, 0, 0); 
+  text-align: center; 
+}
+
+.stars { 
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.teacher-info-box {
+  border: 2px solid black; 
+  padding: 15px;
+  margin-left: 320px; 
+  margin-right: 320px;
+  
+}
+
+.button_count{
+  color: white; 
+  background-color:rgba(8, 97, 60, 1) ;
+  border: 2px solid rgba(8, 97, 60, 1);
+  position: relative;
+  width: 28%;
+  height: 60px;
+  border-radius: 60px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px 20px; 
+  margin-top: 20px;
+}
+
+.followed-button {
+  background-color:  rgb(254, 196, 196); 
+  width: 15%;
+  height: 60px;
+  border-radius: 60px; 
+  border: 2px solid rgba(254, 196, 196);
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 25%;
+}
+.follow-button {
+  color: white;
+  margin-left: 75%;
+  margin-bottom:20px;
+}
+.messagerie-button{ 
+  color: white;
+  margin-left: 55%;
+}
+.count{
+  color:#fff;
+}
+.button_count_emplacement{
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 43%; 
+}
+
+/*profil*/
+
+.teacher-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+}
