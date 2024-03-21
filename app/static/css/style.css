@@ -6,50 +6,50 @@ body {
 
 h1{
   background: rgb(254, 196, 196); 
-  padding: 100px;
+  padding: 6%;
   border-radius: 30px;
-  margin : 10px auto; 
-  font-size: 7em; 
-  margin-bottom: 200px; 
-  max-width: 1100px;
+  margin : 3% auto; 
+  font-size: 7vw; 
+  margin-bottom: 10%; 
+  max-width: 70%;
 }
 
 h3{
   color: black; 
-  font-size: 80px;
+  font-size: 5vw;
   text-align: center;
 }
 
 
 h4{
   color: black; 
-  font-size: 50px;
+  font-size: 3vw;
   text-align: center;
 
 }
 
 h5{
   color: black; 
-  font-size: 30px;
+  font-size: 2.5vw;
 }
 
 h6{
   color: black; 
-  font-size: 20px;
+  font-size: 1.5vw;
 }
 
 /*input*/ 
 input[type="checkbox"] {
-  margin-right: 8px; 
-  margin-bottom: 0px; 
+  margin-right: 0.1%; 
+  margin-bottom: 0%; 
 }
 
 input,
 select,
 textarea {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
+  padding: 1%;
+  margin-bottom: 1%;
   box-sizing: border-box;
   border: 1px solid rgb(0, 0, 0) ;
   border-radius: 4px;
@@ -58,9 +58,10 @@ textarea {
 input[type="submit"] {
   background-color: black;
   color: white ;
-  padding: 10px 15px;
+  font-size: 1vw;
+  padding: 1.5% 4%;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -83,10 +84,10 @@ textarea:invalid {
 .button {
   background-color: rgba(8, 97, 60, 1); 
   width: 20%;
-  height: 60px;
+  height: 100%;
   border-radius: 60px; 
   border: 2px solid rgba(8, 97, 60, 1);
-  font-size: 1em;
+  font-size: 2vw;
 }
 .white-background {
   background-color: white;
@@ -94,9 +95,9 @@ textarea:invalid {
 
 .link-style{
   display: inline-block;
-  font-size: 30px;
+  font-size: 2.5vw;
   color: rgb(0, 0, 0); 
-  margin-bottom : 20px; 
+  margin-bottom : 2%; 
 }
 
 
@@ -113,9 +114,9 @@ textarea:invalid {
 
 form {
   width: 100%;
-  max-width: 800px;
+  max-width: 56%;
   margin: auto;
-  padding: 20px;
+  padding: 2%;
   background-color: rgb(205, 199, 199);
   border-radius: 8px;
   justify-content: center;
@@ -123,20 +124,19 @@ form {
 
 label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 1%;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.5vw;
 }
 
 div {
-  margin-bottom: 8px;
+  margin-bottom: 2%;
 }
-
 
 .options-button {
   display: inline-block;
-  padding: 8px 16px;
-  margin: 4px;
+  padding: 1% 4%;
+  margin: 0.4%;
   cursor: pointer;
   border: 1px solid #ffffff;
   border-radius: 4px;
@@ -149,27 +149,27 @@ div {
 /*home*/
 .buttonprincipale {
   background-color: rgba(8, 97, 60, 1); 
-  width: 20%;
-  height: 60px;
+  width: 25%;
+  height: 80px;
   border-radius: 60px; 
   border: 2px solid rgba(8, 97, 60, 1);
-  font-size: 0.25em;
+  font-size: 2.5vw;
 }
 .middle-section {
   color: rgb(249, 238, 238);
   background-color: black;
-  padding: 10px;
+  padding: 1%;
   border-radius: 30px;
-  margin : 10px auto; 
-  font-size: 1em; 
+  margin : 8%; 
+  font-size: 2.5vw; 
   text-align: center;
   align-items: center;
   justify-content: center;
-  max-width: 1300px;
+  max-width: 130%;
 }
 
 .middle-section p {
-  font-size: 55px;
+  font-size: 3vw;
 }
 .etape1 h2,
 .etape1 p,
@@ -177,65 +177,65 @@ div {
 .etape2 p,
 .etape3 h2,
 .etape3 p {
-  margin: 20px 0;
-  font-size: 35px;
+  margin: 8% 0;
+  font-size: 2vw;
 }
 .etape1 {
   position: relative;
-  top: 100px; 
+  top: 3%; 
   color: black;
   background-color: rgb(254, 196, 196);
   text-align: center ;
-  font-size: 1.5em; 
-  padding: 20px;
+  font-size: 2vw; 
+  padding: 2%;
   border-radius: 25px; 
-  padding: 10px;
-  margin: 10px 0;
-  margin-left: 80px;
+  padding: 1%;
+  margin: 8% 0;
+  margin-left: 8%;
   text-align: left;
   display: block;
-  width: 350px;
+  width: 20%;
   height: 500px;
 }
 
 .etape2 {
   position: relative;
-  top: -430px;
+  top: -645px;
   color: white;
   background-color: rgba(8, 97, 60, 1);
   text-align: center;
-  font-size: 1.5em;
-  padding: 20px;
+  font-size: 2vw;
+  padding: 2%;
   border-radius: 25px;
-  margin: 10px 0;
-  right: -505px; 
+  margin: 8% 0;
+  right: -35%; 
   text-align: left;
   display: block;
-  width: 350px;
-  height: 490px;
+  width: 20%;
+  height: 468px;
 }
 
 .etape3 {
   position: relative;
-  top: -970px;
+  top: -1295px;
   color: black;
   background-color: rgb(254, 196, 196);
   text-align: center;
-  font-size: 1.5em;
-  padding: 20px;
+  font-size: 2vw;
+  padding: 2%;
   border-radius: 25px;
-  margin: 10px 0;
-  right: -950px; 
+  margin: 8% 0;
+  right: -65%; 
   text-align: left;
   display: block;
-  width: 400px;
+  width: 20%;
   height: 500px;
 }
 
 .black-band {
   background-color: black;
   color: white;
-  padding: 10px;
+  padding: 1%;
   text-align: center;
   width: 100%;
 }
@@ -250,25 +250,24 @@ div {
 .top-nav {
   background-color: white;
   color: black ;
-  padding: 30px 0;
+  padding: 3% 0;
   text-align: center;
 }
 
 .top-nav ul li {
   display: inline;
-  margin-right: 20px;
+  margin-right: 2%;
 }
 
 .top-nav ul li a {
   text-decoration: none;
   color: black ;
-  font-size: 40px;
+  font-size: 2.5vw;
 }
 
 .exit-arrow{
-  font-size: 50px; 
+  font-size: 2.5vw; 
   color:#000000;
-  margin-top: -500px;
   text-decoration: none;
 }
 /*profile picture */
@@ -285,19 +284,19 @@ div {
 }
 
 .avatar2 {
-  width: 50px; 
+  width: 8%; 
   height: 50px;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; 
-  font-size: 30px;
+  font-size: 2.5vw;
   margin-right: 3%; 
   background-color: blue;
 }
 .image{
-  width: 70px; 
+  width: 5%; 
   height: 70px;
   border-radius: 50%; 
   display: flex;
@@ -307,7 +306,7 @@ div {
 }
 
 .image2{
-  width: 50px; 
+  width: 8%; 
   height: 50px;
   border-radius: 50%; 
   display: flex;
@@ -317,14 +316,14 @@ div {
 }
 
 .avatar {
-  width: 70px; 
+  width: 5%; 
   height: 70px;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; 
-  font-size: 50px; 
+  font-size: 2.5vw; 
   margin-right: 2%; 
   background-color: blue;
 }
@@ -334,7 +333,7 @@ div {
 .button_case_emplacemet {
   display: flex;
   flex-wrap: wrap; 
-  gap: 10px; 
+  gap: 1%; 
 }
 
 .button_case {
@@ -342,13 +341,13 @@ div {
   width: 25%;
   height: 15px;
   border-radius: 60px;
-  font-size: 0.9em;
+  font-size: 1vw;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  padding: 20px 20px; 
+  padding: 2% 2%; 
   display: inline-block;
-  margin-right: 10px; 
+  margin-right: 3%; 
   background-color: #f0f0f0; 
   border: 1px solid #ccc; 
   cursor: pointer; 
@@ -375,7 +374,7 @@ div {
   text-align: center; 
 }
 .button-wrapper {
-  margin: 20px; 
+  margin: 2%; 
 }
 
 .register-link {
@@ -387,15 +386,15 @@ div {
   background-color: rgba(8, 97, 60, 1); 
   border-radius: 60px; 
   color: white; 
-  font-size: 2em;
+  font-size: 2vw;
 }
 
 /*messaging*/ 
 .message-bubble.sent {
   background-color: rgba(8, 97, 60, 1);
-  padding: 5px;
+  padding: 0.5%;
   border-radius: 10px;
-  margin-bottom: 10px; 
+  margin-bottom: 1.5%; 
   max-width: 50%;
   position: relative;
   right: -60%;
@@ -411,9 +410,9 @@ div {
 .message-bubble.received {
   background-color:rgb(6, 6, 6);
   color: white;
-  padding: 5px;
+  padding: 0.5%;
   border-radius: 10px;
-  margin-bottom: 10px; 
+  margin-bottom: 1.5%; 
   max-width: 50%;
   position: relative;
   right:20%;
@@ -422,19 +421,19 @@ div {
 .message-date {
   font-size: smaller;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 0.5%;
+  right: 1%;
   color: white; 
 }
 
 .message-content {
-  font-size: 20px; 
+  font-size: 1.5vw; 
   color:rgb(0, 0, 0)
 }
 
 /*liste teacher*/ 
 .info-container2 {
-  margin-bottom: 15px;
+  margin-bottom: 2%;
 }
 
 .info-title2 {
@@ -452,10 +451,9 @@ div {
 
 .teacher-info-box2 {
   border: 2px solid black; 
-  padding: 15px;
-  margin-left: 50px; 
-  margin-right: 50px;
-  
+  padding: 1.5%;
+  margin-left: 2%; 
+  margin-right: 2%;
 }
 
 /*count teacher*/ 
@@ -477,10 +475,9 @@ div {
 
 .teacher-info-box {
   border: 2px solid black; 
-  padding: 15px;
-  margin-left: 320px; 
-  margin-right: 320px;
-  
+  padding: 1.5%;
+  margin-left: 20%; 
+  margin-right: 20%;
 }
 
 .button_count{
@@ -491,12 +488,12 @@ div {
   width: 28%;
   height: 60px;
   border-radius: 60px;
-  font-size: 0.9em;
+  font-size: 1vw;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  padding: 20px 20px; 
-  margin-top: 20px;
+  padding: 2% 2%; 
+  margin-top: 2%;
 }
 
 .followed-button {
@@ -505,7 +502,7 @@ div {
   height: 60px;
   border-radius: 60px; 
   border: 2px solid rgba(254, 196, 196);
-  font-size: 1.5em;
+  font-size: 2.5vw;
   display: flex;
   justify-content: center; 
   align-items: center;
@@ -514,7 +511,7 @@ div {
 .follow-button {
   color: white;
   margin-left: 75%;
-  margin-bottom:20px;
+  margin-bottom:2%;
 }
 .messagerie-button{ 
   color: white;
@@ -534,5 +531,5 @@ div {
 .teacher-names {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; 
+  gap: 1%; 
 }

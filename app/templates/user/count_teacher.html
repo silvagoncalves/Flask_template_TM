@@ -77,7 +77,7 @@
             </form>
             {% if not existing_grade %}
                 <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST" class="white-background">
-                    <label for="grade"><h6>Ajoutez une note pour partager votre avis sur l'enseignant :</h6></label>
+                    <label for="grade"><h6>Ajoutez une note de 1 à 5 pour partager votre avis sur l'enseignant. :</h6></label>
                     <input type="number" id="grade" name="grade" min="1" max="5">
                     <input type="submit" value="Soumettre" class="button_submit">
                 </form> 
