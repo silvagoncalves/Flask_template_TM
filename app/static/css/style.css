@@ -14,6 +14,7 @@ h1{
   max-width: 70%;
 }
 
+
 h3{
   color: black; 
   font-size: 5vw;
@@ -43,6 +44,10 @@ input[type="checkbox"] {
   margin-bottom: 0%; 
 }
 
+p{
+  font-size: 1.2vw; 
+}
+
 input,
 select,
 textarea {
@@ -52,6 +57,7 @@ textarea {
   box-sizing: border-box;
   border: 1px solid rgb(0, 0, 0) ;
   border-radius: 4px;
+  font-size: 1vw;
 }
 
 input[type="submit"] {
@@ -180,39 +186,25 @@ div {
   margin: 8% 0;
   font-size: 2vw;
 }
+
 .etape1 {
-  position: relative;
-  top: 3%; 
   color: black;
   background-color: rgb(254, 196, 196);
-  text-align: center ;
   font-size: 2vw; 
   padding: 2%;
   border-radius: 25px; 
-  padding: 1%;
-  margin: 8% 0;
-  margin-left: 8%;
-  text-align: left;
-  display: block;
-  width: 20%;
-  height: 500px;
+  margin: 8% auto; /* Marge de 10px en haut et en bas, 8px à gauche et à droite */
+  width: 22%;
 }
 
 .etape2 {
-  position: relative;
-  top: -645px;
   color: white;
   background-color: rgba(8, 97, 60, 1);
-  text-align: center;
-  font-size: 2vw;
+  font-size: 2vw; 
   padding: 2%;
-  border-radius: 25px;
-  margin: 8% 0;
-  right: -35%; 
-  text-align: left;
-  display: block;
-  width: 20%;
-  height: 468px;
+  border-radius: 25px; 
+  margin: 8% auto; /* Marge de 10px en haut et en bas, 8px à gauche et à droite */
+  width: 22%;
 }
 
 .etape3 {
@@ -228,8 +220,8 @@ div {
   right: -65%; 
   text-align: left;
   display: block;
-  width: 20%;
-  height: 500px;
+  width: 30%;
+  height: 470px;
 }
 
 .black-band {
@@ -296,6 +288,7 @@ div {
   margin-right: 3%; 
   background-color: blue;
 }
+
 .image{
   width: 7vw; 
   height: 7vw;
@@ -353,6 +346,7 @@ div {
   border: 1px solid #ccc; 
   cursor: pointer; 
 }
+
 .button_case input[type="checkbox"] {
   position: absolute; 
   left: 35%;
@@ -379,9 +373,8 @@ div {
 
 .register-link {
   display: inline-block; 
-  width: 50%; 
-  height: 50px; 
-  line-height: 30px; 
+  min-width: 50%; 
+  height: 70px;  
   text-align: center; 
   background-color: rgba(8, 97, 60, 1); 
   border-radius: 60px; 
@@ -509,6 +502,8 @@ div {
   display: flex;
   justify-content: center; 
   align-items: center;
+  margin-top: 3%;
+  margin-right: 3%;
 }
 .follow-button {
   color: white;

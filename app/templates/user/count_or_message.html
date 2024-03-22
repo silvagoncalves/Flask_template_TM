@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h3>{% block title %}Inscription{% endblock %}</h3>
+{% endblock %}
+
+{% block content %}
+<div class="button-container">
+  <div class="button-wrapper">
+    <a class="register-link" href="{{ url_for('user.count_teacher', teacher_id=user_id)}}">Compte de {{username }}</a>
+  </div>
+  <div class="button-wrapper">
+    <a class="register-link" href="{{ url_for('messaging.messaging', user_id=user_id) }}">Discuter avec {{username }}</a>
+  </div>
+</div>
+{% endblock %}

@@ -114,3 +114,9 @@ def count_teacher():
     
     return render_template('user/count_teacher.html', existing_grade=existing_grade, total_nb=total_nb, teachers=teachers, follow=follow, teacher=teacher, tarif_teacher=tarif_teacher, levels_teacher=levels_teacher, subjects_teacher=subjects_teacher, course_types=course_types)
 
+
+@user_bp.route('/count_or_message/<int:user_id>', methods=('GET', 'POST'))
+def count_or_message(user_id): 
+    db = get_db()
+    username = db.execute("SELECT username FROM users WHERE id = ?", (user_id,)).fetchone()[0]
+    return render_template('user/count_or_message.html', user_id = user_id, username=username) 

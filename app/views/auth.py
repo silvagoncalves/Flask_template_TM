@@ -7,8 +7,10 @@ import base64
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+#extention autorisée pour les photos
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+#fonction qui vérifie si l'extention du fichier est autorisée
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -89,7 +91,7 @@ def register():
 @auth_bp.route('/register_student', methods=('GET', 'POST'))
 def register_student():
     db = get_db()
-
+    #vérifie si des données sont soumises et récupère les données 
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -98,45 +100,54 @@ def register_student():
         photo = request.files['photo']
         photo_data = None
 
+        #vérifie si une photo est fournie et si elle est autorisée
         if photo and allowed_file(photo.filename):
             photo_data = base64.b64encode(photo.read()).decode('utf-8')
     
-
+        #vérifie si les données saisis n'existent pas déjà dans la base de données
         if username and password:
             try:
+                #récupère les utilisateurs avec le même email, le même numéros de telephone et le même nom d'utilisateur dans la base de données
                 user_with_email = db.execute("SELECT * FROM users WHERE mail = ?", (email,)).fetchone()
                 user_with_telephone = db.execute("SELECT * FROM users WHERE telephone = ?", (telephone,)).fetchone()
                 user_with_username = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
+                #si l'email est déja enregistré : flash"email existe déjà" et returne la page d'inscription
                 if user_with_email:
                     flash("Cet e-mail existe déjà.")
                     return redirect(url_for("auth.register_student"))
-
+                
+                #si le numéro de téléphone est déjà enregistré : flash "numéro de téléphone existe déjà" et returne la page d'inscription
                 if user_with_telephone:
                     flash("Ce numéro de téléphone existe déjà.")
                     return redirect(url_for("auth.register_student"))
 
+                # si le nom d'utilisateur est déjà enregistré: flash "nom d'utilisateur existe déjà" et returne la page d'inscription
                 if user_with_username:
                     flash("Ce nom d'utilisateur est déjà utilisé.")
                     return redirect(url_for("auth.register_student"))
-
+                
+                #si aucun utilisateur n'a les même données, insère les données du nouveau utilisateur dans la base de données
                 db.execute("INSERT INTO users (username, password, mail, telephone, role_id, photo) VALUES (?, ?, ?, ?, ?, ?)",
                            (username, generate_password_hash(password), email, telephone, '2', photo_data))
                 db.commit()
-            
+
+            #gestion des erreurs d'intégrité (utilisateur déjà enregistré)
             except db.IntegrityError as e:
                 print(e)
                 error = f"User {username} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register_student"))
-
+            #redirige vers la page de connexion si l'inscription est réussi 
             return redirect(url_for("auth.login"))
 
         else:
+            #si les données saisies sont invalides, affiche un message d'erreur
             error = "Username or password invalid"
             flash(error)
             return redirect(url_for("auth.login"))
     else:
+        #affiche le formulaire d'inscription si la méthode de la requête est GET
         return render_template('auth/register_student.html')
 
 @auth_bp.route('/login', methods=('GET', 'POST'))
@@ -256,12 +267,12 @@ def count_modification():
     levels = db.execute("SELECT * FROM level").fetchall()
     course_types = db.execute("SELECT * FROM course_type").fetchall()
 
-    
     user_id = g.user['id']
     tarif = None
     username = None
     mail = None
     telephone = None
+    photo_data= None
 
     if request.method == 'POST':
         # Récupération des nouvelles données du formulaire
@@ -270,11 +281,12 @@ def count_modification():
         new_mail = request.form['mail']
         new_telephone = request.form['telephone']
         new_photo = request.files['photo']
-        photo_data = None
-
-        if new_photo and allowed_file(new_photo.filename):
+        
+        if not new_photo:
+            photo_data = g.user['photo']
+        else:
             photo_data = base64.b64encode(new_photo.read()).decode('utf-8')
-        # Vérification si les champs du formulaire sont vides
+
         if not new_tarif:
             new_tarif = g.user['tarif']
         if not new_username:
@@ -286,7 +298,7 @@ def count_modification():
         if not new_photo: 
             new_photo = g.user['photo']
 
-        # Vérification si le nom d'utilisateur est déjà employé par un autre utilisateur
+
         if new_username != g.user['username'] and db.execute('SELECT id FROM users WHERE username = ?', (new_username,)).fetchone():
             flash("Ce nom d'utilisateur est déjà utilisé. Veuillez en choisir un autre.", "error")
             return redirect(url_for('auth.count_modification'))
@@ -317,10 +329,9 @@ def count_modification():
         db.execute('UPDATE users SET tarif = ?, username = ?, mail = ?, telephone = ?, photo = ? WHERE id = ?', (new_tarif, new_username, new_mail, new_telephone, photo_data, user_id))
         db.commit()
 
-                # Redirection vers la page de profil
+                
         return redirect(url_for('user.show_profile'))
 
-    # Afficher les anciennes informations si la méthode est GET ou si des erreurs sont survenues
     return render_template('auth/count_modification.html',  telephone=g.user['telephone'], mail=g.user['mail'], username=g.user['username'], tarif=g.user['tarif'], photo=g.user['photo'], levels=levels, subjects=subjects, course_types=course_types)
 
 
@@ -344,8 +355,11 @@ def count_modification_student():
         new_telephone = request.form['telephone']
         new_photo = request.files['photo']
 
-        if new_photo and allowed_file(new_photo.filename):
+        if not new_photo:
+            photo_data = g.user['photo']
+        else:
             photo_data = base64.b64encode(new_photo.read()).decode('utf-8')
+
     
         if not new_username:
             new_username = g.user['username']

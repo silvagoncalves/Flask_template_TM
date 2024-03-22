@@ -93,7 +93,7 @@
             <form class="white-background">
                 <div class="teacher-names">
                     {% for user in following %}
-                        <button class="followed-button"><a href="{{ url_for('messaging.messaging', user_id=user.id) }}">{{ user.username }}</a></button> 
+                        <button class="followed-button"><a href="{{ url_for('user.count_or_message', user_id=user.id) }}">{{ user.username }}</a></button>
                     {% endfor %}
         {%endif%}
         </div>
