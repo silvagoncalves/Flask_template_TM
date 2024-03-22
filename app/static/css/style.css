@@ -25,7 +25,6 @@ h4{
   color: black; 
   font-size: 3vw;
   text-align: center;
-
 }
 
 h5{
@@ -105,6 +104,7 @@ textarea:invalid {
   display: inline-block;
   color: rgb(27, 59, 201); 
   margin-left: 70%; 
+  font-size: 1.1vw;
 }
 
 .custom-form {
@@ -150,7 +150,7 @@ div {
 .buttonprincipale {
   background-color: rgba(8, 97, 60, 1); 
   width: 25%;
-  height: 80px;
+  height: 3.8vw;
   border-radius: 60px; 
   border: 2px solid rgba(8, 97, 60, 1);
   font-size: 2.5vw;
@@ -243,6 +243,7 @@ div {
   color: white; 
   text-decoration: none;
   text-align: center;
+  font-size: 2.2vw;
 }
 
 /*barre de navigation*/
@@ -284,8 +285,8 @@ div {
 }
 
 .avatar2 {
-  width: 8%; 
-  height: 50px;
+  width: 5vw;
+  height: 5vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
@@ -296,8 +297,8 @@ div {
   background-color: blue;
 }
 .image{
-  width: 5%; 
-  height: 70px;
+  width: 7vw; 
+  height: 7vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
@@ -306,8 +307,8 @@ div {
 }
 
 .image2{
-  width: 8%; 
-  height: 50px;
+  width: 5vw; 
+  height: 5vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
@@ -316,14 +317,14 @@ div {
 }
 
 .avatar {
-  width: 5%; 
-  height: 70px;
+  width: 7vw; 
+  height: 7vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; 
-  font-size: 2.5vw; 
+  font-size: 3vw; 
   margin-right: 2%; 
   background-color: blue;
 }
@@ -360,7 +361,6 @@ div {
   display: right;
 }
 
-
 .button_case:hover {
   background-color: #e0e0e0; 
 }
@@ -394,7 +394,7 @@ div {
   background-color: rgba(8, 97, 60, 1);
   padding: 0.5%;
   border-radius: 10px;
-  margin-bottom: 1.5%; 
+  margin-bottom: 2%; 
   max-width: 50%;
   position: relative;
   right: -60%;
@@ -412,7 +412,7 @@ div {
   color: white;
   padding: 0.5%;
   border-radius: 10px;
-  margin-bottom: 1.5%; 
+  margin-bottom: 2%; 
   max-width: 50%;
   position: relative;
   right:20%;
@@ -436,17 +436,20 @@ div {
   margin-bottom: 2%;
 }
 
+
 .info-title2 {
   display: inline;
 }
 
 .info-content2 {
   display: inline-block;
+  font-size: 1.5vw;
 }
 
 .info-price {
   display: inline-block;
   float: right;
+  font-size: 1.5vw;
 }
 
 .teacher-info-box2 {
@@ -498,15 +501,14 @@ div {
 
 .followed-button {
   background-color:  rgb(254, 196, 196); 
-  width: 15%;
-  height: 60px;
+  height: 5vw;
+  min-width: 30% ;
   border-radius: 60px; 
   border: 2px solid rgba(254, 196, 196);
-  font-size: 2.5vw;
+  font-size: 2vw;
   display: flex;
   justify-content: center; 
   align-items: center;
-  width: 25%;
 }
 .follow-button {
   color: white;

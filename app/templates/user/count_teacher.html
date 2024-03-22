@@ -63,7 +63,7 @@
     {% if not teachers %}
         {% if not follow %}
             <form action="{{ url_for('user.count_teacher', teacher_id=teacher['id']) }}" method="POST"  class="white-background">
-                <button type="submit" name="follow" class="button follow-button">Voulez-vous suivre cet enseignant ?</button>
+                <button type="submit" name="follow" class="button_count">Voulez-vous suivre cet enseignant ?</button>
             </form>
         {% endif %}
         {% if follow %}
