@@ -14,6 +14,9 @@ h1{
   max-width: 70%;
 }
 
+h2{
+  font-size: 1.5vw;
+}
 
 h3{
   color: black; 
@@ -88,7 +91,7 @@ textarea:invalid {
 
 .button {
   background-color: rgba(8, 97, 60, 1); 
-  width: 20%;
+  min-width: 20%;
   height: 100%;
   border-radius: 60px; 
   border: 2px solid rgba(8, 97, 60, 1);
@@ -99,12 +102,11 @@ textarea:invalid {
 }
 
 .link-style{
-  display: inline-block;
-  font-size: 2.5vw;
+  font-size: 2vw;
   color: rgb(0, 0, 0); 
-  margin-bottom : 2%; 
+  margin-top: 2%; 
+   
 }
-
 
 .changement-link {
   display: inline-block;
@@ -116,7 +118,6 @@ textarea:invalid {
 .custom-form {
   background-color: white; 
 }
-
 
 form {
   width: 100%;
@@ -155,7 +156,7 @@ div {
 /*home*/
 .buttonprincipale {
   background-color: rgba(8, 97, 60, 1); 
-  width: 25%;
+  min-width: 25%;
   height: 3.8vw;
   border-radius: 60px; 
   border: 2px solid rgba(8, 97, 60, 1);
@@ -261,8 +262,8 @@ div {
 }
 
 .avatar2 {
-  width: 5vw;
-  height: 5vw;
+  width: 4vw;
+  height: 4vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
@@ -284,8 +285,8 @@ div {
 }
 
 .image2{
-  width: 5vw; 
-  height: 5vw;
+  width: 4vw; 
+  height: 4vw;
   border-radius: 50%; 
   display: flex;
   justify-content: center;
@@ -358,7 +359,7 @@ div {
 .register-link {
   display: inline-block; 
   min-width: 50%; 
-  height: 70px;  
+  height: 3vw;  
   text-align: center; 
   background-color: rgba(8, 97, 60, 1); 
   border-radius: 60px; 
@@ -465,10 +466,10 @@ div {
   background-color:rgba(8, 97, 60, 1) ;
   border: 2px solid rgba(8, 97, 60, 1);
   position: relative;
-  width: 28%;
-  height: 60px;
+  max-width: 28%;
+  min-height: 2vw;
   border-radius: 60px;
-  font-size: 1vw;
+  font-size: 1.1vw;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
