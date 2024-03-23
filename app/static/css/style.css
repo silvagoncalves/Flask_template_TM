@@ -207,22 +207,6 @@ div {
   width: 22%;
 }
 
-.etape3 {
-  position: relative;
-  top: -1295px;
-  color: black;
-  background-color: rgb(254, 196, 196);
-  text-align: center;
-  font-size: 2vw;
-  padding: 2%;
-  border-radius: 25px;
-  margin: 8% 0;
-  right: -65%; 
-  text-align: left;
-  display: block;
-  width: 30%;
-  height: 470px;
-}
 
 .black-band {
   background-color: black;
