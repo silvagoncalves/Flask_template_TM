@@ -317,7 +317,7 @@ div {
 
 .button_case {
   position: relative;
-  width: 25%;
+  min-width: 25%;
   height: 15px;
   border-radius: 60px;
   font-size: 1vw;
@@ -385,6 +385,7 @@ div {
 .message-content.received {
   color:white;
 }
+
 .message-bubble.received {
   background-color:rgb(6, 6, 6);
   color: white;
@@ -490,18 +491,22 @@ div {
   margin-top: 3%;
   margin-right: 3%;
 }
+
 .follow-button {
   color: white;
   margin-left: 75%;
   margin-bottom:2%;
 }
+
 .messagerie-button{ 
   color: white;
   margin-left: 55%;
 }
+
 .count{
   color:#fff;
 }
+
 .button_count_emplacement{
   display: flex;
   flex-wrap: wrap; 
