@@ -28,3 +28,4 @@ def create_app():
 
     # On retourne l'instance de l'application Flask
     return app
+
